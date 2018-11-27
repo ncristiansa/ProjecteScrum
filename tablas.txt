@@ -20,6 +20,22 @@ productowner varchar(50)
 fechaInicio date
 fechaFinal date
 
+
+
+grupos
+--------
+gruposID primary key auto
+name varchar(50)
+
+sprints
+-------------
+sprintID
+projectoID
+horas
+fechaInicio
+fechaFinal
+numerosprint
+
 especificaciones
 -----------------
 especificacionID auto primary key
@@ -28,11 +44,6 @@ contenido varchar(50)
 sprintID int(2) foreign key
 horas numer(2)
 
-grupos
---------
-gruposID primary key auto
-name varchar(50)
-
 scrum
 ----------
 scrumID foreign key
@@ -40,3 +51,30 @@ especificacionID foreign key
 gruponame varchar(50)
 projectoid foreign key
 
+
+
+CONSULTAS:
+
+creación tabla: USERS
+CREATE TABLE users (userID INT(2) AUTO_INCREMENT, username VARCHAR(50), name VARCHAR(50), passwd VARCHAR(512), type VARCHAR(50), grupo VARCHAR(50), email VARCHAR(100), PRIMARY KEY (userID) );
+
+creación tabla: PROJECTO
+mysql> CREATE TABLE projects (projectoID INT(2) AUTO_INCREMENT, nameproject VARCHAR(50), description VARCHAR(500), masterscrum VARCHAR(50), productowner VARCHAR(50), fechaInicio VARCHAR(50), fechaFinal VARCHAR(50), PRIMARY KEY (projectoID));
+
+
+creación tabla: GRUPOS
+
+mysql> CREATE TABLE grupos (grupoID INT(2) AUTO_INCREMENT, namegroup VARCHAR(50), PRIMARY KEY (grupoID));
+
+creación tabla: especificaciones
+mysql> CREATE TABLE especificaciones (especificacionID INT(2) AUTO_INCREMENT, projectoID INT(2), contenido VARCHAR(50), sprintID INT(2), horas INT(2), PRIMARY KEY (especificacionID), FOREIGN KEY (projectoID) REFERENCES projects (projectoID), FOREIGN KEY (sprintID) REFERENCES sprints (sprintID));
+
+
+
+CREATE TABLE especificaciones (especificacionID INT(2) AUTO_INCREMENT, projectoID INT(2), contenido VARCHAR(50),
+
+creación tabla: sprints
+mysql> CREATE TABLE sprints(sprintID INT(2) AUTO_INCREMENT, projectoID INT(2), horas VARCHAR(10), fechaInicio VARCHAR(50), fechaFinal VARCHAR(50), numerosprint INT(2), PRIMARY KEY (sprintID), FOREIGN KEY (projectoID) REFERENCES projects (projectoID));
+
+creación tabla: scrum
+mysql> CREATE TABLE scrum (scrumID INT(2) AUTO_INCREMENT, especificacionID INT(2), gruponame VARCHAR(50), projectoID INT(2), PRIMARY KEY (scrumID), FOREIGN KEY (especificacionID) REFERENCES especificaciones (especificacionID), FOREIGN KEY (projectoID) REFERENCES projects(projectoID));
