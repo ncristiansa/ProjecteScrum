@@ -1,0 +1,42 @@
+	TABLAS
+
+users
+--------
+userid auto primary key
+username varchar(50)
+name varchar(50)
+passwd varchar(512)
+type varchar(50)
+group varchar(50)
+email
+
+projectos
+----------
+projectoID number(2) primary key
+nom varchar(50)
+descripcion varchar(500)
+masterscrum varchar(50)
+productowner varchar(50)
+fechaInicio date
+fechaFinal date
+
+especificaciones
+-----------------
+especificacionID auto primary key
+projectoID foreign key
+contenido varchar(50)
+sprintID int(2) foreign key
+horas numer(2)
+
+grupos
+--------
+gruposID primary key auto
+name varchar(50)
+
+scrum
+----------
+scrumID foreign key
+especificacionID foreign key
+gruponame varchar(50)
+projectoid foreign key
+
