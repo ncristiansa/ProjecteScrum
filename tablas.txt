@@ -10,9 +10,9 @@ type varchar(50)
 group varchar(50)
 email
 
-projectos
+proyectos
 ----------
-projectoID number(2) primary key
+proyectoID number(2) primary key
 nom varchar(50)
 descripcion varchar(500)
 masterscrum varchar(50)
@@ -51,30 +51,26 @@ especificacionID foreign key
 gruponame varchar(50)
 projectoid foreign key
 
-
+CREATE DATABASE DBProject;
 
 CONSULTAS:
 
-creación tabla: USERS
+creación tabla: users
 CREATE TABLE users (userID INT(2) AUTO_INCREMENT, username VARCHAR(50), name VARCHAR(50), passwd VARCHAR(512), type VARCHAR(50), grupo VARCHAR(50), email VARCHAR(100), PRIMARY KEY (userID) );
 
-creación tabla: PROJECTO
-mysql> CREATE TABLE projects (projectoID INT(2) AUTO_INCREMENT, nameproject VARCHAR(50), description VARCHAR(500), masterscrum VARCHAR(50), productowner VARCHAR(50), fechaInicio VARCHAR(50), fechaFinal VARCHAR(50), PRIMARY KEY (projectoID));
+creación tabla: project
+mysql> CREATE TABLE project (projectID INT(2) AUTO_INCREMENT, nameproject VARCHAR(50), description VARCHAR(500), masterscrum VARCHAR(50), productowner VARCHAR(50), fechaInicio VARCHAR(50), fechaFinal VARCHAR(50), PRIMARY KEY (projectoID));
 
 
-creación tabla: GRUPOS
+creación tabla: grups
 
-mysql> CREATE TABLE grupos (grupoID INT(2) AUTO_INCREMENT, namegroup VARCHAR(50), PRIMARY KEY (grupoID));
+mysql> CREATE TABLE grups (grupoID INT(2) AUTO_INCREMENT, namegroup VARCHAR(50), PRIMARY KEY (grupoID));
 
-creación tabla: especificaciones
-mysql> CREATE TABLE especificaciones (especificacionID INT(2) AUTO_INCREMENT, projectoID INT(2), contenido VARCHAR(50), sprintID INT(2), horas INT(2), PRIMARY KEY (especificacionID), FOREIGN KEY (projectoID) REFERENCES projects (projectoID), FOREIGN KEY (sprintID) REFERENCES sprints (sprintID));
-
-
-
-CREATE TABLE especificaciones (especificacionID INT(2) AUTO_INCREMENT, projectoID INT(2), contenido VARCHAR(50),
+creación tabla: homework
+mysql> CREATE TABLE homework (especificacionID INT(2) AUTO_INCREMENT, projectID INT(2), contenido VARCHAR(50), sprintID INT(2), horas INT(2), PRIMARY KEY (especificacionID), FOREIGN KEY (projectID) REFERENCES project (projectID), FOREIGN KEY (sprintID) REFERENCES sprints (sprintID));
 
 creación tabla: sprints
-mysql> CREATE TABLE sprints(sprintID INT(2) AUTO_INCREMENT, projectoID INT(2), horas VARCHAR(10), fechaInicio VARCHAR(50), fechaFinal VARCHAR(50), numerosprint INT(2), PRIMARY KEY (sprintID), FOREIGN KEY (projectoID) REFERENCES projects (projectoID));
+mysql> CREATE TABLE sprints(sprintID INT(2) AUTO_INCREMENT, projectID INT(2), horas VARCHAR(10), fechaInicio VARCHAR(50), fechaFinal VARCHAR(50), numerosprint INT(2), PRIMARY KEY (sprintID), FOREIGN KEY (projectID) REFERENCES project (projectID));
 
-creación tabla: scrum
-mysql> CREATE TABLE scrum (scrumID INT(2) AUTO_INCREMENT, especificacionID INT(2), gruponame VARCHAR(50), projectoID INT(2), PRIMARY KEY (scrumID), FOREIGN KEY (especificacionID) REFERENCES especificaciones (especificacionID), FOREIGN KEY (projectoID) REFERENCES projects(projectoID));
+creación tabla: homework
+mysql> CREATE TABLE homework (scrumID INT(2) AUTO_INCREMENT, especificacionID INT(2), gruponame VARCHAR(50), projectID INT(2), PRIMARY KEY (scrumID), FOREIGN KEY (especificacionID) REFERENCES especificaciones (especificacionID), FOREIGN KEY (projectID) REFERENCES project(projectID));
