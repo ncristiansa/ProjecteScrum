@@ -1,0 +1,56 @@
+Name database: DBProject
+
+Tables:
+============================================================================================
+Users 		-> Usuarios
+-----
+userID		INT(2)			->	ID del usuario.		PRIMARY KEY
+nickname 	VARCHAR(50)		->	Apodo del usuario.
+username	VARCHAR(50)		->	Nombre del usuario.
+passwd		VARCHAR(512)	->	Clave del usuario (SHA2)
+type		VARCHAR(50)		->	Tipo de usuario [ScrumMaster, ProductOwner, Developer].
+nameGroup	VARCHAR(50)		->	Nombre del grupo [A, B, C, etc...].
+email		VARCHAR(50)		->	Correo del usuario.
+
+============================================================================================
+Project 	-> Projecto					[Tabla que usaremos para "Create new Project" y visualizar].
+-------
+projectID			INT(2)			-> Id del proyecto.		PRIMARY KEY
+nameProject			VARCHAR(50)		-> Nombre del proyecto.
+description 		VARCHAR(500)	-> Descripción del proyecto.
+scrummasterName		VARCHAR(30)		-> Nombre del Scrum Master
+productownerName	VARCHAR(50)		-> Nombre del Product Owner
+startDate			VARCHAR(30)		-> Fecha de inicio del X proyecto.
+endDate				VARCHAR(30)		-> Fecha de fin de X proyecto.
+
+============================================================================================
+Groups 		-> Grupos
+------
+groupsID	INT(2)			-> ID del grupo.		PRIMARY KEY
+groupName	VARCHAR(50)		-> Nombre del grupo.
+
+============================================================================================
+Sprints
+-------
+sprintID		INT(2)			-> ID del sprint.		PRIMARY KEY
+projectID		INT(2)			-> ID del proyecto (FOREIGN KEY Project).
+hours			INT(2)			-> Horas totales del sprint.
+startDate		VARCHAR(30)		-> Fecha de inicio del X SPRINT.
+endDate			VARCHAR(30)		-> Fecha de fin de X SPRINT.
+
+============================================================================================
+Homework 	-> Tareas/Deberes
+--------
+homeworkID		INT(2)			-> ID de X tarea.		PRIMARY KEY
+projectID		INT(2)			-> ID del proyecto (FOREIGN KEY Project).
+content			VARCHAR(50)		-> Descripción de la tarea.
+sprintID		INT(2)			-> ID del sprint (FOREIGN KEY Sprints).
+hours			INT(2)			-> Horas de X tarea.
+
+============================================================================================
+Scrum 		-> Scrum
+-----
+scrumID			INT(2)			-> ID de scrum.
+homeworkID		INT(2)			-> ID de tarea (FOREIGN KEY Homework).		PRIMARY KEY
+groupName		VARCHAR(50)		-> Nombre del grupo.
+projectID		INT(2)			-> ID del proyecto (FOREIGN KEY Project).
