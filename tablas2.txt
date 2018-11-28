@@ -62,7 +62,10 @@ CREACIÓN DE TABLAS:
 
 Tabla Users:
 
-CREATE TABLE Users (userID INT(2) AUTO_INCREMENT, nickname VARCHAR(50), username VARCHAR(50), passwd VARCHAR(512), type VARCHAR(50), nameGroup VARCHAR(50), email VARCHAR(50), PRIMARY KEY (userID));
+CREATE TABLE Users (userID INT(2) AUTO_INCREMENT, nickname VARCHAR(50), username VARCHAR(50), passwd VARCHAR(512), type INT(2), nameGroup VARCHAR(50), email VARCHAR(50), PRIMARY KEY (userID));
+
+mysql> INSERT INTO Users VALUES ("juanam", "juana", SHA2('juana123', 512),  );
+
 
 Tabla Projects:
 
@@ -92,3 +95,7 @@ CREATE DATABASE DBProject;
 CREATE USER 'Administrador'@'localhost' IDENTIFIED BY 'P@ssw0rd';
 GRANT ALL PRIVILEGES ON * . * TO 'nuevousuario'@'localhost';
 FLUSH PRIVILEGES;
+
+--------------------------
+INSERTS:
+INSERT INTO Users (nickname, username, passwd, type, email) VALUES ("juanam", "juana", SHA2('juana123',512), 1, "juanascrummaster@gmail.com" );
