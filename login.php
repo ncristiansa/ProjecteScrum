@@ -7,7 +7,7 @@
 <body>
 <?php 
 echo "<h2 class='titulo'>LOGIN</h2>";
-echo "<form class='formulario' action='loginBueno.php' method='POST' >";
+echo "<form class='formulario' action='login.php' method='POST' >";
 echo "Usuario: <br>";
 echo "<input type='text' name='nom'><br>";
 echo "password: <br>";
@@ -18,15 +18,18 @@ $nombre=$_POST["nom"];
 $pass=$_POST["password"];
 
 
-$log="mysql:host=localhost;dbname=login";
-$conn = new PDO($log,"marcos","marcos123");
-$stmt = $conn->prepare("SELECT * FROM USERS WHERE USER=:nombre and PASSWD=SHA2(:pass,512)");
+$log="mysql:host=localhost;dbname=DBProject1";
+$conn = new PDO($log,"Administrador","P@ssw0rd");
+$stmt = $conn->prepare("SELECT * FROM Users WHERE nickname=:nombre and passwd=SHA2(:pass,512)");
+echo $stmt;
 $stmt->bindValue(':nombre',$nombre);
 $stmt->bindValue(':pass',$pass);
 $stmt->execute();
 $result=$stmt->rowCount();
 if ($result==1) {
 	echo "Hola soy: $nombre";
+}else{
+	echo"NO existe";
 }
 
 
