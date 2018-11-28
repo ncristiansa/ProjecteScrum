@@ -74,3 +74,11 @@ mysql> CREATE TABLE sprints(sprintID INT(2) AUTO_INCREMENT, projectID INT(2), ho
 
 creación tabla: homework
 mysql> CREATE TABLE homework (scrumID INT(2) AUTO_INCREMENT, especificacionID INT(2), gruponame VARCHAR(50), projectID INT(2), PRIMARY KEY (scrumID), FOREIGN KEY (especificacionID) REFERENCES especificaciones (especificacionID), FOREIGN KEY (projectID) REFERENCES project(projectID));
+
+Homework 	-> Tareas/Deberes
+--------
+homeworkID		INT(2)			-> ID de X tarea.		PRIMARY KEY
+projectID		INT(2)			-> ID del proyecto (FOREIGN KEY Project).
+description		VARCHAR(50)		-> Descripción de la tarea.
+sprintID		INT(2)			-> ID del sprint (FOREIGN KEY Sprints).
+hours			INT(2)			-> Horas de X tarea.

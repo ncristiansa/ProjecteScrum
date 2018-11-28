@@ -27,7 +27,8 @@ endDate				VARCHAR(30)		-> Fecha de fin de X proyecto.
 Groups 		-> Grupos
 ------
 groupsID	INT(2)			-> ID del grupo.		PRIMARY KEY
-groupName	VARCHAR(50)		-> Nombre del grupo.
+nameGroup	VARCHAR(50)		-> Nombre del grupo.
+projectID	INT(2)			-> ID project 			FOREIGN KEY
 
 ============================================================================================
 Sprints
@@ -43,7 +44,7 @@ Homework 	-> Tareas/Deberes
 --------
 homeworkID		INT(2)			-> ID de X tarea.		PRIMARY KEY
 projectID		INT(2)			-> ID del proyecto (FOREIGN KEY Project).
-content			VARCHAR(50)		-> Descripción de la tarea.
+description		VARCHAR(50)		-> Descripción de la tarea.
 sprintID		INT(2)			-> ID del sprint (FOREIGN KEY Sprints).
 hours			INT(2)			-> Horas de X tarea.
 
@@ -54,3 +55,40 @@ scrumID			INT(2)			-> ID de scrum.
 homeworkID		INT(2)			-> ID de tarea (FOREIGN KEY Homework).		PRIMARY KEY
 groupName		VARCHAR(50)		-> Nombre del grupo.
 projectID		INT(2)			-> ID del proyecto (FOREIGN KEY Project).
+username		VARCHAR(50)		-> FK de username (Users)
+============================================================================================
+
+CREACIÓN DE TABLAS:
+
+Tabla Users:
+
+CREATE TABLE Users (userID INT(2) AUTO_INCREMENT, nickname VARCHAR(50), username VARCHAR(50), passwd VARCHAR(512), type VARCHAR(50), nameGroup VARCHAR(50), email VARCHAR(50), PRIMARY KEY (userID));
+
+Tabla Projects:
+
+CREATE TABLE Projects (projectID INT(2), nameProject VARCHAR(50), description VARCHAR(50), scrumMasterName VARCHAR(50), productOwnerName VARCHAR(50), startDate VARCHAR(30), endDate VARCHAR(30), PRIMARY KEY (projectID));
+
+Tabla Groups:
+
+CREATE TABLE Groups (groupsID INT(2) AUTO_INCREMENT, nameGroup VARCHAR(2), projectID INT(2), PRIMARY KEY (groupsID), FOREIGN KEY (projectID) REFERENCES Projects (projectID));
+
+
+Tabla Sprints:
+
+CREATE TABLE Sprints (sprintID INT(2), projectID INT(2), hours INT(2), startDate VARCHAR(50), endDate VARCHAR(50), PRIMARY KEY (sprintID), FOREIGN KEY (projectID) REFERENCES Projects (projectID));
+
+Tabla Homework:
+
+CREATE TABLE Homework(homeworkID INT(2), projectID INT(2), description VARCHAR(100), sprintID INT(2), hours INT(2), PRIMARY KEY (homeworkID), FOREIGN KEY (projectID) REFERENCES Projects (projectID));
+
+Tabla Scrum:
+
+CREATE TABLE Scrum (scrumID INT(2), homeworkID INT(2), groupsID INT(2), groupName VARCHAR(50), projectID INT(2), PRIMARY KEY (scrumID), FOREIGN KEY (homeworkID) REFERENCES Homework (homeworkID), FOREIGN KEY (groupsID) REFERENCES Groups(groupsID), FOREIGN KEY (projectID) REFERENCES Projects (projectID));
+
+
+
+COMANDOS:
+CREATE DATABASE DBProject;
+CREATE USER 'Administrador'@'localhost' IDENTIFIED BY 'P@ssw0rd';
+GRANT ALL PRIVILEGES ON * . * TO 'nuevousuario'@'localhost';
+FLUSH PRIVILEGES;
