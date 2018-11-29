@@ -98,4 +98,10 @@ FLUSH PRIVILEGES;
 
 --------------------------
 INSERTS:
-INSERT INTO Users (nickname, username, passwd, type, email) VALUES ("juanam", "juana", SHA2('juana123',512), 1, "juanascrummaster@gmail.com" );
+	- Usuarios insertados en la DBProject1.
+	User ScrumMaster:
+		INSERT INTO Users (nickname, username, passwd, type, email) VALUES ("juanam", "juana", SHA2('juana123',512), 1, "juanascrummaster@gmail.com" );
+	User Product Owner:
+		INSERT INTO Users (nickname, username, passwd, type, email) VALUES ("andreat", "andrea", SHA2('andrea123',512), 2, "andreatproduct@gmail.com" );
+	User Developer:
+		INSERT INTO Users (nickname, username, passwd, type, email) VALUES ("martaz", "marta", SHA2('marta123',512), 3, "martadeveloper@gmail.com" );
