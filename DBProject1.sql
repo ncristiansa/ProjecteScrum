@@ -16,175 +16,175 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Groups`
+-- Table structure for table 'Groups'
 --
 
-DROP TABLE IF EXISTS `Groups`;
+DROP TABLE IF EXISTS 'Groups';
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Groups` (
-  `groupsID` int(2) NOT NULL AUTO_INCREMENT,
-  `nameGroup` varchar(2) DEFAULT NULL,
-  `projectID` int(2) DEFAULT NULL,
-  PRIMARY KEY (`groupsID`),
-  KEY `projectID` (`projectID`),
-  CONSTRAINT `Groups_ibfk_1` FOREIGN KEY (`projectID`) REFERENCES `Projects` (`projectID`)
+CREATE TABLE 'Groups' (
+  'groupsID' int(2) NOT NULL AUTO_INCREMENT,
+  'nameGroup' varchar(2) DEFAULT NULL,
+  'projectID' int(2) DEFAULT NULL,
+  PRIMARY KEY ('groupsID'),
+  KEY 'projectID' ('projectID'),
+  CONSTRAINT 'Groups_ibfk_1' FOREIGN KEY ('projectID') REFERENCES 'Projects' ('projectID')
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Groups`
+-- Dumping data for table 'Groups'
 --
 
-LOCK TABLES `Groups` WRITE;
-/*!40000 ALTER TABLE `Groups` DISABLE KEYS */;
-INSERT INTO `Groups` VALUES (1,'A',NULL),(2,'B',NULL),(3,'C',NULL);
-/*!40000 ALTER TABLE `Groups` ENABLE KEYS */;
+LOCK TABLES 'Groups' WRITE;
+/*!40000 ALTER TABLE 'Groups' DISABLE KEYS */;
+INSERT INTO 'Groups' VALUES (1,'A',NULL),(2,'B',NULL),(3,'C',NULL);
+/*!40000 ALTER TABLE 'Groups' ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Homework`
+-- Table structure for table 'Homework'
 --
 
-DROP TABLE IF EXISTS `Homework`;
+DROP TABLE IF EXISTS 'Homework';
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Homework` (
-  `homeworkID` int(2) NOT NULL,
-  `projectID` int(2) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `sprintID` int(2) DEFAULT NULL,
-  `hours` int(2) DEFAULT NULL,
-  PRIMARY KEY (`homeworkID`),
-  KEY `projectID` (`projectID`),
-  CONSTRAINT `Homework_ibfk_1` FOREIGN KEY (`projectID`) REFERENCES `Projects` (`projectID`)
+CREATE TABLE 'Homework' (
+  'homeworkID' int(2) NOT NULL,
+  'projectID' int(2) DEFAULT NULL,
+  'description' varchar(100) DEFAULT NULL,
+  'sprintID' int(2) DEFAULT NULL,
+  'hours' int(2) DEFAULT NULL,
+  PRIMARY KEY ('homeworkID'),
+  KEY 'projectID' ('projectID'),
+  CONSTRAINT 'Homework_ibfk_1' FOREIGN KEY ('projectID') REFERENCES 'Projects' ('projectID')
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Homework`
+-- Dumping data for table 'Homework'
 --
 
-LOCK TABLES `Homework` WRITE;
-/*!40000 ALTER TABLE `Homework` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Homework` ENABLE KEYS */;
+LOCK TABLES 'Homework' WRITE;
+/*!40000 ALTER TABLE 'Homework' DISABLE KEYS */;
+/*!40000 ALTER TABLE 'Homework' ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Projects`
+-- Table structure for table 'Projects'
 --
 
-DROP TABLE IF EXISTS `Projects`;
+DROP TABLE IF EXISTS 'Projects';
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Projects` (
-  `projectID` int(2) NOT NULL,
-  `nameProject` varchar(50) DEFAULT NULL,
-  `description` varchar(50) DEFAULT NULL,
-  `scrumMasterName` varchar(50) DEFAULT NULL,
-  `productOwnerName` varchar(50) DEFAULT NULL,
-  `startDate` varchar(30) DEFAULT NULL,
-  `endDate` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`projectID`)
+CREATE TABLE 'Projects' (
+  'projectID' int(2) NOT NULL,
+  'nameProject' varchar(50) DEFAULT NULL,
+  'description' varchar(50) DEFAULT NULL,
+  'scrumMasterName' varchar(50) DEFAULT NULL,
+  'productOwnerName' varchar(50) DEFAULT NULL,
+  'startDate' varchar(30) DEFAULT NULL,
+  'endDate' varchar(30) DEFAULT NULL,
+  PRIMARY KEY ('projectID')
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Projects`
+-- Dumping data for table 'Projects'
 --
 
-LOCK TABLES `Projects` WRITE;
-/*!40000 ALTER TABLE `Projects` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Projects` ENABLE KEYS */;
+LOCK TABLES 'Projects' WRITE;
+/*!40000 ALTER TABLE 'Projects' DISABLE KEYS */;
+/*!40000 ALTER TABLE 'Projects' ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Scrum`
+-- Table structure for table 'Scrum'
 --
 
-DROP TABLE IF EXISTS `Scrum`;
+DROP TABLE IF EXISTS 'Scrum';
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Scrum` (
-  `scrumID` int(2) NOT NULL,
-  `homeworkID` int(2) DEFAULT NULL,
-  `groupsID` int(2) DEFAULT NULL,
-  `groupName` varchar(50) DEFAULT NULL,
-  `projectID` int(2) DEFAULT NULL,
-  PRIMARY KEY (`scrumID`),
-  KEY `homeworkID` (`homeworkID`),
-  KEY `groupsID` (`groupsID`),
-  KEY `projectID` (`projectID`),
-  CONSTRAINT `Scrum_ibfk_1` FOREIGN KEY (`homeworkID`) REFERENCES `Homework` (`homeworkID`),
-  CONSTRAINT `Scrum_ibfk_2` FOREIGN KEY (`groupsID`) REFERENCES `Groups` (`groupsID`),
-  CONSTRAINT `Scrum_ibfk_3` FOREIGN KEY (`projectID`) REFERENCES `Projects` (`projectID`)
+CREATE TABLE 'Scrum' (
+  'scrumID' int(2) NOT NULL,
+  'homeworkID' int(2) DEFAULT NULL,
+  'groupsID' int(2) DEFAULT NULL,
+  'groupName' varchar(50) DEFAULT NULL,
+  'projectID' int(2) DEFAULT NULL,
+  PRIMARY KEY ('scrumID'),
+  KEY 'homeworkID' ('homeworkID'),
+  KEY 'groupsID' ('groupsID'),
+  KEY 'projectID' ('projectID'),
+  CONSTRAINT 'Scrum_ibfk_1' FOREIGN KEY ('homeworkID') REFERENCES 'Homework' ('homeworkID'),
+  CONSTRAINT 'Scrum_ibfk_2' FOREIGN KEY ('groupsID') REFERENCES 'Groups' ('groupsID'),
+  CONSTRAINT 'Scrum_ibfk_3' FOREIGN KEY ('projectID') REFERENCES 'Projects' ('projectID')
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Scrum`
+-- Dumping data for table 'Scrum'
 --
 
-LOCK TABLES `Scrum` WRITE;
-/*!40000 ALTER TABLE `Scrum` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Scrum` ENABLE KEYS */;
+LOCK TABLES 'Scrum' WRITE;
+/*!40000 ALTER TABLE 'Scrum' DISABLE KEYS */;
+/*!40000 ALTER TABLE 'Scrum' ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Sprints`
+-- Table structure for table 'Sprints'
 --
 
-DROP TABLE IF EXISTS `Sprints`;
+DROP TABLE IF EXISTS 'Sprints';
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Sprints` (
-  `sprintID` int(2) NOT NULL,
-  `projectID` int(2) DEFAULT NULL,
-  `hours` int(2) DEFAULT NULL,
-  `startDate` varchar(50) DEFAULT NULL,
-  `endDate` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`sprintID`),
-  KEY `projectID` (`projectID`),
-  CONSTRAINT `Sprints_ibfk_1` FOREIGN KEY (`projectID`) REFERENCES `Projects` (`projectID`)
+CREATE TABLE 'Sprints' (
+  'sprintID' int(2) NOT NULL,
+  'projectID' int(2) DEFAULT NULL,
+  'hours' int(2) DEFAULT NULL,
+  'startDate' varchar(50) DEFAULT NULL,
+  'endDate' varchar(50) DEFAULT NULL,
+  PRIMARY KEY ('sprintID'),
+  KEY 'projectID' ('projectID'),
+  CONSTRAINT 'Sprints_ibfk_1' FOREIGN KEY ('projectID') REFERENCES 'Projects' ('projectID')
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Sprints`
+-- Dumping data for table 'Sprints'
 --
 
-LOCK TABLES `Sprints` WRITE;
-/*!40000 ALTER TABLE `Sprints` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Sprints` ENABLE KEYS */;
+LOCK TABLES 'Sprints' WRITE;
+/*!40000 ALTER TABLE 'Sprints' DISABLE KEYS */;
+/*!40000 ALTER TABLE 'Sprints' ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Users`
+-- Table structure for table 'Users'
 --
 
-DROP TABLE IF EXISTS `Users`;
+DROP TABLE IF EXISTS 'Users';
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Users` (
-  `userID` int(2) NOT NULL AUTO_INCREMENT,
-  `nickname` varchar(50) DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `passwd` varchar(512) DEFAULT NULL,
-  `type` int(2) DEFAULT NULL,
-  `nameGroup` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`userID`)
+CREATE TABLE 'Users' (
+  'userID' int(2) NOT NULL AUTO_INCREMENT,
+  'nickname' varchar(50) DEFAULT NULL,
+  'username' varchar(50) DEFAULT NULL,
+  'passwd' varchar(512) DEFAULT NULL,
+  'type' int(2) DEFAULT NULL,
+  'nameGroup' varchar(50) DEFAULT NULL,
+  'email' varchar(50) DEFAULT NULL,
+  PRIMARY KEY ('userID')
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Users`
+-- Dumping data for table 'Users'
 --
 
-LOCK TABLES `Users` WRITE;
-/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'juanam','juana','4844624d054a4ed71e03f4dbe54bb258d35acc5c20ecc1de742bad129783ae790a45cb9737bd1a662411168a433fca2493ba81a4df594d2316cf9c72b02326d3',1,NULL,'juanascrummaster@gmail.com');
-/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
+LOCK TABLES 'Users' WRITE;
+/*!40000 ALTER TABLE 'Users' DISABLE KEYS */;
+INSERT INTO 'Users' VALUES (1,'juanam','juana','4844624d054a4ed71e03f4dbe54bb258d35acc5c20ecc1de742bad129783ae790a45cb9737bd1a662411168a433fca2493ba81a4df594d2316cf9c72b02326d3',1,NULL,'juanascrummaster@gmail.com');
+/*!40000 ALTER TABLE 'Users' ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
