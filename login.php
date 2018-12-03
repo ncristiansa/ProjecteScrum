@@ -31,9 +31,9 @@ $result=$stmt->rowCount();
 if ($result==1) {
 	echo "Hola soy: $nombre";
 }else{
-	addMessageError();
+	//addMessageError();
 }
 ?>
-	<div id="divError">Prueba div</div>
+	<span id="divError">Prueba div</span>
 </body>
 </html>

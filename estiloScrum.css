@@ -10,3 +10,12 @@
 .ptitulos{
 	margin-left: 7%;
 }
+
+#divError{
+	position:fixed;
+	bottom:0px;
+	width:40%;
+	 padding: 20px;
+    background-color: #f44336;
+    color: white
+}
