@@ -105,3 +105,5 @@ INSERTS:
 		INSERT INTO Users (nickname, username, passwd, type, email) VALUES ("andreat", "andrea", SHA2('andrea123',512), 2, "andreatproduct@gmail.com" );
 	User Developer:
 		INSERT INTO Users (nickname, username, passwd, type, email) VALUES ("martaz", "marta", SHA2('marta123',512), 3, "martadeveloper@gmail.com" );
+
+	- Grupos insertados en la DBProject1.
