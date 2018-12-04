@@ -2,21 +2,23 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
+	<script type="text/javascript" defer src="funciones.js" ></script>
 	<title></title>
 </head>
 <body>
+	<?php 
+	echo "
 	<nav>
 		<ul>
-			<li class="lihorizontal">Nom: Marcos</li>
+			<li class='lihorizontal'><img class='imgusuario' src='https://evarejo.com/wp-content/uploads/2017/08/evarejo_homem_padrao.png'> Marcos</li>
 			
-			<li class="lihorizontal"><img class="imglogout" src="https://cdn.icon-icons.com/icons2/1154/PNG/512/1486564399-close_81512.png"></li>
+			<li class='liimglogout'><img class='imglogout' src='http://www.esiam.mx/imagenes/iconos/logout%20-%20copia.png'></li>
 
 		</ul>
 
 
 	</nav>
-
-	<?php 
+	";
 	echo "<div class='divtabla'>";
 	echo "<p class='ptituloproyectos'>Lista de Proyesctos</p>";
 	echo "<table>";
