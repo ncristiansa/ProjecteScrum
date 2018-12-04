@@ -33,10 +33,14 @@ table{
 	width: 4%;
 	height: 4%;
 	padding: 0%;
-	margin-left: 85%;
+	
 	
 
 
+}
+.liimglogout{
+	margin-left: 85%;
+	display: inline;
 }
 .lihorizontal{
 	display: inline;

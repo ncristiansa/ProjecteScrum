@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
+	<script type="text/javascript" defer src="funciones.js" ></script>
 	<title></title>
 </head>
 <body>
@@ -11,7 +12,7 @@
 		<ul>
 			<li class='lihorizontal'><img class='imgusuario' src='https://evarejo.com/wp-content/uploads/2017/08/evarejo_homem_padrao.png'> Marcos</li>
 			
-			<li class='lihorizontal'><img class='imglogout' src='http://www.esiam.mx/imagenes/iconos/logout%20-%20copia.png'></li>
+			<li class='liimglogout'><img class='imglogout' src='http://www.esiam.mx/imagenes/iconos/logout%20-%20copia.png'></li>
 
 		</ul>
 
