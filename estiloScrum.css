@@ -10,27 +10,51 @@
 .ptitulos{
 	margin-left: 7%;
 }
-
-<<<<<<< HEAD
-#notification-message-unread {
-  float: right;
-  font-size: 10px;
-  color: #666;
-  background: white;
-  padding-left: 10px;
-  display: block;
-  position: relative;
-  width: 200px;
-  height: 200px;
-  background-color: red;
-  animation: blinker 1s linear infinite;
+/*Mensaje de error*/
+#error {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  background-color: black;
+  animation: blinkerMargin 0.3s linear infinite;
 }
+#textError{
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0.2%;
+  width: 97.5%;
+  height: 98%;
 
-@keyframes blinker {
+}
+#imageAlert{
+  height: 25px;
+  width: auto;
+  animation: blinkIcon 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes blinkIcon {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes blinkerMargin {
   50% {
-    background-color: blue;
+    background-color: red;
   }
-=======
+
+
+
+
 table{
 	border: 1px solid black;
 	width: 100%;
@@ -77,8 +101,7 @@ nav{
   
 }
 
-.imglogout:hover
-{
+.imglogout:hover{
   
   color:#494c46;
   -webkit-transform: scale(0.8);
@@ -87,4 +110,3 @@ nav{
   box-shadow: 0 0 40px #FF2525;
   
 }
->>>>>>> d05b80e881fd7b10459fbcd6be49200bc3cdc65e

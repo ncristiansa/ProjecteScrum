@@ -20,8 +20,7 @@ echo "</form>";
 	
 $nombre=$_POST["nom"];
 $pass=$_POST["password"];
-?>
-<?php 
+
 $log="mysql:host=localhost;dbname=DBProject1";
 $conn = new PDO($log,"Administrador","P@ssw0rd");
 $stmt = $conn->prepare("SELECT * FROM Users WHERE nickname=:nombre and passwd=SHA2(:pass,512)");
@@ -32,10 +31,10 @@ $result=$stmt->rowCount();
 if ($result==1) {
 	echo "Hola soy: $nombre";
 }else{
-	echo '<script type="text/javascript">',
-     'showError("ror",false);',
-     '</script>';
+	
+	echo '<script type="text/javascript">showError("Error contraseña incorecta",false);showError("Error contraseña incorecta2",false);</script>';
 }
 ?>
+
 </body>
 </html>
