@@ -3,6 +3,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
 	<title>Inicia Sesión</title>
+
 	<script type="text/javascript" src="scripts.js"></script>
 </head>
 <body>
@@ -19,8 +20,6 @@ echo "</form>";
 	
 $nombre=$_POST["nom"];
 $pass=$_POST["password"];
-?>
-<?php 
 
 $log="mysql:host=localhost;dbname=DBProject1";
 $conn = new PDO($log,"Administrador","P@ssw0rd");
@@ -32,10 +31,10 @@ $result=$stmt->rowCount();
 if ($result==1) {
 	echo "Hola soy: $nombre";
 }else{
-	addMessageError();
+	
+	echo '<script type="text/javascript">showError("Error contraseña incorecta",false);showError("Error contraseña incorecta2",false);</script>';
 }
-
 ?>
-	<div id="divError">Prueba div</div>
+
 </body>
 </html>

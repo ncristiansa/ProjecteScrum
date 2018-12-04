@@ -9,8 +9,20 @@ function scrumMaster(){
 	var boton = document.createElement("button");
 	var contenido = document.createTextNode("Crear proyecto");
 	boton.appendChild(contenido);
-	elementotabla.appendChild(boton);
+	insertAfter(elementotabla,boton);
+	
 }
+
+function insertAfter(e,i){ 
+	if(e.nextSibling){ 
+		e.parentNode.insertBefore(i,e.nextSibling); 
+	} else { 
+		e.parentNode.appendChild(i); 
+	}
+}
+
+
+
 
 
 function productOwne(){
