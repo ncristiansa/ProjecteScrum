@@ -11,11 +11,21 @@
 	margin-left: 7%;
 }
 
-#divError{
-	position:fixed;
-	bottom:0px;
-	width:40%;
-	 padding: 20px;
-    background-color: #f44336;
-    color: white
+#notification-message-unread {
+  float: right;
+  font-size: 10px;
+  color: #666;
+  background: white;
+  padding-left: 10px;
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  animation: blinker 1s linear infinite;
 }
+
+@keyframes blinker {
+  50% {
+    background-color: blue;
+  }

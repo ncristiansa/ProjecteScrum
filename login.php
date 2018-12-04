@@ -3,6 +3,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
 	<title>Inicia Sesión</title>
+
 	<script type="text/javascript" src="scripts.js"></script>
 </head>
 <body>
@@ -31,9 +32,10 @@ $result=$stmt->rowCount();
 if ($result==1) {
 	echo "Hola soy: $nombre";
 }else{
-	//addMessageError();
+	echo '<script type="text/javascript">',
+     'showError("ror",false);',
+     '</script>';
 }
 ?>
-	<span id="divError">Prueba div</span>
 </body>
 </html>
