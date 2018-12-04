@@ -1,3 +1,7 @@
+body{
+	margin:0;
+	padding: 0;
+}
 .titulo{
 	margin-left: 45%;
 	margin-top: 3%;
@@ -36,18 +40,19 @@ table{
 }
 .lihorizontal{
 	display: inline;
-	color: black;
+	color:   #605f60;
 
 }
 nav{
 	background-color: black;
+	margin-top:-1%;
+
+
 
 }
-.pnombrenav{
-	padding: 0%;
-}
 
-.lihorizontal:hover
+
+.imgusuario:hover
 {
   
   color:#494c46;
@@ -66,4 +71,9 @@ nav{
   transform: scale(0.8);
   box-shadow: 0 0 40px #FF2525;
   
+}
+.imgusuario{
+	width: 4%;
+	height: 4%;
+	
 }
