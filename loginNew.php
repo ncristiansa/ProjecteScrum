@@ -5,6 +5,8 @@
 ?>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
 	<title>Inicia Sesión</title>
 	<script type="text/javascript" src="script.js"></script>
@@ -40,6 +42,7 @@ echo "<h2 class='titulo'>LOGIN</h2>";
 	$result=$stmt->rowCount();
 	print_r($_SESSION["Name"]);
 	print_r($_SESSION["Pass"]);
+	print_r($stmt);
 if(isset($_POST['submit'])){
 	if($result==1){
 		header("Location: vistainicialP2.php");

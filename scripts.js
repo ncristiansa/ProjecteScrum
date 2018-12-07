@@ -3,7 +3,8 @@ errorText es el texto del error i tiempo en el caso que queramos que este solo p
 function showError(errorTextI,tiempo){
 	var errorComprobar=document.getElementById("error");
 	var page=document.getElementsByTagName("body")[0];
-	if (errorComprobar==null) {
+
+	if (errorComprobar==undefined) {
 		var error=document.createElement("div");
 		error.setAttribute("id", "error");
 
@@ -20,14 +21,14 @@ function showError(errorTextI,tiempo){
 		texto.appendChild(image);
 		error.appendChild(texto);
 		document.body.appendChild(error);
-
-		if (true==tiempo) {
-
-		}
-
 		
-	}else{
-		document.getElementById("textError").innerText(errorTextI);
+		if (true==tiempo) {
+			setTimeout(function() {document.getElementById("error").remove();}, 2000); 
+		}
+	
+	}else if (errorComprobar!=undefined){
+		document.getElementById("error").remove();
+		showError(errorTextI,tiempo);
 	}
 
 

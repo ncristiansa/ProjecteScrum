@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
 	<title>Inicia Sesión</title>
 
@@ -21,7 +23,7 @@ echo "</form>";
 $nombre=$_POST["nom"];
 $pass=$_POST["password"];
 
-$log="mysql:host=localhost;dbname=DBProject1";
+$log="mysql:host=localhost;dbname=DBPrueba";
 $conn = new PDO($log,"Administrador","P@ssw0rd");
 $stmt = $conn->prepare("SELECT * FROM Users WHERE nickname=:nombre and passwd=SHA2(:pass,512)");
 $stmt->bindValue(':nombre',$nombre);
@@ -29,10 +31,11 @@ $stmt->bindValue(':pass',$pass);
 $stmt->execute();
 $result=$stmt->rowCount();
 if ($result==1) {
-	echo "Hola soy: $nombre";
-}else{
+	echo "Hola soy: $nombre<br> ";
+
+}else{	
 	
-	echo '<script type="text/javascript">showError("Error contraseña incorecta",false);showError("Error contraseña incorecta2",false);</script>';
+	echo '<script type="text/javascript">showError("Errorxzvzxvz contraseña incorecta",false);showError("Error contraseñdddda incorecta2",true);</script>';
 }
 ?>
 
