@@ -1,20 +1,47 @@
 body{
-	margin:0;
-	padding: 0;
+  margin:0;
+  padding: 0;
 }
 .titulo{
-	margin-left: 45%;
-	margin-top: 3%;
+  margin-left: 45%;
+  margin-top: 3%;
 }
 
 .formulario{
-	margin-left: 40%;
+  margin: 0 auto;
+  width: 15%;
 }
 
 .ptitulos{
-	margin-left: 7%;
+  margin-left: 7%;
 }
-/*Mensaje de error*/
+
+/*
+  Mis pruebas css mensaje Error
+*/
+#MessageError {
+  margin: 0 auto; 
+  width: 18%;
+  border-radius: 3px;
+  border-style: dashed;
+  border-color: #ee1c19;
+  word-break: break-all;
+  word-wrap: break-word;
+  animation: blinkerMargin 1s linear infinite;
+}
+#pError {
+  color: red;
+  background-color: white;
+  padding: 5px;
+  margin: 5px;
+}
+#imgError {
+  float:right;
+  animation: blinkIcon 0.5s;
+  animation-iteration-count: infinite;
+}
+
+/*Mensaje de error
 #error {
   position: fixed;
   bottom: 0;
@@ -34,6 +61,7 @@ body{
   height: 98%;
 
 }
+*/
 #imageAlert{
   height: 25px;
   width: auto;
@@ -60,36 +88,36 @@ body{
 
 
 table{
-	border: 1px solid black;
-	width: 100%;
+  border: 1px solid black;
+  width: 100%;
 
 }
 .divtabla{
-	margin-left: 35%;
-	width: 30%;
-	margin-top: 5%;
+  margin-left: 35%;
+  width: 30%;
+  margin-top: 5%;
 }
 .ptituloproyectos{
-	text-align: center;
+  text-align: center;
 }
 
 .imglogout{
-	width: 4%;
-	height: 4%;
-	padding: 0%;
+  width: 4%;
+  height: 4%;
+  padding: 0%;
 }
 .liimglogout{
-	margin-left: 85%;
-	display: inline;
+  margin-left: 85%;
+  display: inline;
 }
 .lihorizontal{
-	display: inline;
-	color:   #605f60;
+  display: inline;
+  color:   #605f60;
 
 }
 nav{
-	background-color: black;
-	margin-top:-1%;
+  background-color: black;
+  margin-top:-1%;
 
 
 
@@ -116,7 +144,7 @@ nav{
   
 }
 .imgusuario{
-	width: 4%;
-	height: 4%;
-	
+  width: 4%;
+  height: 4%;
+  
 }

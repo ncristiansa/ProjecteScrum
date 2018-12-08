@@ -1,35 +1,40 @@
 /*Función que mostrara los errores
-errorText es el texto del error i tiempo en el caso que queramos que este solo por unos segundos*/ 
+errorText es el texto del error i tiempo en el caso que queramos que este solo por unos segundos
 function showError(errorTextI,tiempo){
-	var errorComprobar=document.getElementById("error");
-	var page=document.getElementsByTagName("body")[0];
 
-	if (errorComprobar==undefined) {
-		var error=document.createElement("div");
-		error.setAttribute("id", "error");
+*/
+function addMessageError(errorText, status){
+	var CheckError = document.getElementById("MessageError");
+	var Button = document.getElementsByTagName("input")[0];
 
-		var texto=document.createElement("p");
-		texto.setAttribute("id","textError");		
-		texto.innerText=(errorTextI);
-		var image=document.createElement("img");		
-		image.setAttribute("id","imageAlert");
-		image.src="images/alert.png";
+	if(CheckError==undefined){
+		var Fail = document.createElement("div");
+		Fail.setAttribute("id", "MessageError");
+		Fail.setAttribute("align", "left");
 
-		var intro=document.createElement("br");
-		page.appendChild(error);
-		texto.appendChild(intro);
-		texto.appendChild(image);
-		error.appendChild(texto);
-		document.body.appendChild(error);
-		
-		if (true==tiempo) {
-			setTimeout(function() {document.getElementById("error").remove();}, 2000); 
+		var failText = document.createElement("p");
+		failText.setAttribute("id", "pError");
+		failText.innerText=(errorText);
+
+		var Img = document.createElement("img");
+		Img.setAttribute("id", "imgError");
+		//Img.setAttribute("align", "left");
+		Img.setAttribute("height","30px");
+		Img.setAttribute("width", "30px");
+		Img.src="images/alert.png";
+
+		Button.appendChild(Fail);
+		Fail.appendChild(Img);
+		Fail.appendChild(failText);
+		document.body.appendChild(Fail);
+
+		if(true==status){
+			setTimeout(function(){document.getElementById("MessageError").remove();},2000);
 		}
-	
-	}else if (errorComprobar!=undefined){
-		document.getElementById("error").remove();
-		showError(errorTextI,tiempo);
+
+	}else if(CheckError!=undefined){
+		document.getElementById("MessageError").remove();
+		addMessageError(errorText, status);
 	}
-
-
-} 
+	
+}
