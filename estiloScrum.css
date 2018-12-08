@@ -15,7 +15,11 @@ body{
 .ptitulos{
   margin-left: 7%;
 }
+table{
+  border: 1px solid black;
+  width: 100%;
 
+}
 /*
   Mis pruebas css mensaje Error
 */
@@ -81,6 +85,7 @@ body{
   50% {
     background-color: red;
   }
+}
 table{
   border: 1px solid black;
   width: 100%;
@@ -112,12 +117,7 @@ table{
 nav{
   background-color: black;
   margin-top:-1%;
-
-
-
 }
-
-
 .imgusuario:hover
 {
   
@@ -141,4 +141,19 @@ nav{
   width: 4%;
   height: 4%;
   
+}
+.div-father {
+  word-wrap: break-word
+}
+.list-projects {
+  padding: 2%;
+  width: 30%;
+  border:solid;
+
+}
+.title-list {
+  font-size: 120%;
+}
+.text-li {
+  font-size:100%;
 }

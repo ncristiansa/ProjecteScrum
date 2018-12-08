@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="estilo2.css">
+	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
 	<title>Prueba 2</title>
 	<meta charset="utf-8">
 </head>
@@ -61,7 +61,7 @@
 			echo"</li>";
 			echo"<li class='liimglogout'>";
 ?>
-				<a href='vistainicial.php?exituser=true'>
+				<a href='vistainicialP2.php?exituser=true'>
 <?php
 				echo"<img class='imglogout' src='http://www.esiam.mx/imagenes/iconos/logout%20-%20copia.png'>";
 ?>
