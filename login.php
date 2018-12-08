@@ -73,7 +73,7 @@
 			Si ambas condiciones se cumplen nos enviará a la web
 		*/
 		if($resultUser==1 && $resultPass==1){
-			header("Location: vistainicialP2.php");
+			header("Location: vistainicial.php");
 		}
 	}
 
