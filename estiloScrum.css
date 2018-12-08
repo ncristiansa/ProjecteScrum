@@ -1,20 +1,47 @@
 body{
-	margin:0;
-	padding: 0;
+  margin:0;
+  padding: 0;
 }
 .titulo{
-	margin-left: 45%;
-	margin-top: 3%;
+  margin-left: 45%;
+  margin-top: 3%;
 }
 
 .formulario{
-	margin-left: 40%;
+  margin: 0 auto;
+  width: 15%;
 }
 
 .ptitulos{
-	margin-left: 7%;
+  margin-left: 7%;
 }
 
+/*
+  Mis pruebas css mensaje Error
+*/
+#MessageError {
+  margin: 0 auto; 
+  width: 18%;
+  border-radius: 3px;
+  border-style: dashed;
+  border-color: #ee1c19;
+  word-break: break-all;
+  word-wrap: break-word;
+  animation: blinkerMargin 1s linear infinite;
+}
+#pError {
+  color: red;
+  background-color: white;
+  padding: 5px;
+  margin: 5px;
+}
+#imgError {
+  float:right;
+  animation: blinkIcon 0.5s;
+  animation-iteration-count: infinite;
+}
+
+<<<<<<< HEAD
 table{
   border: 1px solid black;
   width: 100%;
@@ -84,6 +111,9 @@ nav{
 
 
 /*Mensaje de error*/
+=======
+/*Mensaje de error
+>>>>>>> 2f874d65eb96b6f5ff5a6d2f51dd4dae201597b6
 #error {
   position: fixed;
   bottom: 0;
@@ -103,6 +133,7 @@ nav{
   height: 98%;
 
 }
+*/
 #imageAlert{
   height: 25px;
   width: auto;
@@ -124,3 +155,71 @@ nav{
   50% {
     background-color: red;
   }
+<<<<<<< HEAD
+=======
+
+
+
+
+table{
+  border: 1px solid black;
+  width: 100%;
+
+}
+.divtabla{
+  margin-left: 35%;
+  width: 30%;
+  margin-top: 5%;
+}
+.ptituloproyectos{
+  text-align: center;
+}
+
+.imglogout{
+  width: 4%;
+  height: 4%;
+  padding: 0%;
+}
+.liimglogout{
+  margin-left: 85%;
+  display: inline;
+}
+.lihorizontal{
+  display: inline;
+  color:   #605f60;
+
+}
+nav{
+  background-color: black;
+  margin-top:-1%;
+
+
+
+}
+
+
+.imgusuario:hover
+{
+  
+  color:#494c46;
+  -webkit-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+  
+}
+
+.imglogout:hover{
+  
+  color:#494c46;
+  -webkit-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+  box-shadow: 0 0 40px #FF2525;
+  
+}
+.imgusuario{
+  width: 4%;
+  height: 4%;
+  
+}
+>>>>>>> 2f874d65eb96b6f5ff5a6d2f51dd4dae201597b6
