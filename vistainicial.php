@@ -61,7 +61,7 @@
 			echo"</li>";
 			echo"<li class='liimglogout'>";
 ?>
-				<a href='vistainicialP2.php?exituser=true'>
+				<a href='vistainicial.php?exituser=true'>
 <?php
 				echo"<img class='imglogout' src='http://www.esiam.mx/imagenes/iconos/logout%20-%20copia.png'>";
 ?>

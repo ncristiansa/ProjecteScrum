@@ -21,7 +21,7 @@ function addMessageError(errorText, status){
 		//Img.setAttribute("align", "left");
 		Img.setAttribute("height","30px");
 		Img.setAttribute("width", "30px");
-		Img.src="images/alert.png";
+		Img.src="img/alert.png";
 
 		Button.appendChild(Fail);
 		Fail.appendChild(Img);
@@ -29,7 +29,7 @@ function addMessageError(errorText, status){
 		document.body.appendChild(Fail);
 
 		if(true==status){
-			setTimeout(function(){document.getElementById("MessageError").remove();},2000);
+			setTimeout(function(){document.getElementById("MessageError").remove();},8000);
 		}
 
 	}else if(CheckError!=undefined){
@@ -38,3 +38,4 @@ function addMessageError(errorText, status){
 	}
 	
 }
+ 
