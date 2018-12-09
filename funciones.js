@@ -1,7 +1,11 @@
 var tipo=1;
-var controlformu = 1;
+var scrumusers = scrumjs;
+
+
+
 if (tipo==1) {
 	scrumMaster();
+
 	
 }else if (tipo==2){
 	productOwne();
@@ -11,12 +15,12 @@ if (tipo==1) {
 
 
 function scrumMaster(){
-	var elementotabla = document.getElementsByTagName("table")[0];
+	var elementodiv = document.getElementsByTagName("div")[0];
 	var boton = document.createElement("button");
-	var contenido = document.createTextNode("Crear proyecto");
+	var contenido = document.createTextNode("Crear Proyecto");
 	boton.appendChild(contenido);
-	insertAfter(elementotabla,boton);
 	boton.addEventListener("click",formulario);
+	elementodiv.appendChild(boton);
 	
 }
 
@@ -38,6 +42,7 @@ function developer(){
 }
 
 
+
 function formulario(){
 	var elementoBoton = document.getElementsByTagName("button")[0];
 	var form = document.createElement("form");
@@ -57,6 +62,19 @@ function formulario(){
 	var pscrumm = document.createElement("p");
 	var pproduc = document.createElement("p");
 	var pdeve = document.createElement("p");
+
+	
+
+	var opscrum = document.createElement("option");
+	var tscrum = document.createTextNode(scrumjs);
+	opscrum.appendChild(tscrum);
+	scrumm.appendChild(opscrum);
+
+
+	var opproduc = document.createElement("option");
+	var tproduc = document.createTextNode(producjs);
+	opproduc.appendChild(tproduc);
+	produ.appendChild(opproduc);
 
 
 
@@ -101,5 +119,6 @@ function formulario(){
 	form.appendChild(butonenviar);
 
 	insertAfter(elementoBoton,form);
+	
 
 }

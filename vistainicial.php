@@ -5,6 +5,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
+	<script type="text/javascript" defer src="funciones.js"></script>
 	<title>Prueba 2</title>
 	<meta charset="utf-8">
 </head>
@@ -47,6 +48,10 @@
 		éste lo guardaremos en nuestra variable $NameUser donde almacenará
 		$variable = $registro["columna"], es decir $NameUser = $registro["username"]. El nombre username es el que tenemos en nuestra tabla Users donde se guarda el nombre del usuario.
  	*/
+
+
+
+
 	if($registro = mysqli_fetch_assoc($resultado)){
 		$NameUser = $registro["username"];
 	}
@@ -123,6 +128,38 @@
 		print_r("Type 3");
 	}
 ?>
+
+<?php
+	$consultaselect = ("SELECT username FROM Users WHERE type=1");
+	$resultadoselect = mysqli_query($connect,$consultaselect);
+
+	if($regiscrum = mysqli_fetch_assoc($resultadoselect)){
+		$scrum = $regiscrum["username"];
+	}
+
+	$consuproduc = ("SELECT username FROM Users WHERE type=2");
+	$resultproduc = mysqli_query($connect,$consuproduc);
+
+	if($regiproduc = mysqli_fetch_assoc($resultproduc)){
+		$produc = $regiproduc["username"];
+	}
+
+
+	$consugroup = ("SELECT nameGroup FROM Grops");
+	$resultgroup = mysqli_query($connect,$consugroup);
+
+	if($regigroup = mysqli_fetch_assoc($resultgroup)){
+		$group = $regigroup["nameGroup"];
+	}
+
+
+
+?>
+<script type="text/javascript">
+	var scrumjs = '<?php echo $scrum;?>'
+	var producjs = '<?php echo $produc;?>'
+	var groupjs = [<?php echo $regigroup;?> ]
+</script>
 
 </body>
 </html>
