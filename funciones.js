@@ -1,5 +1,5 @@
 var tipo=1;
-var scrumusers = scrumjs;
+
 
 
 
@@ -63,6 +63,7 @@ function formulario(){
 	var pproduc = document.createElement("p");
 	var pdeve = document.createElement("p");
 
+
 	
 
 	var opscrum = document.createElement("option");
@@ -76,6 +77,13 @@ function formulario(){
 	opproduc.appendChild(tproduc);
 	produ.appendChild(opproduc);
 
+
+	for (var i = 0; i < groupjs.length; i++) {
+		var opi = document.createElement("option");
+		var texi = document.createTextNode(groupjs[i]);
+		opi.appendChild(texi);
+		gdeve.appendChild(opi);
+	}
 
 
 	var cnom = document.createTextNode("Nom del projecte");

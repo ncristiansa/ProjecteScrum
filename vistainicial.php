@@ -145,12 +145,25 @@
 	}
 
 
-	$consugroup = ("SELECT nameGroup FROM Grops");
+	$consugroup = ("SELECT nameGroup FROM Groups");
 	$resultgroup = mysqli_query($connect,$consugroup);
 
-	if($regigroup = mysqli_fetch_assoc($resultgroup)){
+
+
+
+
+	$arraynueva=[];
+	while( $regigroup = mysqli_fetch_assoc($resultgroup) ){
 		$group = $regigroup["nameGroup"];
+
+		array_push($arraynueva, $group);
+		
 	}
+	$arraynueva2=[];
+	foreach ($arraynueva as $key) {
+		array_push($arraynueva2, (string)$key);
+	}
+	print_r($arraynueva2);
 
 
 
@@ -158,7 +171,7 @@
 <script type="text/javascript">
 	var scrumjs = '<?php echo $scrum;?>'
 	var producjs = '<?php echo $produc;?>'
-	var groupjs = [<?php echo $regigroup;?> ]
+	var groupjs = [<?php echo implode("','",$arraynueva2);?> ]
 </script>
 
 </body>
