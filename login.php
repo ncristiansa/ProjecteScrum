@@ -29,7 +29,7 @@ $stmt->bindValue(':pass',$pass);
 $stmt->execute();
 $result=$stmt->rowCount();
 if ($result==1) {
-	echo "Hola soy: $nombre";
+	echo "Hola soy: ".$stmt;
 }else{
 	
 	echo '<script type="text/javascript">showError("Error contraseña incorecta",false);showError("Error contraseña incorecta2",false);</script>';
