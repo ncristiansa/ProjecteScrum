@@ -1,6 +1,3 @@
-var arraygroup=groupjs;
-
-
 
 
 if (tipo==1) {
@@ -64,10 +61,13 @@ function formulario(){
 	opscrum1.appendChild(tscrum1);
 	scrumm.appendChild(opscrum1);
 
-	var opscrum = document.createElement("option");
-	var tscrum = document.createTextNode(scrumjs);
-	opscrum.appendChild(tscrum);
-	scrumm.appendChild(opscrum);
+
+	for (var u = 0; u < scrumjs.length; u++) {
+		var opscrum = document.createElement("option");
+		var tscrum = document.createTextNode(scrumjs[u]);
+		opscrum.appendChild(tscrum);
+		scrumm.appendChild(opscrum);
+	}
 
 
 
@@ -77,11 +77,12 @@ function formulario(){
 	opproduc1.appendChild(tproduc1);
 	produ.appendChild(opproduc1);
 
-
-	var opproduc = document.createElement("option");
-	var tproduc = document.createTextNode(producjs);
-	opproduc.appendChild(tproduc);
-	produ.appendChild(opproduc);
+	for (var o = 0; o < producjs.length; o++) {
+		var opproduc = document.createElement("option");
+		var tproduc = document.createTextNode(producjs[o]);
+		opproduc.appendChild(tproduc);
+		produ.appendChild(opproduc);
+	}
 
 
 	var opi1 = document.createElement("option");
@@ -93,9 +94,9 @@ function formulario(){
 
 
 
-	for (var i = 0; i < arraygroup.length; i++) {
+	for (var i = 0; i < groupjs.length; i++) {
 		var opi = document.createElement("option");
-		var texi = document.createTextNode(arraygroup[i]);
+		var texi = document.createTextNode(groupjs[i]);
 		opi.appendChild(texi);
 		gdeve.appendChild(opi);
 	}
@@ -155,31 +156,6 @@ function formulario(){
 
 }
 
-/*
-function validar(){
-	var inputnombrepro = document.getElementsByTagName("input")[0];
-	var selectScrum = document.getElementsByTagName("select")[0];
-	var selectProduct = document.getElementsByTagName("select")[1];
-	var selectGrupo = document.getElementsByTagName("select")[2];
-	var inputboton = document.getElementsByTagName("input")[2];
-	if (inputnombrepro.value!="") {
-		document.getElementById("phola").innerText="tengo algo selecionado";
-		habilitarboton = habilitarboton + 1;
-
-	}else if (selectScrum.value != "elige una opcion"){
-		document.getElementById("phola").innerText="tengo algo selecionado2";
-		habilitarboton = habilitarboton + 1;
-	}else if (selectProduct.value != "elige una opcion"){
-		document.getElementById("phola").innerText="tengo algo selecionado3";
-		habilitarboton = habilitarboton + 1;
-	}else if (selectGrupo.value != "elige una opcion"){
-		document.getElementById("phola").innerText="tengo algo selecionado4";
-		habilitarboton = habilitarboton + 1;
-	}else if (habilitarboton ==4) {
-		inputboton.disabled=false;
-	}
-}
-*/
 function validar(){
 	var inputnombrepro = document.getElementsByTagName("input")[0];
 	var selectScrum = document.getElementsByTagName("select")[0];
@@ -187,7 +163,6 @@ function validar(){
 	var selectGrupo = document.getElementsByTagName("select")[2];
 	var inputboton = document.getElementsByTagName("input")[2];
 	if (inputnombrepro.value!="" && selectScrum.value != "elige una opcion" && selectProduct.value != "elige una opcion" && selectGrupo.value != "elige una opcion") {
-		document.getElementById("phola").innerText="tengo algo selecionado";
 		inputboton.disabled=false;
 
 	}

@@ -132,46 +132,51 @@
 ?>
 
 <?php
-	$consultaselect = ("SELECT username FROM Users WHERE type=1");
+	$consultaselect = ("SELECT username FROM Users WHERE type=1;");
 	$resultadoselect = mysqli_query($connect,$consultaselect);
 
-	if($regiscrum = mysqli_fetch_assoc($resultadoselect)){
+	$arrayscrum=[];
+	while($regiscrum = mysqli_fetch_assoc($resultadoselect)){
 		$scrum = $regiscrum["username"];
+		array_push($arrayscrum, $scrum);
+
 	}
 
-	$consuproduc = ("SELECT username FROM Users WHERE type=2");
+	$consuproduc = ("SELECT username FROM Users WHERE type=2;");
 	$resultproduc = mysqli_query($connect,$consuproduc);
 
-	if($regiproduc = mysqli_fetch_assoc($resultproduc)){
+	$arrayproduc=[];
+	while ($regiproduc = mysqli_fetch_assoc($resultproduc)) {
 		$produc = $regiproduc["username"];
+		array_push($arrayproduc,$produc);
 	}
+	
+	
 
 
-	$consugroup = ("SELECT nameGroup FROM Groups");
+
+
+
+
+	$consugroup = ("SELECT nameGroup FROM Groups;");
 	$resultgroup = mysqli_query($connect,$consugroup);
 
-
-
-
-
-	$arraynueva=[];
+	$arraygroups=[];
 	while( $regigroup = mysqli_fetch_assoc($resultgroup) ){
 		$group = $regigroup["nameGroup"];
 
-		array_push($arraynueva, $group);
+		array_push($arraygroups, $group);
 		
 	}
 
 
 
 ?>
-<p id="phola">Hola</p>
-
 <script type="text/javascript">
-	var scrumjs = '<?php echo $scrum;?>'
-	var producjs = '<?php echo $produc;?>'
-	var groupjs = [<?php echo $arraynueva;?> ]
-	var tipo = '<?php echo $userType;?>'
+	var scrumjs = <?php echo json_encode($arrayscrum);?>;
+	var producjs = <?php echo json_encode($arrayproduc);?> ;
+	var groupjs = <?php echo json_encode($arraygroups);?> ;
+	var tipo = '<?php echo $userType;?>';
 </script>
 
 </body>
