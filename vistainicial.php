@@ -105,7 +105,7 @@
 <div align="center" class="div-father">
 
 	<div class="list-projects" align="center">
-		<p align="right">Proyecto</p>
+		<p align="right" class="p-Title">Proyecto</p>
 			<p class="title-list">Lista de proyectos</p>
 	<ul>
 		<?php
