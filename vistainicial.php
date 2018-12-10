@@ -29,7 +29,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "DBPrueba";
+ 	$bbdd = "ScrumDB";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
@@ -62,16 +62,18 @@
 		echo"<ul>";
 			echo"<li class='lihorizontal'>";
 				echo"<img class='imgusuario' src='https://evarejo.com/wp-content/uploads/2017/08/evarejo_homem_padrao.png'>";
-				print_r($NameUser);
+				
 			echo"</li>";
 			echo"<li class='liimglogout'>";
 ?>
 				<a href='vistainicial.php?exituser=true'>
 <?php
 				echo"<img class='imglogout' src='http://www.esiam.mx/imagenes/iconos/logout%20-%20copia.png'>";
+
 ?>
 				</a>
 <?php
+				print_r($NameUser);
 			echo"</li>";
 		echo"</ul>";
 	echo"</nav>";
@@ -101,7 +103,9 @@
 	$resultList = mysqli_query($connect, $listProjects);
 ?>
 <div align="center" class="div-father">
+
 	<div class="list-projects" align="center">
+		<p align="right" class="p-Title">Proyecto</p>
 			<p class="title-list">Lista de proyectos</p>
 	<ul>
 		<?php
@@ -130,46 +134,51 @@
 ?>
 
 <?php
-	$consultaselect = ("SELECT username FROM Users WHERE type=1");
+	$consultaselect = ("SELECT username FROM Users WHERE type=1;");
 	$resultadoselect = mysqli_query($connect,$consultaselect);
 
-	if($regiscrum = mysqli_fetch_assoc($resultadoselect)){
+	$arrayscrum=[];
+	while($regiscrum = mysqli_fetch_assoc($resultadoselect)){
 		$scrum = $regiscrum["username"];
+		array_push($arrayscrum, $scrum);
+
 	}
 
-	$consuproduc = ("SELECT username FROM Users WHERE type=2");
+	$consuproduc = ("SELECT username FROM Users WHERE type=2;");
 	$resultproduc = mysqli_query($connect,$consuproduc);
 
-	if($regiproduc = mysqli_fetch_assoc($resultproduc)){
+	$arrayproduc=[];
+	while ($regiproduc = mysqli_fetch_assoc($resultproduc)) {
 		$produc = $regiproduc["username"];
+		array_push($arrayproduc,$produc);
 	}
+	
+	
 
 
-	$consugroup = ("SELECT nameGroup FROM Groups");
+
+
+
+
+	$consugroup = ("SELECT nameGroup FROM Groups;");
 	$resultgroup = mysqli_query($connect,$consugroup);
 
-
-
-
-
-	$arraynueva=[];
+	$arraygroups=[];
 	while( $regigroup = mysqli_fetch_assoc($resultgroup) ){
 		$group = $regigroup["nameGroup"];
 
-		array_push($arraynueva, $group);
+		array_push($arraygroups, $group);
 		
 	}
 
 
 
 ?>
-<p id="phola">Hola</p>
-
 <script type="text/javascript">
-	var scrumjs = '<?php echo $scrum;?>'
-	var producjs = '<?php echo $produc;?>'
-	var groupjs = [<?php echo $arraynueva;?> ]
-	var tipo = '<?php echo $userType;?>'
+	var scrumjs = <?php echo json_encode($arrayscrum);?>;
+	var producjs = <?php echo json_encode($arrayproduc);?> ;
+	var groupjs = <?php echo json_encode($arraygroups);?> ;
+	var tipo = '<?php echo $userType;?>';
 </script>
 
 </body>
