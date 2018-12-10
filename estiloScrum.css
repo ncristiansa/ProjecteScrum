@@ -25,10 +25,14 @@ table{
   Mis pruebas css mensaje Error
 */
 #MessageError {
+  z-index: 10;
+  position: sticky;
+  bottom: 0;
   margin: 0 auto;
   margin-top: 2%; 
   width: 41%;
-  border-radius: 3px;
+  padding: 3px;
+  border-radius: 4px;
   border-color: #ee1c19;
   word-break: break-all;
   word-wrap: break-word;
@@ -37,8 +41,8 @@ table{
 #pError {
   color: red;
   background-color: white;
+  margin: auto;
   padding: 10px;
-  margin: 5px;
 }
 #imgError {
   float:right;

@@ -21,7 +21,7 @@ function addMessageError(errorText, status){
 		//Img.setAttribute("align", "left");
 		Img.setAttribute("height","30px");
 		Img.setAttribute("width", "30px");
-		Img.src="img/alert.png";
+		Img.src="images/alert.png";
 
 		Button.appendChild(Fail);
 		Fail.appendChild(Img);
