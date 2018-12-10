@@ -1,44 +1,74 @@
 body{
-	margin:0;
-	padding: 0;
+  margin:0;
+  padding: 0;
+  background-color: #dce7ef  ;
 }
 .titulo{
-	margin-left: 45%;
-	margin-top: 3%;
+  margin: 0 auto;
+  width: 40%;
 }
 
-.formulario{
-	margin-left: 40%;
+.formulario{  
+  width: 100%;
 }
 
 .ptitulos{
-	margin-left: 7%;
+  margin-left: 7%;
 }
-/*Mensaje de error*/
-#error {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+table{
+  border: 1px solid black;
   width: 100%;
-  height: auto;
-  text-align: center;
-  background-color: black;
-  animation: blinkerMargin 0.3s linear infinite;
-}
-#textError{
-  background-color: white;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 0.2%;
-  width: 97.5%;
-  height: 98%;
 
 }
+/*
+  Mis pruebas css mensaje Error
+*/
+#MessageError {
+  margin: 0 auto;
+  margin-top: 2%; 
+  width: 41%;
+  border-radius: 3px;
+  border-color: #ee1c19;
+  word-break: break-all;
+  word-wrap: break-word;
+  animation: blinkerMargin 1s linear infinite;
+}
+#pError {
+  color: red;
+  background-color: white;
+  padding: 10px;
+  margin: 5px;
+}
+#imgError {
+  float:right;
+  animation: blinkIcon 0.5s;
+  animation-iteration-count: infinite;
+  padding:5px;
+  margin: 5px;
+}
+.Login-Style {
+  margin:0 auto;
+  padding:3%;
+  width: 40%;
+  background-color: white; 
+  box-shadow: 4px 4px 4px 4px #888888;
+}
+
 #imageAlert{
   height: 25px;
   width: auto;
   animation: blinkIcon 1s;
   animation-iteration-count: infinite;
+}
+.Label-Style{
+  color: black;
+  font-size: 15px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.h2-Style{
+  word-break: break-all;
+  word-wrap: break-word;
 }
 @keyframes blinkIcon {
     0% {
@@ -55,47 +85,39 @@ body{
   50% {
     background-color: red;
   }
-
-
-
-
+}
 table{
-	border: 1px solid black;
-	width: 100%;
+  border: 1px solid black;
+  width: 100%;
 
 }
 .divtabla{
-	margin-left: 35%;
-	width: 30%;
-	margin-top: 5%;
+  margin-left: 35%;
+  width: 30%;
+  margin-top: 5%;
 }
 .ptituloproyectos{
-	text-align: center;
+  text-align: center;
 }
 
 .imglogout{
-	width: 4%;
-	height: 4%;
-	padding: 0%;
+  width: 4%;
+  height: 4%;
+  padding: 0%;
 }
 .liimglogout{
-	margin-left: 85%;
-	display: inline;
+  margin-left: 85%;
+  display: inline;
 }
 .lihorizontal{
-	display: inline;
-	color:   #605f60;
+  display: inline;
+  color:   #605f60;
 
 }
 nav{
-	background-color: black;
-	margin-top:-1%;
-
-
-
+  background-color: black;
+  margin-top:-1%;
 }
-
-
 .imgusuario:hover
 {
   
@@ -116,7 +138,22 @@ nav{
   
 }
 .imgusuario{
-	width: 4%;
-	height: 4%;
-	
+  width: 4%;
+  height: 4%;
+  
+}
+.div-father {
+  word-wrap: break-word
+}
+.list-projects {
+  padding: 2%;
+  width: 30%;
+  border:solid;
+
+}
+.title-list {
+  font-size: 120%;
+}
+.text-li {
+  font-size:100%;
 }
