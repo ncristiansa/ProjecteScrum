@@ -1,4 +1,5 @@
 var tipo=1;
+var arraygroup=groupjs;
 
 
 
@@ -78,9 +79,9 @@ function formulario(){
 	produ.appendChild(opproduc);
 
 
-	for (var i = 0; i < groupjs.length; i++) {
+	for (var i = 0; i < arraygroup.length; i++) {
 		var opi = document.createElement("option");
-		var texi = document.createTextNode(groupjs[i]);
+		var texi = document.createTextNode(arraygroup[i]);
 		opi.appendChild(texi);
 		gdeve.appendChild(opi);
 	}

@@ -159,11 +159,6 @@
 		array_push($arraynueva, $group);
 		
 	}
-	$arraynueva2=[];
-	foreach ($arraynueva as $key) {
-		array_push($arraynueva2, (string)$key);
-	}
-	print_r($arraynueva2);
 
 
 
@@ -171,7 +166,7 @@
 <script type="text/javascript">
 	var scrumjs = '<?php echo $scrum;?>'
 	var producjs = '<?php echo $produc;?>'
-	var groupjs = [<?php echo implode("','",$arraynueva2);?> ]
+	var groupjs = [<?php echo $arraynueva;?> ]
 </script>
 
 </body>
