@@ -163,10 +163,13 @@
 
 
 ?>
+<p id="phola">Hola</p>
+
 <script type="text/javascript">
 	var scrumjs = '<?php echo $scrum;?>'
 	var producjs = '<?php echo $produc;?>'
 	var groupjs = [<?php echo $arraynueva;?> ]
+	var tipo = '<?php echo $userType;?>'
 </script>
 
 </body>
