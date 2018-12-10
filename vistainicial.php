@@ -29,7 +29,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "DBPrueba";
+ 	$bbdd = "ScrumDB";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
