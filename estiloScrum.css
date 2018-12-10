@@ -117,17 +117,12 @@ table{
 
 }
 nav{
-  background-color: black;
-  margin-top:-1%;
+  background-color:  #f13b33  ;
+  margin:-1%;
 }
 .imgusuario:hover
 {
-  
-  color:#494c46;
-  -webkit-transform: scale(0.8);
-  -ms-transform: scale(0.8);
-  transform: scale(0.8);
-  
+  color:#494c46;  
 }
 
 .imglogout:hover{
@@ -136,7 +131,6 @@ nav{
   -webkit-transform: scale(0.8);
   -ms-transform: scale(0.8);
   transform: scale(0.8);
-  box-shadow: 0 0 40px #FF2525;
   
 }
 .imgusuario{
