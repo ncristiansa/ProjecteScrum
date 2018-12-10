@@ -143,11 +143,12 @@ nav{
   
 }
 .div-father {
-  word-wrap: break-word
+  margin:0;
+  word-wrap: break-word;
 }
 .list-projects {
-  padding: 2%;
-  width: 30%;
+  margin:0;
+  width: 50%;
   border:solid;
 
 }
