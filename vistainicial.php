@@ -62,16 +62,18 @@
 		echo"<ul>";
 			echo"<li class='lihorizontal'>";
 				echo"<img class='imgusuario' src='https://evarejo.com/wp-content/uploads/2017/08/evarejo_homem_padrao.png'>";
-				print_r($NameUser);
+				
 			echo"</li>";
 			echo"<li class='liimglogout'>";
 ?>
 				<a href='vistainicial.php?exituser=true'>
 <?php
 				echo"<img class='imglogout' src='http://www.esiam.mx/imagenes/iconos/logout%20-%20copia.png'>";
+
 ?>
 				</a>
 <?php
+				print_r($NameUser);
 			echo"</li>";
 		echo"</ul>";
 	echo"</nav>";
