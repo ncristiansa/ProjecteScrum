@@ -11,6 +11,7 @@ function scrumMaster(){
 	var contenido = document.createTextNode("Crear Proyecto");
 	boton.appendChild(contenido);
 	boton.addEventListener("click",formulario);
+	boton.addEventListener("click",borrarinputs);
 	elementodiv.appendChild(boton);
 	
 }
@@ -37,6 +38,17 @@ function formulario(){
 	var produ = document.createElement("select");
 	var gdeve = document.createElement("select");
 	var elebr = document.createElement("br");
+
+	form.setAttribute("method","post");
+	form.setAttribute("action","vistainicial.php");
+
+	nproj.setAttribute("name","nproyecto");
+	descr.setAttribute("name","descipcion");
+	scrumm.setAttribute("name","scrum");
+	produ.setAttribute("name","produ");
+	gdeve.setAttribute("name","developers");
+
+
 
 	var butonenviar = document.createElement("input");
 	butonenviar.setAttribute("type", "submit");
@@ -104,6 +116,7 @@ function formulario(){
 	scrumm.addEventListener("change",validar);
 	produ.addEventListener("change",validar);
 	gdeve.addEventListener("change",validar);
+
 	
 
 
@@ -156,6 +169,31 @@ function formulario(){
 
 }
 
+/*
+function validar(){
+	var inputnombrepro = document.getElementsByTagName("input")[0];
+	var selectScrum = document.getElementsByTagName("select")[0];
+	var selectProduct = document.getElementsByTagName("select")[1];
+	var selectGrupo = document.getElementsByTagName("select")[2];
+	var inputboton = document.getElementsByTagName("input")[2];
+	if (inputnombrepro.value!="") {
+		document.getElementById("phola").innerText="tengo algo selecionado";
+		habilitarboton = habilitarboton + 1;
+
+	}else if (selectScrum.value != "elige una opcion"){
+		document.getElementById("phola").innerText="tengo algo selecionado2";
+		habilitarboton = habilitarboton + 1;
+	}else if (selectProduct.value != "elige una opcion"){
+		document.getElementById("phola").innerText="tengo algo selecionado3";
+		habilitarboton = habilitarboton + 1;
+	}else if (selectGrupo.value != "elige una opcion"){
+		document.getElementById("phola").innerText="tengo algo selecionado4";
+		habilitarboton = habilitarboton + 1;
+	}else if (habilitarboton ==4) {
+		inputboton.disabled=false;
+	}
+}*/
+
 function validar(){
 	var inputnombrepro = document.getElementsByTagName("input")[0];
 	var selectScrum = document.getElementsByTagName("select")[0];
@@ -167,4 +205,23 @@ function validar(){
 
 	}
 
+}
+
+function borrarinputs(){
+	var inputnombrepro = document.getElementsByTagName("input")[0];
+	var inputdesc = document.getElementsByTagName("input")[1];
+	var selectScrum = document.getElementsByTagName("select")[0];
+	var selectProduct = document.getElementsByTagName("select")[1];
+	var selectGrupo = document.getElementsByTagName("select")[2];
+	if (inputnombrepro.value != "") {
+		inputnombrepro ="";
+	}else if (inputdesc.value != "") {
+		inputdesc="";
+	}else if (selectScrum.value!=0){
+		selectScrum.value="elige una opcion";
+	}else if (selectProduct.value!=0){
+		selectProduct.value="elige una opcion";
+	}else if (selectGrupo.value!=0){
+		selectGrupo.value="elige una opcion";
+	}
 }

@@ -155,11 +155,6 @@
 	
 	
 
-
-
-
-
-
 	$consugroup = ("SELECT nameGroup FROM Groups;");
 	$resultgroup = mysqli_query($connect,$consugroup);
 
@@ -170,6 +165,26 @@
 		array_push($arraygroups, $group);
 		
 	}
+
+
+	$nproyecto=$_POST["nproyecto"];
+	$descripcions=$_POST["descipcion"];
+	$scrumaster=$_POST["scrum"];
+	$nomproduc=$_POST["produ"];
+	$grupos=$_POST["developers"];
+
+	if (empty($descripcions)) {
+		$insertarSinDescripcion = ("INSERT INTO Projects (nameProject,scrumMasterName,productOwnerName,nameGroup) VALUES ($'nproyecto','$scrumaster','$nomproduc','$grupos');");
+		if(mysqli_query($insertarSinDescripcion)){
+			echo "siva";
+
+		}else{
+			echo "no va";
+		}
+
+	}
+
+
 
 
 
