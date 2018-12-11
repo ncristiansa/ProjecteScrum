@@ -29,7 +29,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDB";
+ 	$bbdd = "ScrumDBfinal";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
@@ -99,23 +99,10 @@
 	/*
 		Listado de proyectos existentes, links que nos enviará a la pàgina de Administración del projecto.
 	*/
-	$listProjects = ("SELECT nameProject FROM Projects;");
+	$listProjects = ("SELECT nameProject FROM Projects WHERE scrumMasterName='$NameUser';");
 	$resultList = mysqli_query($connect, $listProjects);
 ?>
-<div align="center" class="div-father">
 
-	<div class="list-projects" align="center">
-		<p align="right" class="p-Title">Proyecto</p>
-			<p class="title-list">Lista de proyectos</p>
-	<ul>
-		<?php
-			while ($QueryList = mysqli_fetch_assoc($resultList)) {
-				echo"<li class='text-li'><a href='#'>".$QueryList["nameProject"]."</li></a>";
-			}
-		?>
-	</ul>
-	</div>
-</div>
 <?php
 	$typeUser = ("SELECT type FROM Users WHERE username='$NameUser';");
 	$resultTypeUser = mysqli_query($connect, $typeUser);
@@ -123,42 +110,47 @@
 		$userType = $Query["type"];
 	}
 	if($userType==1){
-		echo " ";
+		echo "<div align='center' class='div-father'>";
+			echo "<div class='list-projects' align='center'>";
+				echo "<p align='right' class='p-Title'>Proyecto</p>";
+				echo "<p class='title-list'>Lista de proyectos</p>";
+			echo "<ul>";
+				while ($QueryList = mysqli_fetch_assoc($resultList)) {
+					echo"<li class='text-li'><a href='#'>".$QueryList["nameProject"]."</li></a>";
+				}
+			echo "</ul>";
+		echo "</div>";
 	}elseif ($userType==2) {
-        $consultaNameproject = ("SELECT nameProject FROM Projects WHERE productOwnerName='$NameUser';");
+		$consultaNameproject = ("SELECT nameProject FROM Projects WHERE productOwnerName='$NameUser';");
         $namesProject = mysqli_query($connect, $consultaNameproject);
 
-        echo "<table border='2' rules='rows' class='Table-List'>";
-            echo "<tr>";
-                echo "<td align='center'> <b>Nombre de Proyecto</b></td>";
-            echo "</tr>";
-
-            while ($queryNameProject = mysqli_fetch_assoc($namesProject)) {
-                echo "\t<tr>\n";
-                    echo "\t\t<td align='center'>".$queryNameProject["nameProject"]. "</td>\n";
-                echo "\t</tr>\n";
-            }
-        echo "</table>";
+		echo "<div align='center' class='div-father'>";
+			echo "<div class='list-projects' align='center'>";
+				echo "<p align='right' class='p-Title'>Proyecto</p>";
+				echo "<p class='title-list'>Lista de proyectos</p>";
+			echo "<ul>";
+				while ($queryNameProject = mysqli_fetch_assoc($namesProject)) {
+					echo"<li class='text-li'><a href='#'>".$queryNameProject["nameProject"]."</li></a>";
+				}
+			echo "</ul>";
+		echo "</div>";
         
     }
     elseif ($userType==3) {
         $c= "C";
         $nameProjectC = ("SELECT nameProject FROM Projects WHERE nameGroup= '$c';");
         $resultNPC = mysqli_query($connect, $nameProjectC);
-        echo "<table border='2' rules='rows' class='Table-List'>";
-            echo "<tr>";
-                echo "<td align='center'> <b>Nombre de Proyecto</b></td>";
-            echo "</tr>";
 
-            while ($consultaC = mysqli_fetch_assoc($resultNPC)) {
-                echo "\t<tr>\n";
-                    echo "\t\t<td align='center'>".$consultaC["nameProject"]. "</td>\n";
-                echo "\t</tr>\n";
-            }
-        echo "</table>";
-
-
-
+        echo "<div align='center' class='div-father'>";
+			echo "<div class='list-projects' align='center'>";
+				echo "<p align='right' class='p-Title'>Proyecto</p>";
+				echo "<p class='title-list'>Lista de proyectos</p>";
+			echo "<ul>";
+				while ($consultaC = mysqli_fetch_assoc($resultNPC)) {
+					echo"<li class='text-li'><a href='#'>".$consultaC["nameProject"]."</li></a>";
+				}
+			echo "</ul>";
+		echo "</div>";
     }
 	
 ?>

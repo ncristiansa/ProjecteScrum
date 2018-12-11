@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.24, for Linux (x86_64)
 --
--- Host: localhost    Database: DBPrueba
+-- Host: localhost    Database: ScrumDB
 -- ------------------------------------------------------
 -- Server version	5.7.24-0ubuntu0.18.04.1
 
@@ -23,12 +23,10 @@ DROP TABLE IF EXISTS `Groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Groups` (
-  `groupsID` int(2) NOT NULL AUTO_INCREMENT,
-  `nameGroup` varchar(2) DEFAULT NULL,
-  `projectID` int(2) DEFAULT NULL,
-  PRIMARY KEY (`groupsID`),
-  KEY `projectID` (`projectID`),
-  CONSTRAINT `Groups_ibfk_1` FOREIGN KEY (`projectID`) REFERENCES `Projects` (`projectID`)
+  `groupID` int(2) NOT NULL AUTO_INCREMENT,
+  `nameGroup` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `userID` int(2) NOT NULL,
+  PRIMARY KEY (`groupID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,7 +36,7 @@ CREATE TABLE `Groups` (
 
 LOCK TABLES `Groups` WRITE;
 /*!40000 ALTER TABLE `Groups` DISABLE KEYS */;
-INSERT INTO `Groups` VALUES (1,'A',NULL),(2,'B',NULL),(3,'C',NULL);
+INSERT INTO `Groups` VALUES (1,'A',1),(2,'B',2),(3,'C',3);
 /*!40000 ALTER TABLE `Groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,13 +49,12 @@ DROP TABLE IF EXISTS `Homework`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Homework` (
   `homeworkID` int(2) NOT NULL,
-  `projectID` int(2) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `sprintID` int(2) DEFAULT NULL,
-  `hours` int(2) DEFAULT NULL,
-  PRIMARY KEY (`homeworkID`),
-  KEY `projectID` (`projectID`),
-  CONSTRAINT `Homework_ibfk_1` FOREIGN KEY (`projectID`) REFERENCES `Projects` (`projectID`)
+  `description` text NOT NULL,
+  `projectID` int(2) NOT NULL,
+  `hours` time NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `sprintID` int(2) NOT NULL,
+  PRIMARY KEY (`homeworkID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -67,7 +64,7 @@ CREATE TABLE `Homework` (
 
 LOCK TABLES `Homework` WRITE;
 /*!40000 ALTER TABLE `Homework` DISABLE KEYS */;
-INSERT INTO `Homework` VALUES (1,1,'Crear web',1,2);
+INSERT INTO `Homework` VALUES (1,'Crear estructura HTML',1,'02:00:00',0,1),(2,'Aplicar CSS a la estructura CSS',1,'02:00:00',0,1),(3,'Crear estructura de la base de datos.',2,'06:00:00',0,2),(4,'Crear página de Login para acceder con los usuarios creados en la base de datos.',2,'02:00:00',0,2);
 /*!40000 ALTER TABLE `Homework` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,15 +76,14 @@ DROP TABLE IF EXISTS `Projects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Projects` (
-  `projectID` int(2) NOT NULL,
-  `nameProject` varchar(50) DEFAULT NULL,
-  `description` varchar(50) DEFAULT NULL,
-  `scrumMasterName` varchar(50) DEFAULT NULL,
-  `productOwnerName` varchar(50) DEFAULT NULL,
-  `startDate` varchar(30) DEFAULT NULL,
-  `endDate` varchar(30) DEFAULT NULL,
+  `projectID` int(2) NOT NULL AUTO_INCREMENT,
+  `nameProject` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `scrumMasterName` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `productOwnerName` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `nameGroup` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`projectID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +92,7 @@ CREATE TABLE `Projects` (
 
 LOCK TABLES `Projects` WRITE;
 /*!40000 ALTER TABLE `Projects` DISABLE KEYS */;
-INSERT INTO `Projects` VALUES (1,'Projecto1','Ejemplo projecto','juana','andrea','3-12-18','12-12-18');
+INSERT INTO `Projects` VALUES (1,'Quien es Quien','Juego que consiste en adivinar la carta oculta del servidor.','Juana','Andrea',NULL),(2,'Gestor de Proyectos Scrum','Programa que nos ayudará a gestionar un proyecto Scrum','Juana','Andrea',NULL),(3,'sin ','','Juana','Andrea','B'),(4,'condes','si tengo','Juana','Andrea','A'),(5,'prueba','','Juana','Andrea','B'),(6,'pruebac','con','Juana','Andrea','C'),(7,'domino','','Juana','Andrea','C');
 /*!40000 ALTER TABLE `Projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,17 +105,11 @@ DROP TABLE IF EXISTS `Scrum`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Scrum` (
   `scrumID` int(2) NOT NULL,
-  `homeworkID` int(2) DEFAULT NULL,
-  `groupsID` int(2) DEFAULT NULL,
-  `groupName` varchar(50) DEFAULT NULL,
-  `projectID` int(2) DEFAULT NULL,
-  PRIMARY KEY (`scrumID`),
-  KEY `homeworkID` (`homeworkID`),
-  KEY `groupsID` (`groupsID`),
-  KEY `projectID` (`projectID`),
-  CONSTRAINT `Scrum_ibfk_1` FOREIGN KEY (`homeworkID`) REFERENCES `Homework` (`homeworkID`),
-  CONSTRAINT `Scrum_ibfk_2` FOREIGN KEY (`groupsID`) REFERENCES `Groups` (`groupsID`),
-  CONSTRAINT `Scrum_ibfk_3` FOREIGN KEY (`projectID`) REFERENCES `Projects` (`projectID`)
+  `homeworkID` int(2) NOT NULL,
+  `groupID` int(2) NOT NULL,
+  `groupName` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `projectID` int(2) NOT NULL,
+  PRIMARY KEY (`scrumID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -129,7 +119,7 @@ CREATE TABLE `Scrum` (
 
 LOCK TABLES `Scrum` WRITE;
 /*!40000 ALTER TABLE `Scrum` DISABLE KEYS */;
-INSERT INTO `Scrum` VALUES (1,1,1,'A',1);
+INSERT INTO `Scrum` VALUES (1,1,1,'A',1),(2,2,1,'A',1),(3,3,2,'B',2),(4,4,2,'B',2);
 /*!40000 ALTER TABLE `Scrum` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,13 +132,12 @@ DROP TABLE IF EXISTS `Sprints`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Sprints` (
   `sprintID` int(2) NOT NULL,
-  `projectID` int(2) DEFAULT NULL,
-  `hours` int(2) DEFAULT NULL,
-  `startDate` varchar(50) DEFAULT NULL,
-  `endDate` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`sprintID`),
-  KEY `projectID` (`projectID`),
-  CONSTRAINT `Sprints_ibfk_1` FOREIGN KEY (`projectID`) REFERENCES `Projects` (`projectID`)
+  `projectID` int(2) NOT NULL,
+  `hours` time NOT NULL,
+  `startDate` date NOT NULL,
+  `endDate` date NOT NULL,
+  `homeworkID` int(2) NOT NULL,
+  PRIMARY KEY (`sprintID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -158,7 +147,7 @@ CREATE TABLE `Sprints` (
 
 LOCK TABLES `Sprints` WRITE;
 /*!40000 ALTER TABLE `Sprints` DISABLE KEYS */;
-INSERT INTO `Sprints` VALUES (1,1,4,'3-12-18','12-12-18');
+INSERT INTO `Sprints` VALUES (1,1,'04:00:00','2018-12-20','2018-12-23',1),(2,2,'08:00:00','2018-12-23','2019-01-23',2);
 /*!40000 ALTER TABLE `Sprints` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +164,6 @@ CREATE TABLE `Users` (
   `username` varchar(50) DEFAULT NULL,
   `passwd` varchar(512) DEFAULT NULL,
   `type` int(2) DEFAULT NULL,
-  `nameGroup` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`userID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -187,7 +175,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'juanam','juana','4844624d054a4ed71e03f4dbe54bb258d35acc5c20ecc1de742bad129783ae790a45cb9737bd1a662411168a433fca2493ba81a4df594d2316cf9c72b02326d3',1,NULL,'juanascrummaster@gmail.com'),(2,'andreat','andrea','a71be7c534e52e708e98a9b37cefd82afe0a10070cc509477f452cce635b1b130bc81c07bb3f45528b7fb5a4b1cbd8f0a4f1087e0a3a00f32772a146912a24d9',2,NULL,'andreatproduct@gmail.com'),(3,'martaz','marta','02267d2f757bb49b126634601c02192d5420d3c177f6bfd9e6951b6adf7cd0c41f247076bccb2c6edb0336d222ce446a551219525813911c9d39d2169e58df5c',3,NULL,'martadeveloper@gmail.com');
+INSERT INTO `Users` VALUES (1,'juanam','Juana','4844624d054a4ed71e03f4dbe54bb258d35acc5c20ecc1de742bad129783ae790a45cb9737bd1a662411168a433fca2493ba81a4df594d2316cf9c72b02326d3',1,'juanascrummaster@gmail.com'),(2,'andreat','Andrea','a71be7c534e52e708e98a9b37cefd82afe0a10070cc509477f452cce635b1b130bc81c07bb3f45528b7fb5a4b1cbd8f0a4f1087e0a3a00f32772a146912a24d9',2,'andreatproduct@gmail.com'),(3,'martaz','Marta','02267d2f757bb49b126634601c02192d5420d3c177f6bfd9e6951b6adf7cd0c41f247076bccb2c6edb0336d222ce446a551219525813911c9d39d2169e58df5c',3,'martadeveloper@gmail.com');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -200,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 19:38:02
+-- Dump completed on 2018-12-11 12:55:25

@@ -36,7 +36,7 @@
 ?>
 <?php 
 
-	$log="mysql:host=localhost;dbname=ScrumDB";
+	$log="mysql:host=localhost;dbname=ScrumDBfinal";
 	$conn = new PDO($log,"Administrador","P@ssw0rd");
 
 	$queryUser = $conn->prepare("SELECT nickname FROM Users WHERE nickname=:nombre");
