@@ -167,24 +167,56 @@
 	}
 
 
-	$nproyecto=$_POST["nproyecto"];
+	$nombreproje=$_POST["nproyecto"];
 	$descripcions=$_POST["descipcion"];
 	$scrumaster=$_POST["scrum"];
 	$nomproduc=$_POST["produ"];
 	$grupos=$_POST["developers"];
 
-	if (empty($descripcions)) {
-		$insertarSinDescripcion = ("INSERT INTO Projects (nameProject,scrumMasterName,productOwnerName,nameGroup) VALUES ($'nproyecto','$scrumaster','$nomproduc','$grupos');");
-		if(mysqli_query($insertarSinDescripcion)){
+	if (!empty($descripcions)) {
+		$insertarSinDescripcion = ("INSERT INTO Projects (nameProject,description,scrumMasterName,productOwnerName,nameGroup) VALUES ('$nombreproje','$descripcions','$scrumaster','$nomproduc','grupos');");
+		if(mysqli_query($connect,$insertarSinDescripcion)){
 			echo "siva";
 
 		}else{
-			echo "no va";
+			echo "Error: " . $insertarSinDescripcion . "<br>" . mysqli_error($connect);
+		}
+
+	}else if(empty($descripcions) and $nombreproje!=NULL){
+		$insertarSinDescripcion = ("INSERT INTO Projects (nameProject,description,scrumMasterName,productOwnerName,nameGroup) VALUES ('$nombreproje',NULL,'$scrumaster','$nomproduc','grupos');");
+		if(mysqli_query($connect,$insertarSinDescripcion)){
+			echo "siva";
+
+		}else{
+			echo "Error: " . $insertarSinDescripcion . "<br>" . mysqli_error($connect);
 		}
 
 	}
 
+if(isset($_POST['submit'])){
 
+		if(empty($n)){
+			echo '<script type="text/javascript">addMessageError("Introduzca un nombre usuario y una contraseña.", true);</script>';
+		}elseif (empty($nombre)) {
+			echo '<script type="text/javascript">addMessageError("Introduzca un nombre de usuario.", true);</script>';
+		}elseif (empty($pass)) {
+			echo '<script type="text/javascript">addMessageError("Introduzca una contraseña.", true);</script>';
+		}else{
+			if ($resultUser==0 && $resultPass==0) {
+			echo '<script type="text/javascript">addMessageError("Usuario y contraseña incorrecta.", true);</script>';
+			}elseif ($resultUser==0) {
+			echo '<script type="text/javascript">addMessageError("Usuario incorrecto.", true);</script>';
+			}elseif ($resultPass==0) {
+			echo '<script type="text/javascript">addMessageError("Contraseña incorrecta.", true);</script>';
+			}
+		}
+		/*
+			Si ambas condiciones se cumplen nos enviará a la web
+		*/
+		if($resultUser==1 && $resultPass==1){
+			header("Location: vistainicial.php");
+		}
+	}
 
 
 
