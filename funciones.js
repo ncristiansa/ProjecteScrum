@@ -1,5 +1,3 @@
-
-
 if (tipo==1) {
 	scrumMaster();
 }
@@ -52,7 +50,12 @@ function formulario(){
 
 	var butonenviar = document.createElement("input");
 	butonenviar.setAttribute("type", "submit");
+<<<<<<< HEAD
 	butonenviar.setAttribute("click",validar);
+=======
+	butonenviar.setAttribute("name", "btn");
+	butonenviar.disabled=true;
+>>>>>>> d864cfac370d20dc1a12bf182075a0a1d31ccb9c
 	
 
 	
@@ -69,7 +72,7 @@ function formulario(){
 	
 
 	var opscrum1 = document.createElement("option");
-	var tscrum1 = document.createTextNode("elige una opcion");
+	var tscrum1 = document.createTextNode("Elige una opcion");
 	opscrum1.appendChild(tscrum1);
 	scrumm.appendChild(opscrum1);
 
@@ -85,7 +88,7 @@ function formulario(){
 
 
 	var opproduc1 = document.createElement("option");
-	var tproduc1 = document.createTextNode("elige una opcion");
+	var tproduc1 = document.createTextNode("Elige una opcion");
 	opproduc1.appendChild(tproduc1);
 	produ.appendChild(opproduc1);
 
@@ -98,7 +101,7 @@ function formulario(){
 
 
 	var opi1 = document.createElement("option");
-	var texi1 = document.createTextNode("elige una opcion");
+	var texi1 = document.createTextNode("Elige una opcion");
 	opi1.appendChild(texi1);
 	gdeve.appendChild(opi1);
 
