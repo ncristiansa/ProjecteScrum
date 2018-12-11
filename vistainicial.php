@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
 	<script type="text/javascript" defer src="funciones.js"></script>
 	<title>Prueba 2</title>
-	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
 <?php
@@ -123,7 +123,7 @@
 		$userType = $Query["type"];
 	}
 	if($userType==1){
-		print_r("Empieza el programa llamando a X funciones del type 1");
+		echo " ";
 	}
 	elseif ($userType==2) {
 		print_r("Type 2");
@@ -173,16 +173,26 @@
 	$nomproduc=$_POST["produ"];
 	$grupos=$_POST["developers"];
 
-	if (empty($descripcions)) {
-		$insertarSinDescripcion = ("INSERT INTO Projects (nameProject,scrumMasterName,productOwnerName,nameGroup) VALUES ($'nproyecto','$scrumaster','$nomproduc','$grupos');");
-		if(mysqli_query($insertarSinDescripcion)){
-			echo "siva";
+	
 
-		}else{
-			echo "no va";
+	if(isset($_POST['btn'])){
+		if (isset($_POST["descipcion"])) {
+			
+			/*$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, nameGroup, scrumMasterName, productOwnerName) VALUES ('$nproyecto','$descripcions','$grupos','$scrumaster','$nomproduc');");
+			$resultadoConDescripcion = mysqli_query($connect,$insertarConDescripcion);*/
+			echo "sin descripcion";
 		}
-
+		else{
+			/*
+			$insertarSinDescripcion = ("INSERT INTO Projects (nameProject, description, nameGroup,scrumMasterName,productOwnerName) VALUES ('$nproyecto',NULL,'$grupos','$scrumaster','$nomproduc');");
+			$resultSinDescripcion = mysqli_query($connect,$insertarSinDescripcion);*/
+			
+			echo "con descripcion";
+		}
 	}
+
+
+	
 
 
 
