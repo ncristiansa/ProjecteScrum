@@ -124,13 +124,43 @@
 	}
 	if($userType==1){
 		echo " ";
-	}
-	elseif ($userType==2) {
-		print_r("Type 2");
-	}
-	elseif ($userType==3) {
-		print_r("Type 3");
-	}
+	}elseif ($userType==2) {
+        $consultaNameproject = ("SELECT nameProject FROM Projects WHERE productOwnerName='$NameUser';");
+        $namesProject = mysqli_query($connect, $consultaNameproject);
+
+        echo "<table border='2' rules='rows' class='Table-List'>";
+            echo "<tr>";
+                echo "<td align='center'> <b>Nombre de Proyecto</b></td>";
+            echo "</tr>";
+
+            while ($queryNameProject = mysqli_fetch_assoc($namesProject)) {
+                echo "\t<tr>\n";
+                    echo "\t\t<td align='center'>".$queryNameProject["nameProject"]. "</td>\n";
+                echo "\t</tr>\n";
+            }
+        echo "</table>";
+        
+    }
+    elseif ($userType==3) {
+        $c= "C";
+        $nameProjectC = ("SELECT nameProject FROM Projects WHERE nameGroup= '$c';");
+        $resultNPC = mysqli_query($connect, $nameProjectC);
+        echo "<table border='2' rules='rows' class='Table-List'>";
+            echo "<tr>";
+                echo "<td align='center'> <b>Nombre de Proyecto</b></td>";
+            echo "</tr>";
+
+            while ($consultaC = mysqli_fetch_assoc($resultNPC)) {
+                echo "\t<tr>\n";
+                    echo "\t\t<td align='center'>".$consultaC["nameProject"]. "</td>\n";
+                echo "\t</tr>\n";
+            }
+        echo "</table>";
+
+
+
+    }
+	
 ?>
 
 <?php
@@ -167,30 +197,13 @@
 	}
 
 
-	$nombreproje=$_POST["nproyecto"];
+	$nproyecto=$_POST["nproyecto"];
 	$descripcions=$_POST["descipcion"];
 	$scrumaster=$_POST["scrum"];
 	$nomproduc=$_POST["produ"];
 	$grupos=$_POST["developers"];
 
-<<<<<<< HEAD
-	if (!empty($descripcions)) {
-		$insertarSinDescripcion = ("INSERT INTO Projects (nameProject,description,scrumMasterName,productOwnerName,nameGroup) VALUES ('$nombreproje','$descripcions','$scrumaster','$nomproduc','grupos');");
-		if(mysqli_query($connect,$insertarSinDescripcion)){
-			echo "siva";
 
-		}else{
-			echo "Error: " . $insertarSinDescripcion . "<br>" . mysqli_error($connect);
-		}
-
-	}else if(empty($descripcions) and $nombreproje!=NULL){
-		$insertarSinDescripcion = ("INSERT INTO Projects (nameProject,description,scrumMasterName,productOwnerName,nameGroup) VALUES ('$nombreproje',NULL,'$scrumaster','$nomproduc','grupos');");
-		if(mysqli_query($connect,$insertarSinDescripcion)){
-			echo "siva";
-
-		}else{
-			echo "Error: " . $insertarSinDescripcion . "<br>" . mysqli_error($connect);
-=======
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
 			
 		if(isset($_POST['btn'])){	
@@ -199,44 +212,30 @@
 			}else{
 				$descripcion = null;
 			}
-		$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, nameGroup, scrumMasterName, productOwnerName) VALUES ('$nproyecto','$descripcions','$grupos','$scrumaster','$nomproduc');");
+		$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, nameGroup, scrumMasterName, productOwnerName) VALUES ('$nproyecto','$descripcion','$grupos','$scrumaster','$nomproduc');");
 		if(mysqli_query($connect,$insertarConDescripcion)){
 			header("Location: vistainicial.php");
->>>>>>> d864cfac370d20dc1a12bf182075a0a1d31ccb9c
 		}
 		}	
 	}
-
-<<<<<<< HEAD
-if(isset($_POST['submit'])){
-
-		if(empty($n)){
-			echo '<script type="text/javascript">addMessageError("Introduzca un nombre usuario y una contraseña.", true);</script>';
-		}elseif (empty($nombre)) {
-			echo '<script type="text/javascript">addMessageError("Introduzca un nombre de usuario.", true);</script>';
-		}elseif (empty($pass)) {
-			echo '<script type="text/javascript">addMessageError("Introduzca una contraseña.", true);</script>';
-		}else{
-			if ($resultUser==0 && $resultPass==0) {
-			echo '<script type="text/javascript">addMessageError("Usuario y contraseña incorrecta.", true);</script>';
-			}elseif ($resultUser==0) {
-			echo '<script type="text/javascript">addMessageError("Usuario incorrecto.", true);</script>';
-			}elseif ($resultPass==0) {
-			echo '<script type="text/javascript">addMessageError("Contraseña incorrecta.", true);</script>';
-			}
-		}
-		/*
-			Si ambas condiciones se cumplen nos enviará a la web
-		*/
-		if($resultUser==1 && $resultPass==1){
-			header("Location: vistainicial.php");
-		}
+/*
+if(isset($_POST["btn"])){
+	if(empty($nproyecto)){
+		echo "<script type='text/javascript' >mensajeError('Campo titulo vacio.',true);</script>";
+	}elseif (empty($scrumaster)) {
+		echo "<script type='text/javascript' >mensajeError('Ningun Scrum Master seleccionado.',true)</script>";
+	}elseif (empty($nomproduc)) {
+		echo "<script type='text/javascript' >mensajeError('Ningun Produc Owner seleccionado',true)</script>";
+	}elseif (empty($grupos)) {
+		echo "<script type='text/javascript' >mensajeError('Ningun Grupo seleccionado',true)</script>";
 	}
+}
+	*/
 
 
 
-=======
->>>>>>> d864cfac370d20dc1a12bf182075a0a1d31ccb9c
+
+
 ?>
 <script type="text/javascript">
 	var scrumjs = <?php echo json_encode($arrayscrum);?>;

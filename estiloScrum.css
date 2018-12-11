@@ -144,6 +144,7 @@ nav{
 }
 .div-father {
   margin:0;
+  margin-top: 3%;
   word-wrap: break-word;
 }
 .list-projects {
@@ -163,4 +164,12 @@ a:link {
 }
 .p-Title {
   margin-top: 0%;
+}
+.Table-List {
+  margin: 0 auto;
+  margin-top: 2%;
+  width: 40%;
+  background-color: white;
+  border-collapse: collapse;
+  word-wrap: break-word;
 }

@@ -40,22 +40,29 @@ function formulario(){
 	form.setAttribute("method","post");
 	form.setAttribute("action","vistainicial.php");
 
+
+
+
+	nproj.setAttribute("change",validar);
+	scrumm.setAttribute("change",validar);
+	produ.setAttribute("change",validar);
+	gdeve.setAttribute("change",validar);
+
 	nproj.setAttribute("name","nproyecto");
 	descr.setAttribute("name","descipcion");
 	scrumm.setAttribute("name","scrum");
 	produ.setAttribute("name","produ");
 	gdeve.setAttribute("name","developers");
 
+	
+
 
 
 	var butonenviar = document.createElement("input");
 	butonenviar.setAttribute("type", "submit");
-<<<<<<< HEAD
 	butonenviar.setAttribute("click",validar);
-=======
+	
 	butonenviar.setAttribute("name", "btn");
-	butonenviar.disabled=true;
->>>>>>> d864cfac370d20dc1a12bf182075a0a1d31ccb9c
 	
 
 	
@@ -121,7 +128,7 @@ function formulario(){
 
 
 
-	var cnom = document.createTextNode("Nom del projecte");
+	var cnom = document.createTextNode("Nombre del proyecto");
 	pnom.appendChild(cnom);
 
 	var cdescr = document.createTextNode("Descripcion");
@@ -201,46 +208,13 @@ function validar(){
 	var selectGrupo = document.getElementsByTagName("select")[2];
 	var inputboton = document.getElementsByTagName("input")[2];
 	if (inputnombrepro.value!="") {
-		mensajeError("Nombre del proyecto vacio",true);
+		addMessageError("Nombre del proyecto vacio",true);
+	}else if (selectScrum != "elige una opcion") {
+		addMessageError("holaaa",true);
+	}else if (selectGrupo != "elige una opcion") {
+		addMessageError("holaaa",true);
 	}
 }
 
 
 
-
-
-function mensajeError(errorText, status){
-	var CheckError = document.getElementById("MessageError");
-	var Button = document.getElementsByTagName("input")[2];
-
-	if(CheckError==undefined){
-		var Fail = document.createElement("div");
-		Fail.setAttribute("id", "MessageError");
-		Fail.setAttribute("align", "left");
-
-		var failText = document.createElement("p");
-		failText.setAttribute("id", "pError");
-		failText.innerText=(errorText);
-
-		var Img = document.createElement("img");
-		Img.setAttribute("id", "imgError");
-		//Img.setAttribute("align", "left");
-		Img.setAttribute("height","30px");
-		Img.setAttribute("width", "30px");
-		Img.src="images/alert.png";
-
-		Button.appendChild(Fail);
-		Fail.appendChild(Img);
-		Fail.appendChild(failText);
-		document.body.appendChild(Fail);
-
-		if(true==status){
-			setTimeout(function(){document.getElementById("MessageError").remove();},8000);
-		}
-
-	}else if(CheckError!=undefined){
-		document.getElementById("MessageError").remove();
-		addMessageError(errorText, status);
-	}
-	
-}
