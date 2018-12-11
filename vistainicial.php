@@ -173,30 +173,20 @@
 	$nomproduc=$_POST["produ"];
 	$grupos=$_POST["developers"];
 
-	
-
-	if(isset($_POST['btn'])){
-		if (isset($_POST["descipcion"])) {
+	if($_SERVER["REQUEST_METHOD"] == "POST") {
 			
-			/*$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, nameGroup, scrumMasterName, productOwnerName) VALUES ('$nproyecto','$descripcions','$grupos','$scrumaster','$nomproduc');");
-			$resultadoConDescripcion = mysqli_query($connect,$insertarConDescripcion);*/
-			echo "sin descripcion";
+		if(isset($_POST['btn'])){	
+			if(isset($_POST['descipcion'])){
+				$descripcion = $_POST['descipcion'];
+			}else{
+				$descripcion = null;
+			}
+		$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, nameGroup, scrumMasterName, productOwnerName) VALUES ('$nproyecto','$descripcions','$grupos','$scrumaster','$nomproduc');");
+		if(mysqli_query($connect,$insertarConDescripcion)){
+			header("Location: vistainicial.php");
 		}
-		else{
-			/*
-			$insertarSinDescripcion = ("INSERT INTO Projects (nameProject, description, nameGroup,scrumMasterName,productOwnerName) VALUES ('$nproyecto',NULL,'$grupos','$scrumaster','$nomproduc');");
-			$resultSinDescripcion = mysqli_query($connect,$insertarSinDescripcion);*/
-			
-			echo "con descripcion";
-		}
+		}	
 	}
-
-
-	
-
-
-
-
 
 ?>
 <script type="text/javascript">
