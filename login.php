@@ -16,7 +16,7 @@
 
 <?php
 	echo "<div class='Login-Style'>";
-	echo "<h2>Gestor de projectes SCRUM<h2>"; 
+	echo "<h2>Gestor de projectes SCRUM<h2>";
 	echo "<h2 class='h2-Style'>Login</h2>";
 	echo "<form class='formulario' action='login.php' method='POST' align='center'>";
 		echo"<label class='Label-Style'>Usuario: </label>";
@@ -34,7 +34,7 @@
 	$_SESSION["Name"] = $nombre;
 	$_SESSION["Pass"] = $pass;
 ?>
-<?php 
+<?php
 
 	$log="mysql:host=localhost;dbname=ScrumDBfinal";
 	$conn = new PDO($log,"Administrador","P@ssw0rd");

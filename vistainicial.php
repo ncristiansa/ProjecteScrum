@@ -6,6 +6,8 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
 	<script type="text/javascript" defer src="funciones.js"></script>
+	<script type="text/javascript" src="scripts.js"></script>
+
 	<title>Inicio</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -55,14 +57,14 @@
 	if($registro = mysqli_fetch_assoc($resultado)){
 		$NameUser = $registro["username"];
 	}
-		
+
 ?>
 <?php
 	echo"<nav>";
 		echo"<ul>";
 			echo"<li class='lihorizontal'>";
 				echo"<img class='imgusuario' src='https://evarejo.com/wp-content/uploads/2017/08/evarejo_homem_padrao.png'>";
-				
+
 			echo"</li>";
 			echo"<li class='liimglogout'>";
 ?>
@@ -134,7 +136,7 @@
 				}
 			echo "</ul>";
 		echo "</div>";
-        
+
     }
     elseif ($userType==3) {
         $c= "C";
@@ -152,7 +154,7 @@
 			echo "</ul>";
 		echo "</div>";
     }
-	
+
 ?>
 
 <?php
@@ -174,8 +176,8 @@
 		$produc = $regiproduc["username"];
 		array_push($arrayproduc,$produc);
 	}
-	
-	
+
+
 
 	$consugroup = ("SELECT nameGroup FROM Groups;");
 	$resultgroup = mysqli_query($connect,$consugroup);
@@ -185,7 +187,7 @@
 		$group = $regigroup["nameGroup"];
 
 		array_push($arraygroups, $group);
-		
+
 	}
 
 
@@ -197,32 +199,29 @@
 
 
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
-			
-		if(isset($_POST['btn'])){	
-			if(isset($_POST['descipcion'])){
-				$descripcion = $_POST['descipcion'];
-			}else{
-				$descripcion = null;
-			}
+
+		if(isset($_POST['descripcion'])){
+			$descripcion = $_POST['descripcion'];
+		}else{
+			$descripcion = null;
+		}
 		$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, nameGroup, scrumMasterName, productOwnerName) VALUES ('$nproyecto','$descripcion','$grupos','$scrumaster','$nomproduc');");
 		if(mysqli_query($connect,$insertarConDescripcion)){
 			header("Location: vistainicial.php");
 		}
-		}	
 	}
-/*
-if(isset($_POST["btn"])){
+
+/*if(isset($_POST["btn"])){
 	if(empty($nproyecto)){
-		echo "<script type='text/javascript' >mensajeError('Campo titulo vacio.',true);</script>";
+		echo "<script type='text/javascript'>addMessageError('Campo titulo vacio.',true);</script>";
 	}elseif (empty($scrumaster)) {
-		echo "<script type='text/javascript' >mensajeError('Ningun Scrum Master seleccionado.',true)</script>";
+		echo "<script type='text/javascript'>addMessageError('Ningun Scrum Master seleccionado.',true)</script>";
 	}elseif (empty($nomproduc)) {
-		echo "<script type='text/javascript' >mensajeError('Ningun Produc Owner seleccionado',true)</script>";
+		echo "<script type='text/javascript'>addMessageError('Ningun Produc Owner seleccionado',true)</script>";
 	}elseif (empty($grupos)) {
-		echo "<script type='text/javascript' >mensajeError('Ningun Grupo seleccionado',true)</script>";
+		echo "<script type='text/javascript'>addMessageError('Ningun Grupo seleccionado',true)</script>";
 	}
-}
-	*/
+}*/
 
 
 
