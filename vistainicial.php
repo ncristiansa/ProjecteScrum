@@ -29,7 +29,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDBfinal2-0";
+ 	$bbdd = "ScrumDB3.0";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
@@ -96,58 +96,68 @@
 	}
 ?>
 <?php
-	/*
-		Listado de proyectos existentes, links que nos enviará a la pàgina de Administración del projecto.
-	*/
-	$listProjects = ("SELECT nameProject FROM Projects WHERE scrumMasterName='$NameUser';");
-	$resultList = mysqli_query($connect, $listProjects);
-?>
+	$idUser = "";
+	$IDProject = "";
+	$IDScrumM = "";
+	$IDProduct = "";
+	$IDDeveloper = "";
 
-<?php
+	$consultidUser = ("SELECT userID FROM Users WHERE username='$NameUser';");
+	$resultUserID = mysqli_query($connect, $consultidUser);
+	if($queryUserid = mysqli_fetch_assoc($resultUserID)){
+		$idUser = $queryUserid["userID"];
+	}
+
 	$typeUser = ("SELECT type FROM Users WHERE username='$NameUser';");
 	$resultTypeUser = mysqli_query($connect, $typeUser);
 	if($Query = mysqli_fetch_assoc($resultTypeUser)){
 		$userType = $Query["type"];
 	}
+	
+	$ProjectUserList = ("SELECT p.nameProject FROM Projects p, UserBelongsToP up WHERE up.userID='$idUser' AND up.projectID=p.projectID;");
+	$resultList = mysqli_query($connect, $ProjectUserList);
+	
 	if($userType==1){
+		
 		echo "<div align='center' class='div-father'>";
 			echo "<div class='list-projects' align='center'>";
 				echo "<p align='right' class='p-Title'>Proyecto</p>";
 				echo "<p class='title-list'>Lista de proyectos</p>";
 			echo "<ul>";
+				$numScrum = 0;
 				while ($QueryList = mysqli_fetch_assoc($resultList)) {
-					echo"<li class='text-li'><a href='#'>".$QueryList["nameProject"]."</li></a>";
+					echo"<li class='text-li' name='scru'".$numScrum."><a href='Administration.php'>".$QueryList["nameProject"]."</li></a>";
+					$numScrum=$numScrum+1;
 				}
 			echo "</ul>";
 		echo "</div>";
 	}elseif ($userType==2) {
-		$consultaNameproject = ("SELECT nameProject FROM Projects WHERE productOwnerName='$NameUser';");
-        $namesProject = mysqli_query($connect, $consultaNameproject);
+		
 
 		echo "<div align='center' class='div-father'>";
 			echo "<div class='list-projects' align='center'>";
 				echo "<p align='right' class='p-Title'>Proyecto</p>";
 				echo "<p class='title-list'>Lista de proyectos</p>";
 			echo "<ul>";
-				while ($queryNameProject = mysqli_fetch_assoc($namesProject)) {
-					echo"<li class='text-li'><a href='#'>".$queryNameProject["nameProject"]."</li></a>";
+				$numProdu=0;
+				while ($QueryList = mysqli_fetch_assoc($resultList)) {
+					echo"<li class='text-li' name='produ".$numProdu."'><a href='Administration.php'>".$QueryList["nameProject"]."</li></a>";
+					$numProdu=$numProdu+1;
 				}
 			echo "</ul>";
 		echo "</div>";
         
     }
     elseif ($userType==3) {
-        $c= "C";
-        $nameProjectC = ("SELECT nameProject FROM Projects WHERE nameGroup= '$c';");
-        $resultNPC = mysqli_query($connect, $nameProjectC);
-
         echo "<div align='center' class='div-father'>";
 			echo "<div class='list-projects' align='center'>";
 				echo "<p align='right' class='p-Title'>Proyecto</p>";
 				echo "<p class='title-list'>Lista de proyectos</p>";
 			echo "<ul>";
-				while ($consultaC = mysqli_fetch_assoc($resultNPC)) {
-					echo"<li class='text-li'><a href='#'>".$consultaC["nameProject"]."</li></a>";
+			$numDev=0;
+				while ($QueryList = mysqli_fetch_assoc($resultList)) {
+					echo"<li class='text-li' name='dev'".$numDev."><a href='Administration.php'>".$QueryList["nameProject"]."</li></a>";
+					$numDev=$numDev+1;
 				}
 			echo "</ul>";
 		echo "</div>";
@@ -177,7 +187,7 @@
 	
 	
 
-	$consugroup = ("SELECT nameGroup FROM Groups;");
+	$consugroup = ("SELECT DISTINCT nameGroup FROM Groups;");
 	$resultgroup = mysqli_query($connect,$consugroup);
 
 	$arraygroups=[];
@@ -190,41 +200,77 @@
 
 
 	$nproyecto=$_POST["nproyecto"];
-	$descripcions=$_POST["descipcion"];
+	$descripcion=$_POST["descripcion"];
 	$scrumaster=$_POST["scrum"];
 	$nomproduc=$_POST["produ"];
 	$grupos=$_POST["developers"];
 
+	$_SESSION["nameprojecto"] = $nproyecto;
+	$projectoNombre = $_SESSION["nameprojecto"];
 
+	$_SESSION["namescrum"] = $scrumaster;
+	$masterNombre = $_SESSION["namescrum"];
+
+	$_SESSION["nameproduct"] = $nomproduc;
+	$productNombre = $_SESSION["nameproduct"];
+
+	$_SESSION["namegrup"] = $grupos;
+	$groupNombre = $_SESSION["namegrup"];
+	print_r($projectoNombre);
+	print_r($masterNombre);
+	print_r($productNombre);
+	print_r($groupNombre);
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
-			
-		if(isset($_POST['btn'])){	
-			if(isset($_POST['descipcion'])){
-				$descripcion = $_POST['descipcion'];
+
+			if(isset($_POST['descripcion'])){
+				$descripcion = $_POST['descripcion'];
 			}else{
 				$descripcion = null;
 			}
-		$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, nameGroup, scrumMasterName, productOwnerName) VALUES ('$nproyecto','$descripcion','$grupos','$scrumaster','$nomproduc');");
-		if(mysqli_query($connect,$insertarConDescripcion)){
-			header("Location: vistainicial.php");
-		}
-		}	
-	}
-/*
-if(isset($_POST["btn"])){
-	if(empty($nproyecto)){
-		echo "<script type='text/javascript' >mensajeError('Campo titulo vacio.',true);</script>";
-	}elseif (empty($scrumaster)) {
-		echo "<script type='text/javascript' >mensajeError('Ningun Scrum Master seleccionado.',true)</script>";
-	}elseif (empty($nomproduc)) {
-		echo "<script type='text/javascript' >mensajeError('Ningun Produc Owner seleccionado',true)</script>";
-	}elseif (empty($grupos)) {
-		echo "<script type='text/javascript' >mensajeError('Ningun Grupo seleccionado',true)</script>";
-	}
-}
-	*/
+			$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, scrumMasterName, productOwnerName) VALUES ('$nproyecto', '$descripcion', '$scrumaster', '$nomproduc');");
+			$mysqli = new mysqli("localhost", "Administrador", "P@ssw0rd", "ScrumDB3.0");
+			
+			
+			if(mysqli_query($connect,$insertarConDescripcion)){
+				$searchIDProject = ("SELECT projectID FROM Projects WHERE nameProject='$projectoNombre';");
+				$resultSearchIDProject = mysqli_query($connect,$searchIDProject);
+				if($queryIDProject = mysqli_fetch_assoc($resultSearchIDProject)){
+					$IDProject = $queryIDProject["projectID"];
+				}
+				print_r("ID P:".$IDProject);
 
-
+				$searchIDScrumM = ("SELECT userID FROM Users WHERE username='$masterNombre';");
+				$resultSearchScrumM = mysqli_query($connect, $searchIDScrumM);
+				if($queryIDScrumM = mysqli_fetch_assoc($resultSearchScrumM)){
+					$IDScrumM = $queryIDScrumM["userID"];
+				}
+				print_r("ID Scr:".$IDScrumM);
+				$searchIDProduct = ("SELECT userID FROM Users WHERE username='$productNombre';");
+				$resultSearchProduct = mysqli_query($connect, $searchIDProduct);
+				if($queryIDProduct = mysqli_fetch_assoc($resultSearchProduct)){
+					$IDProduct = $queryIDProduct["userID"];
+				}
+				print_r("ID Pr:".$IDProduct);
+				
+				$searchIDDeveloper = ("SELECT u.userID FROM Users u, Groups g WHERE u.type=3 AND u.userID=g.userID AND g.nameGroup='$groupNombre';");
+				$resultSearchIDDeveloper = mysqli_query($connect,$searchIDDeveloper);
+				while($queryIDDeveloper = mysqli_fetch_assoc($resultSearchIDDeveloper)){
+					$IDDeveloper = $queryIDDeveloper["userID"];
+					if(!$mysqli->query("INSERT INTO UserBelongsToP (projectID, userID) VALUES ('$IDProject', '$IDDeveloper');")){
+					}
+					print_r("ID Dev:".$IDDeveloper);
+				}
+				
+				if(!$mysqli->query("INSERT INTO UserBelongsToP (projectID, userID) VALUES ('$IDProject', '$IDScrumM');") || !$mysqli->query("INSERT INTO UserBelongsToP (projectID, userID) VALUES ('$IDProject', '$IDProduct');") ){
+					
+				}
+				header("Location: vistainicial.php");
+				
+			}
+			
+			
+			
+	}
 function searchQuerySQL($parameters,$table,$whereDo){
 	$server = "localhost";
  	$user = "Administrador";
@@ -238,28 +284,10 @@ function searchQuerySQL($parameters,$table,$whereDo){
 	}
 	$result = mysqli_query($connect,$query);
 	return $result;
-}
-
-
-/*$Sprints=searchQuerySQL("*","Sprints",null);
-while( $regigroup = mysqli_fetch_assoc($Sprints) ){
-		echo $regigroup["projectID"]."";		
-		
-	}
-No funciona
-function InsertQuerySQL($table,$parameters,$allValues){
-	$server = "localhost";
- 	$user = "Administrador";
- 	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDBfinal2-0";
-	$connect = mysqli_connect($server,$user, $pass, $bbdd);
-	$query = ("INSERT INTO $talbe $parameters VALUES $allValues;");
-	mysqli_query($connect,$query);
-	
-}
-*/
+}	
 
 ?>
+
 <script type="text/javascript">
 	var scrumjs = <?php echo json_encode($arrayscrum);?>;
 	var producjs = <?php echo json_encode($arrayproduc);?> ;
