@@ -124,9 +124,11 @@
 				echo "<p align='right' class='p-Title'>Proyecto</p>";
 				echo "<p class='title-list'>Lista de proyectos</p>";
 			echo "<ul>";
-				$numScrum = 0;
+				
+				$numScrum=0;
 				while ($QueryList = mysqli_fetch_assoc($resultList)) {
-					echo"<li class='text-li' name='scru'".$numScrum."><a href='Administration.php'>".$QueryList["nameProject"]."</li></a>";
+					$name = $QueryList["nameProject"];
+					echo"<li class='text-li' name='scru".$numScrum."'><a href='Administration.php?$name'>".$name."</li></a>";
 					$numScrum=$numScrum+1;
 				}
 			echo "</ul>";
@@ -141,7 +143,8 @@
 			echo "<ul>";
 				$numProdu=0;
 				while ($QueryList = mysqli_fetch_assoc($resultList)) {
-					echo"<li class='text-li' name='produ".$numProdu."'><a href='Administration.php'>".$QueryList["nameProject"]."</li></a>";
+					$name = $QueryList["nameProject"];
+					echo"<li class='text-li' name='scru".$numProdu."'><a href='Administration.php?$name'>".$name."</li></a>";
 					$numProdu=$numProdu+1;
 				}
 			echo "</ul>";
@@ -156,7 +159,8 @@
 			echo "<ul>";
 			$numDev=0;
 				while ($QueryList = mysqli_fetch_assoc($resultList)) {
-					echo"<li class='text-li' name='dev'".$numDev."><a href='Administration.php'>".$QueryList["nameProject"]."</li></a>";
+					$name = $QueryList["nameProject"];
+					echo"<li class='text-li' name='scru".$numDev."'><a href='Administration.php?$name'>".$name."</li></a>";
 					$numDev=$numDev+1;
 				}
 			echo "</ul>";
