@@ -33,18 +33,14 @@ function connectar(){
   $titulo = "Recuperación de la contraseña";
   if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $correo = $_POST["email"];
+    echo $correo;
+    $query = $pdo->prepare("SELECT userID, email FROM Users WHERE email = '$correo'");
+    $query->execute();
+    $datosUser = $query->fetch();
+
+    $mensaje = "http://skadilux.tk/ProjecteScrum/password.php?userID=".$datosUser["userID"];
+    mail($datosUser["email"], $titulo, $mensaje);
   }
-
-
-  $query = $pdo->prepare("SELECT userID, email FROM Users WHERE email = '$correo'");
-  $query->execute();
-  $datosUser = $query->fetch();
-
-  $mensaje = "http://http://skadilux.tk/ProjecteScrum/password.php/?userID=".$datosUser["userID"];
-  mail($datosUser["email"], $titulo, $mensaje);
-
-  //print_r($datosUser["email"]);
-  //print_r($datosUser["userID"]);
 
 
 	echo "<div class='Login-Style'>";

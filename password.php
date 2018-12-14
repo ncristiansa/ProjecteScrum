@@ -30,18 +30,20 @@ function connectar(){
 
 <?php
   $pdo = connectar();
-  $titulo = "Recuperación de la contraseña";
+  $userID = $_GET["userID"];
   if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $correo = $_POST["email"];
+    $pass = $_POST["contraseña"];
+
+
+    $query = $pdo->prepare("UPDATE Users set passwd = SHA2('$pass',512) WHERE userID = '$userID'");
+  	$query->execute();
   }
-
-
 	echo "<div class='Login-Style'>";
 	echo "<h2 class='h2-Style'>Recuperarción</h2>";
   echo "<h2 class='h2-Style'>de la contraseña</h2>";
-	echo "<form class='formulario' action='contraseña.php' method='POST' align='center'>";
+	echo "<form class='formulario' action='password.php?userID=$userID' method='POST' align='center'>";
 		echo"<label class='Label-Style'>Nueva Contraseña: </label>";
-		echo "<input type='password' name='contraseña'><br>";
+		echo "<input type='password' name='contraseña1'><br>";
     echo"<label class='Label-Style'>Repite la Contraseña: </label>";
     echo "<input type='password' name='contraseña'><br>";
 		echo "<input type='submit' value='Enviar' name='submit' id='btn' class='waves-effect waves-light btn-small'><br>";
