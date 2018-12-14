@@ -11,15 +11,15 @@ function scrumMaster(){
 	boton.addEventListener("click",formulario);
 	boton.addEventListener("click",borrarinputs);
 	elementodiv.appendChild(boton);
-	
+
 }
 
-function insertAfter(e,i){ 
-	if(e.nextSibling){ 
-		e.parentNode.insertBefore(i,e.nextSibling); 
-		
-	} else { 
-		e.parentNode.appendChild(i); 
+function insertAfter(e,i){
+	if(e.nextSibling){
+		e.parentNode.insertBefore(i,e.nextSibling);
+
+	} else {
+		e.parentNode.appendChild(i);
 	}
 }
 
@@ -29,7 +29,6 @@ function insertAfter(e,i){
 
 function formulario(){
 	var elementoBoton = document.getElementsByTagName("button")[0];
-
 	var form = document.createElement("form");
 	var nproj = document.createElement("input");
 	var descr = document.createElement("input");
@@ -39,7 +38,10 @@ function formulario(){
 	var elebr = document.createElement("br");
 
 	form.setAttribute("method","post");
+	form.setAttribute("id", "formulario");
 	form.setAttribute("action","vistainicial.php");
+
+
 
 
 	nproj.setAttribute("change",validar);
@@ -48,17 +50,24 @@ function formulario(){
 	gdeve.setAttribute("change",validar);
 
 	nproj.setAttribute("name","nproyecto");
-	descr.setAttribute("name","descipcion");
+	descr.setAttribute("name","descripcion");
 	scrumm.setAttribute("name","scrum");
 	produ.setAttribute("name","produ");
 	gdeve.setAttribute("name","developers");
 
-	
+
+
+
+
 	var butonenviar = document.createElement("input");
-	butonenviar.setAttribute("type", "submit");
-	butonenviar.setAttribute("click",validar);
-	
+	butonenviar.setAttribute("type", "button");
+	butonenviar.setAttribute("onclick","validar()");
+	butonenviar.setAttribute("value", "Enviar");
 	butonenviar.setAttribute("name", "btn");
+
+
+
+
 
 
 	var pnom = document.createElement("p");
@@ -66,6 +75,9 @@ function formulario(){
 	var pscrumm = document.createElement("p");
 	var pproduc = document.createElement("p");
 	var pdeve = document.createElement("p");
+
+
+
 
 	var opscrum1 = document.createElement("option");
 	var tscrum1 = document.createTextNode("Elige una opcion");
@@ -79,6 +91,9 @@ function formulario(){
 		opscrum.appendChild(tscrum);
 		scrumm.appendChild(opscrum);
 	}
+
+
+
 
 	var opproduc1 = document.createElement("option");
 	var tproduc1 = document.createTextNode("Elige una opcion");
@@ -98,15 +113,21 @@ function formulario(){
 	opi1.appendChild(texi1);
 	gdeve.appendChild(opi1);
 
+
+
+
+
 	for (var i = 0; i < groupjs.length; i++) {
 		var opi = document.createElement("option");
 		var texi = document.createTextNode(groupjs[i]);
 		opi.appendChild(texi);
 		gdeve.appendChild(opi);
-
-
 	}
-	
+
+
+
+
+
 
 	var cnom = document.createTextNode("Nombre del proyecto");
 	pnom.appendChild(cnom);
@@ -116,14 +137,18 @@ function formulario(){
 
 	var cscrumm = document.createTextNode("ScrumMaster");
 	pscrumm.appendChild(cscrumm);
-	
+
 
 	var cproduc = document.createTextNode("product Owner");
 	pproduc.appendChild(cproduc);
-	
+
 	var cdeve= document.createTextNode("Grup Developers");
 	pdeve.appendChild(cdeve);
-	
+
+
+
+
+
 
 	form.appendChild(pnom);
 	form.appendChild(nproj);
@@ -131,7 +156,8 @@ function formulario(){
 	form.appendChild(pdescr);
 	form.appendChild(descr);
 
-	
+
+
 	form.appendChild(pscrumm);
 	form.appendChild(scrumm);
 
@@ -146,8 +172,8 @@ function formulario(){
 	form.appendChild(butonenviar);
 
 	insertAfter(elementoBoton,form);
-	
-	elementoBoton.disabled = true;
+
+
 
 }
 
@@ -166,30 +192,32 @@ function borrarinputs(){
 	}else if (inputdesc.value != "") {
 		inputdesc="";
 	}else if (selectScrum.value!=0){
-		selectScrum.value="elige una opcion";
+		selectScrum.value="Elige una opcion";
 	}else if (selectProduct.value!=0){
-		selectProduct.value="elige una opcion";
+		selectProduct.value="Elige una opcion";
 	}else if (selectGrupo.value!=0){
-		selectGrupo.value="elige una opcion";
+		selectGrupo.value="Elige una opcion";
 	}
 }
 
 
-
+//esta funcion valida que los campos no esten vacios. Si no, no envia el submit
 function validar(){
 	var inputnombrepro = document.getElementsByTagName("input")[0];
 	var selectScrum = document.getElementsByTagName("select")[0];
 	var selectProduct = document.getElementsByTagName("select")[1];
 	var selectGrupo = document.getElementsByTagName("select")[2];
-	var inputboton = document.getElementsByTagName("input")[2];
-	if (inputnombrepro.value!="") {
+	if (inputnombrepro.value == "" && selectScrum.value == "Elige una opcion" && selectProduct.value == "Elige una opcion" && selectGrupo.value == "Elige una opcion"){
+		addMessageError("Nombre del proyecto vacio \n Ningun Scrum Master seleccionado \n Ningun Produc Owner seleccionado \n Ningun Grupo de Developers seleccionado",true);
+	}else if (inputnombrepro.value == "") {
 		addMessageError("Nombre del proyecto vacio",true);
-	}else if (selectScrum != "elige una opcion") {
-		addMessageError("holaaa",true);
-	}else if (selectGrupo != "elige una opcion") {
-		addMessageError("holaaa",true);
+	}else if (selectScrum.value == "Elige una opcion") {
+		addMessageError("Ningun Scrum Master seleccionado",true);
+	}else if (selectProduct.value == "Elige una opcion") {
+		addMessageError("Ningun Produc Owner seleccionado",true);
+	}else if (selectGrupo.value == "Elige una opcion") {
+		addMessageError("Ningun Grupo de Developers seleccionado",true);
+	}else{
+		document.getElementById('formulario').submit();
 	}
 }
-
-
-
