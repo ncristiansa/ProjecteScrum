@@ -208,7 +208,6 @@ function validar(){
 	var selectProduct = document.getElementsByTagName("select")[1];
 	var selectGrupo = document.getElementsByTagName("select")[2];
 	if (inputnombrepro.value == "" && selectScrum.value == "Elige una opcion" && selectProduct.value == "Elige una opcion" && selectGrupo.value == "Elige una opcion"){
-		alert("entra");
 		addMessageError("Nombre del proyecto vacio \n Ningun Scrum Master seleccionado \n Ningun Produc Owner seleccionado \n Ningun Grupo de Developers seleccionado",true);
 	}else if (inputnombrepro.value == "") {
 		addMessageError("Nombre del proyecto vacio",true);

@@ -211,21 +211,6 @@
 		}
 	}
 
-/*if(isset($_POST["btn"])){
-	if(empty($nproyecto)){
-		echo "<script type='text/javascript'>addMessageError('Campo titulo vacio.',true);</script>";
-	}elseif (empty($scrumaster)) {
-		echo "<script type='text/javascript'>addMessageError('Ningun Scrum Master seleccionado.',true)</script>";
-	}elseif (empty($nomproduc)) {
-		echo "<script type='text/javascript'>addMessageError('Ningun Produc Owner seleccionado',true)</script>";
-	}elseif (empty($grupos)) {
-		echo "<script type='text/javascript'>addMessageError('Ningun Grupo seleccionado',true)</script>";
-	}
-}*/
-
-
-
-
 
 ?>
 <script type="text/javascript">
