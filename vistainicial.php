@@ -225,8 +225,39 @@ if(isset($_POST["btn"])){
 	*/
 
 
+function searchQuerySQL($parameters,$table,$whereDo){
+	$server = "localhost";
+ 	$user = "Administrador";
+ 	$pass = "P@ssw0rd";
+ 	$bbdd = "ScrumDBfinal2-0";
+	$connect = mysqli_connect($server,$user, $pass, $bbdd);
+	if ($whereDo==null) {
+		$query = ("SELECT $parameters FROM $table;");
+	}else{
+		$query = ("SELECT $parameters FROM $table WHERE $whereDo;");
+	}
+	$result = mysqli_query($connect,$query);
+	return $result;
+}
 
 
+/*$Sprints=searchQuerySQL("*","Sprints",null);
+while( $regigroup = mysqli_fetch_assoc($Sprints) ){
+		echo $regigroup["projectID"]."";		
+		
+	}
+No funciona
+function InsertQuerySQL($table,$parameters,$allValues){
+	$server = "localhost";
+ 	$user = "Administrador";
+ 	$pass = "P@ssw0rd";
+ 	$bbdd = "ScrumDBfinal2-0";
+	$connect = mysqli_connect($server,$user, $pass, $bbdd);
+	$query = ("INSERT INTO $talbe $parameters VALUES $allValues;");
+	mysqli_query($connect,$query);
+	
+}
+*/
 
 ?>
 <script type="text/javascript">

@@ -29,6 +29,7 @@ function insertAfter(e,i){
 
 function formulario(){
 	var elementoBoton = document.getElementsByTagName("button")[0];
+
 	var form = document.createElement("form");
 	var nproj = document.createElement("input");
 	var descr = document.createElement("input");
@@ -39,8 +40,6 @@ function formulario(){
 
 	form.setAttribute("method","post");
 	form.setAttribute("action","vistainicial.php");
-
-
 
 
 	nproj.setAttribute("change",validar);
@@ -55,18 +54,11 @@ function formulario(){
 	gdeve.setAttribute("name","developers");
 
 	
-
-
-
 	var butonenviar = document.createElement("input");
 	butonenviar.setAttribute("type", "submit");
 	butonenviar.setAttribute("click",validar);
 	
 	butonenviar.setAttribute("name", "btn");
-	
-
-	
-
 
 
 	var pnom = document.createElement("p");
@@ -74,9 +66,6 @@ function formulario(){
 	var pscrumm = document.createElement("p");
 	var pproduc = document.createElement("p");
 	var pdeve = document.createElement("p");
-
-
-	
 
 	var opscrum1 = document.createElement("option");
 	var tscrum1 = document.createTextNode("Elige una opcion");
@@ -90,9 +79,6 @@ function formulario(){
 		opscrum.appendChild(tscrum);
 		scrumm.appendChild(opscrum);
 	}
-
-
-
 
 	var opproduc1 = document.createElement("option");
 	var tproduc1 = document.createTextNode("Elige una opcion");
@@ -112,21 +98,15 @@ function formulario(){
 	opi1.appendChild(texi1);
 	gdeve.appendChild(opi1);
 
-
-
-
-
 	for (var i = 0; i < groupjs.length; i++) {
 		var opi = document.createElement("option");
 		var texi = document.createTextNode(groupjs[i]);
 		opi.appendChild(texi);
 		gdeve.appendChild(opi);
+
+
 	}
 	
-
-	
-
-
 
 	var cnom = document.createTextNode("Nombre del proyecto");
 	pnom.appendChild(cnom);
@@ -145,16 +125,11 @@ function formulario(){
 	pdeve.appendChild(cdeve);
 	
 
-
-
-
-
 	form.appendChild(pnom);
 	form.appendChild(nproj);
 
 	form.appendChild(pdescr);
 	form.appendChild(descr);
-
 
 	
 	form.appendChild(pscrumm);
@@ -172,7 +147,7 @@ function formulario(){
 
 	insertAfter(elementoBoton,form);
 	
-	
+	elementoBoton.disabled = true;
 
 }
 
