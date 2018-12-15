@@ -124,12 +124,8 @@
 				echo "<p align='right' class='p-Title'>Proyecto</p>";
 				echo "<p class='title-list'>Lista de proyectos</p>";
 			echo "<ul>";
-				
-				$numScrum=0;
-				while ($QueryList = mysqli_fetch_assoc($resultList)) {
-					$name = $QueryList["nameProject"];
-					echo"<li class='text-li' name='scru".$numScrum."'><a href='Administration.php?$name'>".$name."</li></a>";
-					$numScrum=$numScrum+1;
+				while ($QueryList = mysqli_fetch_array($resultList)) {
+					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
 				}
 			echo "</ul>";
 		echo "</div>";
@@ -141,11 +137,8 @@
 				echo "<p align='right' class='p-Title'>Proyecto</p>";
 				echo "<p class='title-list'>Lista de proyectos</p>";
 			echo "<ul>";
-				$numProdu=0;
-				while ($QueryList = mysqli_fetch_assoc($resultList)) {
-					$name = $QueryList["nameProject"];
-					echo"<li class='text-li' name='scru".$numProdu."'><a href='Administration.php?$name'>".$name."</li></a>";
-					$numProdu=$numProdu+1;
+				while ($QueryList = mysqli_fetch_array($resultList)) {
+					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
 				}
 			echo "</ul>";
 		echo "</div>";
@@ -157,11 +150,8 @@
 				echo "<p align='right' class='p-Title'>Proyecto</p>";
 				echo "<p class='title-list'>Lista de proyectos</p>";
 			echo "<ul>";
-			$numDev=0;
-				while ($QueryList = mysqli_fetch_assoc($resultList)) {
-					$name = $QueryList["nameProject"];
-					echo"<li class='text-li' name='scru".$numDev."'><a href='Administration.php?$name'>".$name."</li></a>";
-					$numDev=$numDev+1;
+				while ($QueryList = mysqli_fetch_array($resultList)) {
+					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
 				}
 			echo "</ul>";
 		echo "</div>";
@@ -274,7 +264,7 @@
 			
 			
 			
-	}
+	}	
 function searchQuerySQL($parameters,$table,$whereDo){
 	$server = "localhost";
  	$user = "Administrador";
