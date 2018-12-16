@@ -124,56 +124,51 @@
 		
 
 		//Con el id del projecto buscamos los sprints de este, creando una array de arrays, para luego enviarla a javascript
-		$SprintsInfo=("SELECT * FROM Sprints WHERE projectID=$idProject order by orderNumber;");
-		echo "$SprintsInfo";
-		$resultSprints=mysqli_query($connect, $SprintsInfo);
+		$SprintsInfo = ("SELECT * FROM Sprints WHERE projectID=$idProject order by orderNumber;");
+		$resultSprints = mysqli_query($connect,$SprintsInfo);
 
-		$finalSprintInfoArray=[];
-		$restartSprintInfoArray=[];
+		$finalSprintInfoArray = [];
+		$restartSprintInfoArray = [];
 
-		while ($info=mysql_fetch_assoc($resultSprints)){
+		while ($info = mysqli_fetch_assoc($resultSprints)) {
 			$order=$info["orderNumber"];
-			echo "$order";
 			$hours=$info["hours"];
-			echo "$hours";
 			$startDate=$info["startDate"];
 			$endDate=$info["endDate"];
 			$status=$info["status"];
-			$sprintID=$info["$sprintID"];
+			$sprintID=$info["sprintID"];
 			array_push($restartSprintInfoArray, $order);
 			array_push($restartSprintInfoArray, $hours);
 			array_push($restartSprintInfoArray, $startDate);
 			array_push($restartSprintInfoArray, $endDate);
 			array_push($restartSprintInfoArray, $status);
 			array_push($restartSprintInfoArray, $sprintID);
-
 			array_push($finalSprintInfoArray, $restartSprintInfoArray);			
 			$restartSprintInfoArray=[];
 		}
 
 		//Con los ids de los sprints del projecto buscamos las especificaciones de este, creando una array de arrays, para luego enviarla a javascript
-		$HomeworkInfo=("SELECT * FROM `Homework` WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID=$projectID order by orderNumber) ORDER BY orderHW;");
-		$HomeworkResult=mysql_query($connect, $HomeworkInfo);
+		$HomeworkInfo = ("SELECT * FROM `Homework` WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID=$idProject order by orderNumber) ORDER BY orderHW;");
+		$HomeworkResult = mysqli_query($connect,$HomeworkInfo);
 
 		$finalHWInfoArray=[];
 		$restartHWInfoArray=[];
 
-		while ($info=mysql_fetch_assoc($HomeworkResult)){
+		while ($info = mysqli_fetch_assoc($HomeworkResult)){
 			$homeworkID=$info["homeworkID"];
 			$description=$info["description"];
 			$hours=$info["hours"];
 			$sprintID=$info["sprintID"];
 			array_push($restartHWInfoArray, $homeworkID);
 			array_push($restartHWInfoArray, $description);
-			array_push($restartSprintInfoArray, $hours);
+			array_push($restartHWInfoArray, $hours);
 			array_push($restartHWInfoArray, $sprintID);
-
-			array_push($finalHWInfoArray, $restartHWInfoArray);	
-			print_r($restartHWInfoArray);		
+			array_push($finalHWInfoArray, $restartHWInfoArray);		
 			$restartHWInfoArray=[];
 		}
-		print_r($finalSprintInfoArray);
-		print_r($finalHWInfoArray);
+
+
+		
 
 ?>
 
