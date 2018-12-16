@@ -7,6 +7,7 @@ function scrumMaster(){
 	var elementodiv = document.getElementsByTagName("div")[0];
 	var boton = document.createElement("button");
 	var contenido = document.createTextNode("Crear Proyecto");
+	boton.setAttribute("id","buttonProject");
 	boton.appendChild(contenido);
 	boton.addEventListener("click",formulario);
 	boton.addEventListener("click",borrarinputs);
@@ -55,19 +56,12 @@ function formulario(){
 	produ.setAttribute("name","produ");
 	gdeve.setAttribute("name","developers");
 
-
-
-
-
 	var butonenviar = document.createElement("input");
+	butonenviar.setAttribute("id", "buttonenviar");
 	butonenviar.setAttribute("type", "button");
 	butonenviar.setAttribute("onclick","validar()");
 	butonenviar.setAttribute("value", "Enviar");
 	butonenviar.setAttribute("name", "btn");
-
-
-
-
 
 
 	var pnom = document.createElement("p");
@@ -75,8 +69,6 @@ function formulario(){
 	var pscrumm = document.createElement("p");
 	var pproduc = document.createElement("p");
 	var pdeve = document.createElement("p");
-
-
 
 
 	var opscrum1 = document.createElement("option");
@@ -91,8 +83,6 @@ function formulario(){
 		opscrum.appendChild(tscrum);
 		scrumm.appendChild(opscrum);
 	}
-
-
 
 
 	var opproduc1 = document.createElement("option");
@@ -115,8 +105,6 @@ function formulario(){
 
 
 
-
-
 	for (var i = 0; i < groupjs.length; i++) {
 		var opi = document.createElement("option");
 		var texi = document.createTextNode(groupjs[i]);
@@ -125,28 +113,21 @@ function formulario(){
 	}
 
 
-
-
-
-
 	var cnom = document.createTextNode("Nombre del proyecto");
 	pnom.appendChild(cnom);
 
-	var cdescr = document.createTextNode("Descripcion");
+	var cdescr = document.createTextNode("Descripción");
 	pdescr.appendChild(cdescr);
 
 	var cscrumm = document.createTextNode("ScrumMaster");
 	pscrumm.appendChild(cscrumm);
 
 
-	var cproduc = document.createTextNode("product Owner");
+	var cproduc = document.createTextNode("Product Owner");
 	pproduc.appendChild(cproduc);
 
 	var cdeve= document.createTextNode("Grup Developers");
 	pdeve.appendChild(cdeve);
-
-
-
 
 
 
@@ -155,8 +136,6 @@ function formulario(){
 
 	form.appendChild(pdescr);
 	form.appendChild(descr);
-
-
 
 	form.appendChild(pscrumm);
 	form.appendChild(scrumm);
@@ -171,15 +150,11 @@ function formulario(){
 
 	form.appendChild(butonenviar);
 
-	insertAfter(elementoBoton,form);
+	insertAfter(elementoBoton,form);	
 
-
+	elementoBoton.disabled = true;
 
 }
-
-
-
-
 
 function borrarinputs(){
 	var inputnombrepro = document.getElementsByTagName("input")[0];

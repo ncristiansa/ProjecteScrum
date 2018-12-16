@@ -22,7 +22,6 @@ function showinfoProject(){
 		var textP = document.createTextNode("Nombre: "+nameProjectJS[p]);
 		nameP.appendChild(textP);
 	}
-	var jumpBr = document.createElement("br");
 	
 	var descripP = document.createElement("p");
 	for (var i = 0; i < descriptionProjectJS.length; i++) {
@@ -54,7 +53,6 @@ function showinfoProject(){
 		Añadimos h2, p, br dentro de nuestro elemento DIV
 	*/
 	divInfo.appendChild(titleH2);
-	divInfo.appendChild(jumpBr);
 	divInfo.appendChild(nameP);
 	divInfo.appendChild(descripP);
 	divInfo.appendChild(scrumnameP);

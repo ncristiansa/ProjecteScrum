@@ -124,8 +124,7 @@ nav{
   background-color:  #f13b33  ;
   margin:-1%;
 }
-.imgusuario:hover
-{
+.imgusuario:hover{
   color:#494c46;  
 }
 
@@ -147,17 +146,13 @@ nav{
   margin-top: 3%;
   word-wrap: break-word;
 }
-.list-projects {
-  margin:0;
-  width: 50%;
-  border:solid;
 
-}
 .title-list {
-  font-size: 120%;
+  font-size: 120%; 
 }
 .text-li {
-  font-size:100%;
+  font-size:100%;  
+  text-align: left;
 }
 a:link {
   text-decoration: none;
@@ -174,7 +169,7 @@ a:link {
   word-wrap: break-word;
 }
 
-.info-project {
+.info-project, .list-projects, #formulario {
   margin: 0 auto;
   margin-top: 2%;
   width: 50%;
@@ -183,7 +178,12 @@ a:link {
   box-shadow: 2px 2px 2px 2px #888888;
   border: 1px solid;
 }
-.titleh2-project{
+.titleh2-project,  .p-Title{
   background-color:  #4fa4e7;
   padding: 1%;
+}
+
+#buttonProject, #buttonenviar{
+  margin-top: 20px;
+
 }

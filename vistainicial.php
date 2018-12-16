@@ -61,14 +61,14 @@
 	echo"<nav>";
 		echo"<ul>";
 			echo"<li class='lihorizontal'>";
-				echo"<img class='imgusuario' src='https://evarejo.com/wp-content/uploads/2017/08/evarejo_homem_padrao.png'>";
+				echo"<img class='imgusuario' src='images\usericon.png'>";
 				
 			echo"</li>";
 			echo"<li class='liimglogout'>";
 ?>
 				<a href='vistainicial.php?exituser=true'>
 <?php
-				echo"<img class='imglogout' src='http://www.esiam.mx/imagenes/iconos/logout%20-%20copia.png'>";
+				echo"<img class='imglogout' src='images\logout.png'>";
 
 ?>
 				</a>
@@ -121,11 +121,10 @@
 		
 		echo "<div align='center' class='div-father'>";
 			echo "<div class='list-projects' align='center'>";
-				echo "<p align='right' class='p-Title'>Proyecto</p>";
-				echo "<p class='title-list'>Lista de proyectos</p>";
+				echo "<p align='right' class='p-Title'>Proyectos</p>";
 			echo "<ul>";
 				while ($QueryList = mysqli_fetch_array($resultList)) {
-					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
+					echo"<li class='text-li'><a id='$QueryList[0]'>".$QueryList[0]."</li></a>";
 				}
 			echo "</ul>";
 		echo "</div>";
@@ -134,8 +133,7 @@
 
 		echo "<div align='center' class='div-father'>";
 			echo "<div class='list-projects' align='center'>";
-				echo "<p align='right' class='p-Title'>Proyecto</p>";
-				echo "<p class='title-list'>Lista de proyectos</p>";
+				echo "<p align='right' class='p-Title'>Proyectos</p>";
 			echo "<ul>";
 				while ($QueryList = mysqli_fetch_array($resultList)) {
 					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
@@ -147,8 +145,7 @@
     elseif ($userType==3) {
         echo "<div align='center' class='div-father'>";
 			echo "<div class='list-projects' align='center'>";
-				echo "<p align='right' class='p-Title'>Proyecto</p>";
-				echo "<p class='title-list'>Lista de proyectos</p>";
+				echo "<p align='right' class='p-Title'>Proyectos</p>";
 			echo "<ul>";
 				while ($QueryList = mysqli_fetch_array($resultList)) {
 					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
@@ -181,7 +178,7 @@
 	
 	
 
-	$consugroup = ("SELECT DISTINCT nameGroup FROM Groups;");
+	$consugroup = ("SELECT DISTINCT (nameGroup) FROM Groups;");
 	$resultgroup = mysqli_query($connect,$consugroup);
 
 	$arraygroups=[];
@@ -265,6 +262,8 @@
 			
 			
 	}	
+
+	/*
 function searchQuerySQL($parameters,$table,$whereDo){
 	$server = "localhost";
  	$user = "Administrador";
@@ -278,7 +277,7 @@ function searchQuerySQL($parameters,$table,$whereDo){
 	}
 	$result = mysqli_query($connect,$query);
 	return $result;
-}	
+}	*/
 
 ?>
 

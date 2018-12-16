@@ -61,14 +61,14 @@
 	echo"<nav>";
 		echo"<ul>";
 			echo"<li class='lihorizontal'>";
-				echo"<img class='imgusuario' src='https://evarejo.com/wp-content/uploads/2017/08/evarejo_homem_padrao.png'>";
+				echo"<img class='imgusuario' src='images\usericon.png'>";
 				
 			echo"</li>";
 			echo"<li class='liimglogout'>";
 ?>
 				<a href='vistainicial.php?exituser=true'>
 <?php
-				echo"<img class='imglogout' src='http://www.esiam.mx/imagenes/iconos/logout%20-%20copia.png'>";
+				echo"<img class='imglogout' src='images\logout.png'>";
 
 ?>
 				</a>
@@ -107,6 +107,7 @@
 
 		while ($info = mysqli_fetch_assoc($resultInfoProject)) {
 			$NameP = $info["nameProject"];
+			$idProject=$info["projectID"];
 			$DescripcionP = $info["description"];
 			$scrumMasternameP = $info["scrumMasterName"];
 			$productOwnernameP = $info["productOwnerName"];
@@ -121,6 +122,59 @@
 			$userType = $Query["type"];
 		}
 		
+
+		//Con el id del projecto buscamos los sprints de este, creando una array de arrays, para luego enviarla a javascript
+		$SprintsInfo=("SELECT * FROM Sprints WHERE projectID=$idProject order by orderNumber;");
+		echo "$SprintsInfo";
+		$resultSprints=mysqli_query($connect, $SprintsInfo);
+
+		$finalSprintInfoArray=[];
+		$restartSprintInfoArray=[];
+
+		while ($info=mysql_fetch_assoc($resultSprints)){
+			$order=$info["orderNumber"];
+			echo "$order";
+			$hours=$info["hours"];
+			echo "$hours";
+			$startDate=$info["startDate"];
+			$endDate=$info["endDate"];
+			$status=$info["status"];
+			$sprintID=$info["$sprintID"];
+			array_push($restartSprintInfoArray, $order);
+			array_push($restartSprintInfoArray, $hours);
+			array_push($restartSprintInfoArray, $startDate);
+			array_push($restartSprintInfoArray, $endDate);
+			array_push($restartSprintInfoArray, $status);
+			array_push($restartSprintInfoArray, $sprintID);
+
+			array_push($finalSprintInfoArray, $restartSprintInfoArray);			
+			$restartSprintInfoArray=[];
+		}
+
+		//Con los ids de los sprints del projecto buscamos las especificaciones de este, creando una array de arrays, para luego enviarla a javascript
+		$HomeworkInfo=("SELECT * FROM `Homework` WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID=$projectID order by orderNumber) ORDER BY orderHW;");
+		$HomeworkResult=mysql_query($connect, $HomeworkInfo);
+
+		$finalHWInfoArray=[];
+		$restartHWInfoArray=[];
+
+		while ($info=mysql_fetch_assoc($HomeworkResult)){
+			$homeworkID=$info["homeworkID"];
+			$description=$info["description"];
+			$hours=$info["hours"];
+			$sprintID=$info["sprintID"];
+			array_push($restartHWInfoArray, $homeworkID);
+			array_push($restartHWInfoArray, $description);
+			array_push($restartSprintInfoArray, $hours);
+			array_push($restartHWInfoArray, $sprintID);
+
+			array_push($finalHWInfoArray, $restartHWInfoArray);	
+			print_r($restartHWInfoArray);		
+			$restartHWInfoArray=[];
+		}
+		print_r($finalSprintInfoArray);
+		print_r($finalHWInfoArray);
+
 ?>
 
 
@@ -147,7 +201,10 @@
 	var nameProjectJS = <?php echo json_encode($nameInfoProject);?>;
 	var descriptionProjectJS = <?php echo json_encode($descriptionInfoProject);?>;
 	var scrumMasternameJS = <?php echo json_encode($scrumMasterInfoProject);?>;
-	var productOwnernameJS = <?php echo json_encode($productOwnerInfoProject);?>;	
+	var productOwnernameJS = <?php echo json_encode($productOwnerInfoProject);?>;
+	//Para crear marco de sprints y tareas
+	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
+	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;
 </script>
 
 	
