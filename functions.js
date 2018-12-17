@@ -138,8 +138,10 @@ function showSprintInfo(){
 			divSprints.appendChild(divSprint);
 
 		}
-		document.body.appendChild(divSprints);
+		//document.body.appendChild(divSprints);
+		
 	}
+	insertAfter(elementdiv, divSprints);
 }
 
 function showHomework(){
