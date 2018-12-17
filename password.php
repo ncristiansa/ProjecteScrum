@@ -41,12 +41,13 @@ function connectar(){
 	echo "<div class='Login-Style'>";
 	echo "<h2 class='h2-Style'>Recuperarción</h2>";
   echo "<h2 class='h2-Style'>de la contraseña</h2>";
-	echo "<form class='formulario' action='password.php?userID=$userID' method='POST' align='center'>";
+	echo "<form id='formulario' class='formulario' action='password.php?userID=$userID' method='POST' align='center'>";
 		echo"<label class='Label-Style'>Nueva Contraseña: </label>";
-		echo "<input type='password' name='contraseña1'><br>";
+		echo "<input type='password' name='contraseña1' id='pass1'><br>";
     echo"<label class='Label-Style'>Repite la Contraseña: </label>";
-    echo "<input type='password' name='contraseña'><br>";
-		echo "<input type='submit' value='Enviar' name='submit' id='btn' class='waves-effect waves-light btn-small'><br>";
+    echo "<input type='password' name='contraseña' id='pass2'><br>";
+    echo "<div style='color:red' id='imprError'></div>";
+		echo "<input type='button' onclick='comprobar()' value='Enviar' id='btn' class='waves-effect waves-light btn-small'><br>";
 	echo "</form>";
 	echo "</div>";
 ?>
