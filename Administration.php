@@ -140,7 +140,7 @@
 		}
 
 		//Con los ids de los sprints del projecto buscamos las especificaciones de este, creando una array de arrays, para luego enviarla a javascript
-		$HomeworkInfo = ("SELECT * FROM Homework WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID=$idProject order by orderNumber) ORDER BY orderHW;");
+		$HomeworkInfo = ("SELECT * FROM Homework WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID='$idProject' order by orderNumber) ORDER BY orderHW;");
 		$HomeworkResult = mysqli_query($connect,$HomeworkInfo);
 
 		$finalHWInfoArray=[];
@@ -160,6 +160,7 @@
 			array_push($finalHWInfoArray, $restartHWInfoArray);		
 			$restartHWInfoArray=[];
 		}
+
 ?>
 
 
