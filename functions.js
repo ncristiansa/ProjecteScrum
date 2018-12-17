@@ -5,10 +5,7 @@ if(tipo==2 || tipo==3){
 
 
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> aa035886b7e1e6b4bb22d3b07ae9753b23226a03
 function insertAfter(e,i){
 	if(e.nextSibling){
 		e.parentNode.insertBefore(i,e.nextSibling);
@@ -70,7 +67,6 @@ function showinfoProject(){
 }
 
 
-<<<<<<< HEAD
 function displayText(clase) {
   var clase = document.getElementsByClassName(clase);
   if (clase.style.display === "none") {
@@ -80,8 +76,6 @@ function displayText(clase) {
   }
 }
 
-=======
->>>>>>> aa035886b7e1e6b4bb22d3b07ae9753b23226a03
 function showSprintInfo(){
 	if (arraySprint!=undefined && arrayHW!=undefined){
 		var elementdiv = document.getElementsByTagName("div")[0];
