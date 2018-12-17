@@ -1,4 +1,4 @@
-# ScrumControlApp
+# ProjecteScrum
 
 ## Participantes <a name="participantes"></a>
 
