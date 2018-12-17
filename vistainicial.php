@@ -29,7 +29,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDB3.0";
+ 	$bbdd = "ScrumDB3_2";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
@@ -263,21 +263,6 @@
 			
 	}	
 
-	/*
-function searchQuerySQL($parameters,$table,$whereDo){
-	$server = "localhost";
- 	$user = "Administrador";
- 	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDBfinal2-0";
-	$connect = mysqli_connect($server,$user, $pass, $bbdd);
-	if ($whereDo==null) {
-		$query = ("SELECT $parameters FROM $table;");
-	}else{
-		$query = ("SELECT $parameters FROM $table WHERE $whereDo;");
-	}
-	$result = mysqli_query($connect,$query);
-	return $result;
-}	*/
 
 ?>
 

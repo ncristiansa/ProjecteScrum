@@ -3,7 +3,7 @@ if(tipo==2 || tipo==3){
 	showSprintInfo();
 	showHomework();
 }
-showinfoProject();
+
 function insertAfter(e,i){
 	if(e.nextSibling){
 		e.parentNode.insertBefore(i,e.nextSibling);
@@ -65,12 +65,12 @@ function showinfoProject(){
 }
 
 
-function displayText(class) {
-  var x = document.getElementsByClassName(class);
-  if (x.style.display === "none") {
-    x.style.display = "block";
+function displayText(clase) {
+  var clase = document.getElementsByClassName(clase);
+  if (clase.style.display === "none") {
+    clase.style.display = "block";
   } else {
-    x.style.display = "none";
+    clase.style.display = "none";
   }
 }
 
