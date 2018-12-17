@@ -66,23 +66,19 @@ function showinfoProject(){
 }
 
 
-function showSprintInfo(){
+
+function showSprintInfoOneByOne(Position){
 	if (arraySprint!=undefined && arrayHW!=undefined){
-		var elementdiv = document.getElementsByTagName("div")[0];
-		var divSprints = document.createElement("div");
-		divSprints.setAttribute("id", "infoSprints");
-		//Posicion Array Sprints
-		var PAS=0;
-		while (PAS<=arraySprint.length){
+		var elementdiv = document.getElementById("infoSprints");	
+		
 			var divSprint = document.createElement("div");
 			divSprint.setAttribute("class", "SprintClick");
-			var clickClass=PAS+"SprintDIV";
+			var clickClass=Position+"SprintDIV";
 			var textSprint = document.createElement("p");
-			var text = document.createTextNode("Sprint "+arraySprint[PAS][0]);
+			var text = document.createTextNode("Sprint "+arraySprint[Position][0]);
 			textSprint.setAttribute("class", "SprintLetters");
 			textSprint.appendChild(text);
-			textSprint.addEventListener("click",displayText(clickClass));
-			if (arraySprint[PAS][4]==1) {
+			if (arraySprint[Position][4]==1) {
 					textSprint.style.backgroundColor = "green";
 			}else{
 					textSprint.style.backgroundColor = "grey";
@@ -90,46 +86,55 @@ function showSprintInfo(){
 			divSprint.appendChild(textSprint);
 
 			var hours = document.createElement("p");
-			var texth= document.createTextNode("Horas: "+arraySprint[PAS][1]);
+			var texth= document.createTextNode("Horas: "+arraySprint[Position][1]);
 			hours.setAttribute("class", clickClass);
 			hours.setAttribute("class", "infoSprint");
 			hours.appendChild(texth);
 			divSprint.appendChild(hours);
 
 			var startDate = document.createElement("p");
-			var textsd= document.createTextNode("Fecha de inicio: "+arraySprint[PAS][2]);
+			var textsd= document.createTextNode("Fecha de inicio: "+arraySprint[Position][2]);
 			startDate.setAttribute("class", clickClass);
 			startDate.setAttribute("class", "infoSprint");
 			startDate.appendChild(textsd);
 			divSprint.appendChild(startDate);
 
 			var endDate = document.createElement("p");
-			var texteD= document.createTextNode("Fecha de fin: "+arraySprint[PAS][3]);
+			var texteD= document.createTextNode("Fecha de fin: "+arraySprint[Position][3]);
 			endDate.setAttribute("class", clickClass);
 			endDate.setAttribute("class", "infoSprint");
 			endDate.appendChild(texteD);
 			divSprint.appendChild(endDate);
-			PAS++;
-			//Postion Array Homework
-			var PAHW=0;
-			while(PAHW<=arrayHW.length){
-				var arraySprintNum = arraySprint[PAS][5];
-				var arrayHWNum=arrayHW[PAHW][3];
+			
+			/*Postion Array Homework
+			for (var i = 0; i <= arrayHW.length; i++) {
+				var arraySprintNum = arraySprint[Position][5];
+				var arrayHWNum = arrayHW[i][3];
 				if (arraySprintNum==arrayHWNum) {
 					var textTask = document.createElement("p");
-					var task= document.createTextNode(arrayHW[PAHW][1]+" "+arrayHW[PAHW][2]+"h");
+					var task= document.createTextNode(arrayHW[i][1]+" "+arrayHW[i][2]+"h");
 					textTask.setAttribute("class", clickClass);
 					textTask.setAttribute("class", "infoSprint");
 					textTask.appendChild(task);
-					divSprint.appendChild(task);
+					divSprint.appendChild(textTask);
 				}
-				PAHW++;
-			}
-			divSprints.appendChild(divSprint);
-
+			}*/
+			
 		}
-		document.body.appendChild(divSprints);
+		elementdiv.appendChild(divSprint);
 	}
+
+function showSprintInfo(){
+	var elementdiv = document.getElementsByTagName("div")[0];
+	var divSprints = document.createElement("div");
+	divSprints.setAttribute("id", "infoSprints");
+	insertAfter(elementdiv,divSprints);
+	for (var i = 0; i< arraySprint.length; i++) {
+		showSprintInfoOneByOne(i);
+
+	}
+
+
 }
 
 function showHomework(){
@@ -155,16 +160,7 @@ function showHomework(){
 
 
 
-function displayText(classname){
-	
-  		var thing = document.getElementsByClassName(classname);
-	  	  if (thing.style.display === "none") {
-		    thing.style.display = "block";
-		  } else {
-		   thing.style.display = "none";
-		  }
-	
-}
+
 
 
 			

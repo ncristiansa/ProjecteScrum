@@ -194,7 +194,7 @@ a:link {
 .infoSprint{
   color: black;
   background-color:  #f13b33 ;
-  display: none;
+  /*display: none;*/
   text-align: left;
 }
 #listHW{
