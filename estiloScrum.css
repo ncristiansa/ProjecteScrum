@@ -107,7 +107,6 @@ table{
 
 .imglogout{
   width: 4%;
-  height: 4%;
   padding: 0%;
 }
 .liimglogout{
@@ -169,7 +168,7 @@ a:link {
   word-wrap: break-word;
 }
 
-.info-project, .list-projects, #formulario {
+.info-project, .list-projects, #formulario, #infoSprints, #infoHomework {
   margin: 0 auto;
   margin-top: 2%;
   width: 50%;
@@ -185,5 +184,28 @@ a:link {
 
 #buttonProject, #buttonenviar{
   margin-top: 20px;
-
 }
+
+.SprintClick{
+  border: 1px solid;
+  text-align: center;
+}
+
+.infoSprint{
+  color: black;
+  background-color:  #f13b33 ;
+  display: none;
+  text-align: left;
+}
+#listHW{
+  list-style-type:none;
+}
+
+.OneHomework{
+  background-color:  #f13b33 ;  
+  border: 1px solid;
+  text-align: left;
+  padding: 1%;
+  margin-top: 1%; 
+}
+

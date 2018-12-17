@@ -148,7 +148,7 @@
 		}
 
 		//Con los ids de los sprints del projecto buscamos las especificaciones de este, creando una array de arrays, para luego enviarla a javascript
-		$HomeworkInfo = ("SELECT * FROM `Homework` WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID=$idProject order by orderNumber) ORDER BY orderHW;");
+		$HomeworkInfo = ("SELECT * FROM Homework WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID=$idProject order by orderNumber) ORDER BY orderHW;");
 		$HomeworkResult = mysqli_query($connect,$HomeworkInfo);
 
 		$finalHWInfoArray=[];
@@ -159,16 +159,16 @@
 			$description=$info["description"];
 			$hours=$info["hours"];
 			$sprintID=$info["sprintID"];
+			$orderHW=$info["orderHW"];
 			array_push($restartHWInfoArray, $homeworkID);
 			array_push($restartHWInfoArray, $description);
 			array_push($restartHWInfoArray, $hours);
 			array_push($restartHWInfoArray, $sprintID);
+			array_push($restartHWInfoArray, $orderHW);
 			array_push($finalHWInfoArray, $restartHWInfoArray);		
 			$restartHWInfoArray=[];
 		}
 
-
-		
 
 ?>
 
@@ -197,7 +197,6 @@
 	var descriptionProjectJS = <?php echo json_encode($descriptionInfoProject);?>;
 	var scrumMasternameJS = <?php echo json_encode($scrumMasterInfoProject);?>;
 	var productOwnernameJS = <?php echo json_encode($productOwnerInfoProject);?>;
-	//Para crear marco de sprints y tareas
 	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
 	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;
 </script>

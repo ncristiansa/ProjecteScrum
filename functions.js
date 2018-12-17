@@ -1,6 +1,9 @@
 if(tipo==2 || tipo==3){
 	showinfoProject();
+	showSprintInfo();
+	showHomework();
 }
+showinfoProject();
 function insertAfter(e,i){
 	if(e.nextSibling){
 		e.parentNode.insertBefore(i,e.nextSibling);
@@ -60,3 +63,91 @@ function showinfoProject(){
 	insertAfter(elementNav, divInfo);
 	
 }
+
+
+function displayText(class) {
+  var x = document.getElementsByClassName(class);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function showSprintInfo(){
+	var elementdiv = document.getElementsByTagName("div")[0];
+	var divSprints = document.createElement("div");
+	divSprints.setAttribute("id", "infoSprints");
+	//Posicion Array Sprints
+	var PAS=0;
+	while (PAS<=arraySprint.length){
+		var divSprint = document.createElement("div");
+		divSprint.setAttribute("class", "SprintClick");
+		var clickClass=PAS+"SprintDIV";
+		var textSprint = document.createTextNode("Sprint "+arraySprint[PAS][0]);
+		textSprint.setAttribute("class", "SprintLetters");
+		textSprint.addEventListener("click",displayText(clickClass));
+		if (arraySprint[PAS][4]==1) {
+				textSprint.style.backgroundColor = "green";
+		}else{
+				textSprint.style.backgroundColor = "grey";
+			}
+		divSprint.appendChild(textSprint);
+
+		var hours= document.createTextNode("Horas: "+arraySprint[PAS][1]);
+		hours.setAttribute("class", clickClass);
+		hours.setAttribute("class", "infoSprint");
+		divSprint.appendChild(hours);
+
+		var startDate= document.createTextNode("Fecha de inicio: "+arraySprint[PAS][2]);
+		startDate.setAttribute("class", clickClass);
+		startDate.setAttribute("class", "infoSprint");
+		divSprint.appendChild(startDate);
+
+		var endDate= document.createTextNode("Fecha de fin: "+arraySprint[PAS][3]);
+		endDate.setAttribute("class", clickClass);
+		endDate.setAttribute("class", "infoSprint");
+		divSprint.appendChild(endDate);
+		PAS++;
+		//POstion Array Homework
+		var PAHW=0;
+		while(PAHW<=arrayHW.length){
+			if (arraySprint[PAS][5]==arrayHW[PAHW][3]) {
+				var task= document.createTextNode(arrayHW[PAHW][1]+" "+arrayHW[PAHW][2]+"h");
+				task.setAttribute("class", clickClass);
+				task.setAttribute("class", "infoSprint");
+				divSprint.appendChild(task);
+
+			}
+			PAHW++;
+		}
+		divSprints.appendChild(divSprint);
+
+	}
+	document.body.appendChild(divSprints);
+
+}
+
+function showHomework(){
+	var elementdiv = document.getElementsByTagName("div")[0];
+	var divTasks = document.createElement("div");
+	divTasks.setAttribute("id", "infoHomework");
+	var list = document.createElement("ul");
+	list.setAttribute("id", "listHW");
+	var PAHW=0;
+	while(PAHW<=arrayHW.length){
+		var elementList = document.createElement("li");
+		elementList.innerText=(arrayHW[PAHW][4]+". "+arrayHW[PAHW][1]);
+		elementList.setAttribute("class", "OneHomework");
+		elementList.setAttribute("orderHW", arrayHW[PAHW][4]);
+		list.appendChild(elementList);
+		PAHW++;
+	}	
+	divTasks.appendChild(list);
+	document.body.appendChild(divTasks);	
+}
+
+
+
+
+
