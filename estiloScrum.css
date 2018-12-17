@@ -192,10 +192,12 @@ a:link {
 }
 
 .infoSprint{
+  padding-left: 1%;
   color: black;
-  background-color:  #f13b33 ;
-  /*display: none;*/
+  background-color: white;
+  display: none;
   text-align: left;
+  border: 1px solid;
 }
 #listHW{
   list-style-type:none;
