@@ -22,7 +22,7 @@ El equipo está formado por:
 
 ### Acceso a la base de datos <a name="acceso-bd"></a>
 
-Para poder acceder a la base de datos hay que crear un usuario llamado "*Administrador*" con la contraseña "*P@ssw0rd*", desde el mysql. O bien, también puede editar el archivo ```config.php``` y reemplazar a *Administrador* y *P@ssw0rd* por el usuario y contraseña que tengas tu creado:
+Para poder acceder a la base de datos hay que crear un usuario llamado "*Administrador*" con la contraseña "*P@ssw0rd*", desde el mysql. O bien, también puede editar el archivo ```login.php``` y reemplazar a "*Administrador*" y "*P@ssw0rd*" por el usuario y contraseña que tengas tu creado:
 
 ``` php
 $conn = new PDO($log,"Administrador","P@ssw0rd"); // cambiar a Administrador por el otro usuario y la P@ssw0rd por su contraseña correspondiente
