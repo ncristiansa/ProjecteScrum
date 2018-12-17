@@ -15,21 +15,13 @@
 		Inicio esta variable para usarla más adelante almacenar el resultado de una consulta.
 	*/
 	$NameUser = "";
-	/*
-		La variable $nameusr servirá para almacenar la SESSION["Name"]
-		donde tenemos almacenado el nickname del usuario que hemos obtenido
-		con la SESSION iniciada en login.php
-	*/
+	
 	$nameusr = $_SESSION["Name"];
-	/*
-		Creamos las variables $server, $user, $pass y $bbdd para pasarlas
-		a la funcion mysqli_connect que ésta estará almacenada en la variable
-		$connect.
-	*/
+	
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDB3.0";
+ 	$bbdd = "ScrumDB3_2";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL

@@ -5,6 +5,7 @@ if(tipo==2 || tipo==3){
 
 
 }
+
 function insertAfter(e,i){
 	if(e.nextSibling){
 		e.parentNode.insertBefore(i,e.nextSibling);
@@ -67,6 +68,15 @@ function showinfoProject(){
 
 
 
+function displayText(clase) {
+  var clase = document.getElementsByClassName(clase);
+  if (clase.style.display === "none") {
+    clase.style.display = "block";
+  } else {
+    clase.style.display = "none";
+  }
+}
+
 function showSprintInfoOneByOne(Position){
 	if (arraySprint!=undefined && arrayHW!=undefined){
 		var elementdiv = document.getElementById("infoSprints");	
@@ -121,6 +131,7 @@ function showSprintInfoOneByOne(Position){
 			}*/
 			
 		}
+
 		elementdiv.appendChild(divSprint);
 	}
 
@@ -133,10 +144,9 @@ function showSprintInfo(){
 		showSprintInfoOneByOne(i);
 
 	}
-
-
 }
 
+/*
 function showHomework(){
 	var elementdiv = document.getElementsByTagName("div")[0];
 	var divTasks = document.createElement("div");
@@ -156,7 +166,7 @@ function showHomework(){
 	document.body.appendChild(divTasks);	
 }
 
-
+*/
 
 
 
