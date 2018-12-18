@@ -126,6 +126,7 @@ function showSprintInfoOneByOne(Position){
 		AddButton.setAttribute("align", "right");
 
 		Task.setAttribute("type", "text");
+		Task.setAttribute("class", "input-text");
 		divPSprint.appendChild(AddButton);
 		divPSprint.appendChild(Task);
 	}

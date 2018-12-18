@@ -208,4 +208,9 @@ a:link {
   text-align: left;
   margin-right: 2px; 
 }
-
+.input-text {
+  padding: 1%;
+  margin-bottom: 2%;
+  border-color: black;
+  width: 70%;
+}
