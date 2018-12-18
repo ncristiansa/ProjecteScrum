@@ -1,3 +1,20 @@
 Sprint 2:
 	Participantes: Almudena, Cristian, Adrià
 
+Almudena:
+	Cosas a mejorar:
+		El pasado sprint me sentí que no hice mucho y he querido compensarlo. Han surgido problemas el día de antes de la entrega y he necesitado ayuda.
+	Elementos positivos:
+		He mejorado la compresión de DOM y el trabajo en equipo entre Cristian y yo en caso de problemas.
+Cristian:
+	Cosas a mejorar:
+		Falta de comunicación y planteamiento de tareas.
+	Elementos postivos:
+		Trabajo en equipo entre Almudena y yo en solucionar y terminar tareas pendientes.
+
+Retrospectiva Grupal:
+	Cosas a mejorar:
+		Comunicación entre los intregantes del grupo.
+		Organización a la hora de asignar tareas.
+	Elementos postivos:
+		Solución de errores entre Almudena y Cristian.
