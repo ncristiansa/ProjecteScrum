@@ -29,7 +29,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDB3_2";
+ 	$bbdd = "ScrumDB3.3";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
@@ -197,7 +197,7 @@
 				$descripcion = null;
 			}
 			$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, scrumMasterName, productOwnerName) VALUES ('$nproyecto', '$descripcion', '$scrumaster', '$nomproduc');");
-			$mysqli = new mysqli("localhost", "Administrador", "P@ssw0rd", "ScrumDB3.0");
+			$mysqli = new mysqli("localhost", "Administrador", "P@ssw0rd", "ScrumDB3.3");
 			
 			
 			if(mysqli_query($connect,$insertarConDescripcion)){

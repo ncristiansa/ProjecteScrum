@@ -42,6 +42,10 @@ function showinfoProject(){
 		var textP = document.createTextNode("Product Owner: "+productOwnernameJS[0]);
 		productownerP.appendChild(textP);
 
+	var groupnameP = document.createElement("p");
+		var textP = document.createTextNode("Grupo: "+nameGroupJS[0]);
+		groupnameP.appendChild(textP);
+
 	/*
 		Añadimos clases a los elementos creandos anteriormente.
 	*/
@@ -56,6 +60,7 @@ function showinfoProject(){
 	divInfo.appendChild(descripP);
 	divInfo.appendChild(scrumnameP);
 	divInfo.appendChild(productownerP);
+	divInfo.appendChild(groupnameP);
 	insertAfter(elementNav, divInfo);
 	
 }

@@ -21,7 +21,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDB3_2";
+ 	$bbdd = "ScrumDB3.3";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
@@ -102,6 +102,15 @@
 			array_push($scrumMasterInfoProject, $scrumMasternameP);
 			array_push($productOwnerInfoProject, $productOwnernameP);
 		}
+
+		$infoGroup = ("SELECT DISTINCT(nameGroup) FROM Groups WHERE userID IN (SELECT userID FROM UserBelongsToP WHERE projectID='$idProject');");
+		$resultInfoGroup = mysqli_query($connect, $infoGroup);
+		$GroupInfoProject = [];
+		while ($queryGroup = mysqli_fetch_assoc($resultInfoGroup)) {
+			$GroupName = $queryGroup["nameGroup"];
+			array_push($GroupInfoProject, $GroupName);
+		}
+
 		$typeUser = ("SELECT type FROM Users WHERE username='$NameUser';");
 		$resultTypeUser = mysqli_query($connect, $typeUser);
 		if($Query = mysqli_fetch_assoc($resultTypeUser)){
@@ -177,6 +186,7 @@
 	var productOwnernameJS = <?php echo json_encode($productOwnerInfoProject);?>;
 	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
 	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;
+	var nameGroupJS = <?php echo json_encode($GroupInfoProject);?>;
 </script>
 
 	
