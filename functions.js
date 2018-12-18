@@ -15,35 +15,32 @@ function showinfoProject(){
 	var elementNav = document.getElementsByTagName("nav")[0];
 	var divInfo = document.createElement("div");
 	var titleH2 = document.createElement("h2");
-	for (var i = 0; i < nameProjectJS.length; i++) {
-		var textH2 = document.createTextNode(nameProjectJS[i]);
+	
+		var textH2 = document.createTextNode(nameProjectJS[0]);
 		titleH2.appendChild(textH2);
-	}
+
 	var nameP = document.createElement("p");
-	for (var p = 0; p < nameProjectJS.length; p++) {
-		var textP = document.createTextNode("Nombre: "+nameProjectJS[p]);
+
+		var textP = document.createTextNode("Nombre: "+nameProjectJS[0]);
 		nameP.appendChild(textP);
-	}
+
 	
 	var descripP = document.createElement("p");
-	for (var i = 0; i < descriptionProjectJS.length; i++) {
 		
-		var textP = document.createTextNode("Descripción: "+descriptionProjectJS[i]);
+		var textP = document.createTextNode("Descripción: "+descriptionProjectJS[0]);
 		descripP.appendChild(textP);
-	}
+
 	
 	var scrumnameP = document.createElement("p");
-	for (var i = 0; i < scrumMasternameJS.length; i++) {
-		var textP = document.createTextNode("Scrum Master: "+scrumMasternameJS[i]);
+
+		var textP = document.createTextNode("Scrum Master: "+scrumMasternameJS[0]);
 		scrumnameP.appendChild(textP);
-	}
+
 
 	var productownerP = document.createElement("p");
-	for (var i = 0; i < productOwnernameJS.length; i++) {
-		var textP = document.createTextNode("Product Owner: "+productOwnernameJS[i]);
+
+		var textP = document.createTextNode("Product Owner: "+productOwnernameJS[0]);
 		productownerP.appendChild(textP);
-		
-	}
 
 	/*
 		Añadimos clases a los elementos creandos anteriormente.
