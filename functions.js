@@ -149,4 +149,56 @@ function showSprintInfo(){
 
 		} 
 	}
+}
+function showHomeworks(){
+	var elementh2 = document.getElementsByTagName("h2")[0];
+	var elementDiv = document.createElement("div");
+	var titleh2 = document.createElement("h2");
+	var texth2 = document.createTextNode("Especificaciones");
+	titleh2.appendChild(texth2);
+	var AddButton = document.createElement("input");
+	AddButton.setAttribute("id", "buttonAdd");
+	var Task = document.createElement("input");
+
+	AddButton.addEventListener("click", addTask);
+	AddButton.addEventListener("click", checkInputEmpty);
+	var TaskUL = document.createElement("ul");
+	
+	var count = 0;
+	while(count!=descriptionsJS.length){
+		var newLi = document.createElement("li");
+		var newText = document.createTextNode(descriptionsJS[count]);
+		newLi.appendChild(newText);
+		TaskUL.appendChild(newLi);
+		count=count+1;
+	}
+	elementDiv.setAttribute("class", "info-project");
+	titleh2.setAttribute("class", "titleh2-project");
+
+	AddButton.setAttribute("type", "image");
+	AddButton.setAttribute("src", "images/add.jpeg");
+	AddButton.setAttribute("width", "25");
+	AddButton.setAttribute("height", "25");
+	AddButton.setAttribute("align", "right");
+
+	Task.setAttribute("type", "text");
+	Task.setAttribute("class", "task-text");
+
+	elementDiv.appendChild(titleh2);
+	elementDiv.appendChild(TaskUL);
+	elementDiv.appendChild(AddButton);
+	elementDiv.appendChild(Task);
+
+	insertAfter(elementh2, elementDiv);
+}
+
+function addTask(){
+
+	var myListLI = document.getElementsByTagName("ul")[0];
+	var contentTask = document.getElementsByTagName("input")[1].value;
+	var newContentLi = document.createElement("li");
+	var newContentTask = document.createTextNode(contentTask);
+	newContentLi.appendChild(newContentTask);
+	myListLI.appendChild(newContentLi);
+
 }	
