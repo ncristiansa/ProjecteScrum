@@ -173,3 +173,49 @@ a:link {
   border-collapse: collapse;
   word-wrap: break-word;
 }
+.info-project, .list-projects, #formulario, #infoSprints, #infoHomework {
+  margin: 0 auto;
+  margin-top: 2%;
+  width: 50%;
+  padding: 2%;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px #888888;
+  border: 1px solid;
+}
+.titleh2-project,  .p-Title{
+  background-color:  #4fa4e7;
+  padding: 1%;
+}
+
+#buttonProject, #buttonenviar{
+  margin-top: 20px;
+}
+
+.SprintClick{
+  border: 1px solid;
+  text-align: center;
+}
+
+.infoSprint{
+  padding-left: 1%;
+  color: black;
+  background-color: white;
+  display: none;
+  text-align: left;
+  border: 1px solid;
+}
+#listHW{
+  list-style-type:none;
+}
+
+.OneHomework{
+  background-color:  #4fa4e7;  
+  text-align: left;
+  margin-right: 2px; 
+}
+.input-text {
+  padding: 1%;
+  margin-bottom: 2%;
+  border-color: black;
+  width: 70%;
+}
