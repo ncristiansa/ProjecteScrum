@@ -1,7 +1,7 @@
 if(tipo==2 || tipo==3){
 	showinfoProject();
 	showSprintInfo();
-	//showHomework();
+	showHomeworks();
 
 
 }
@@ -108,33 +108,25 @@ function showSprintInfoOneByOne(Position){
 	var endDate = document.createElement("p");
 	var texteD= document.createTextNode("Fecha de fin: "+arraySprint[Position][3]);
 	endDate.appendChild(texteD);
-	divPSprint.appendChild(endDate);			
+	divPSprint.appendChild(endDate);
+
+	for (var hw = 0; hw < arrayHW.length; hw++) {
+		if (arrayHW[hw][3]==arraySprint[Position][5]) {
+			var elementList = document.createElement("p");
+			elementList.innerText=(arrayHW[hw][4]+". "+arrayHW[hw][1]+" "+arrayHW[hw][2]+"h");
+			elementList.setAttribute("class", "OneHomework");
+			elementList.setAttribute("orderHW", arrayHW[hw][4]);
+			divPSprint.appendChild(elementList);
+		}
+		
+	}
+
 			
 	elementdiv.appendChild(divSprint);			
 	elementdiv.appendChild(divPSprint);
 
 }
 
-		
-	
-function showHomeworkInfoOneByOne(){
-	var elementdiv = document.getElementsByTagName("div")[0];
-	var divTasks = document.createElement("div");
-	divTasks.setAttribute("id", "infoHomework");
-	var list = document.createElement("ul");
-	list.setAttribute("id", "listHW");
-	var PAHW=0;
-	while(PAHW<=arrayHW.length){
-		var elementList = document.createElement("li");
-		elementList.innerText=(arrayHW[PAHW][4]+". "+arrayHW[PAHW][1]);
-		elementList.setAttribute("class", "OneHomework");
-		elementList.setAttribute("orderHW", arrayHW[PAHW][4]);
-		list.appendChild(elementList);
-		PAHW++;
-	}	
-	divTasks.appendChild(list);
-	document.body.appendChild(divTasks);	
-}
 
 
 		
