@@ -1,7 +1,6 @@
-if(tipo==2 || tipo==3){
+
 	showinfoProject();
 	showSprintInfo();
-}
 
 function insertAfter(e,i){
 	if(e.nextSibling){

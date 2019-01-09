@@ -179,7 +179,9 @@
 	if(isset($_GET['exituser'])){
 		destroySession();
 	}
+	
 ?>
+
 <script type="text/javascript">
 	var tipo = '<?php echo $userType;?>';
 </script>
