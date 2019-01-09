@@ -21,7 +21,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDB3_2";
+ 	$bbdd = "ScrumDB4";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL

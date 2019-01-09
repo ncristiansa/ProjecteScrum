@@ -70,10 +70,15 @@ function showSprintInfoOneByOne(Position){
 	var text = document.createTextNode("Sprint "+arraySprint[Position][0]);
 	textSprint.setAttribute("class", "SprintLetters");
 	textSprint.appendChild(text);
-	if (arraySprint[Position][4]==1) {
-		divSprint.style.backgroundColor = "green";
-	}else{
+	if (arraySprint[Position][4]==0) {
 		divSprint.style.backgroundColor = "grey";
+	}else if(arraySprint[Position][4]==1){
+		divSprint.style.backgroundColor = "green";
+	}else if(arraySprint[Position][4]==2){
+		divSprint.style.backgroundColor = "black";
+		divSprint.style.color= "white";
+		divSprint.style.borderColor="black";
+
 		}
 	textSprint.addEventListener("click", function(){
 		var x = document.getElementById(clickClass);
