@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 09-01-2019 a las 18:43:20
+-- Tiempo de generación: 09-01-2019 a las 19:06:38
 -- Versión del servidor: 5.7.24-0ubuntu0.18.04.1
 -- Versión de PHP: 7.2.10-0ubuntu0.18.04.1
 
@@ -68,9 +68,7 @@ INSERT INTO `Homework` (`homeworkID`, `description`, `hours`, `orderHW`, `sprint
 (5, 'Crear un boto amb el text: \"Fes la pregunta\" que en clicar-lo detecti quin combo box te la pregunta a realitzar y consulti en els atributs de la carta seleccionada pel servidor la respota y la imprimeixi per pantalla', 3, 4, 2, 1),
 (6, 'La forma del tauler ha de ser rectangular, en vista vertical. ', 1, 5, 2, 1),
 (7, 'En cas de que el boto \"Fes la pregunta\" generi un error per que hi ha mes d\'un combo box \"activat\" a mes a mes de mostrar el missatge d\'error ha de \"resetejar\" tots el combo box', 1, 6, 2, 1),
-(8, 'Crear estructura HTML', 2, 1, 3, 2),
 (9, 'Generar un formulario con DOM para que el usuario pueda registrarse y guardar su partida.', 2, 2, 4, 2),
-(10, 'Crear estructura HTML', 2, 1, 0, 1),
 (11, 'Generar un formulario con DOM para que el usuario pueda registrarse y guardar su partida.', 2, 2, 0, 1);
 
 -- --------------------------------------------------------
@@ -121,7 +119,7 @@ INSERT INTO `Sprints` (`sprintID`, `projectID`, `hours`, `startDate`, `endDate`,
 (2, 1, 24, '2018-12-12', '2019-01-31', 2, 1),
 (3, 1, 24, '2018-12-12', '2019-01-01', 3, 2),
 (4, 2, 27, '2017-12-04', '2018-12-12', 1, 0),
-(5, 1, 24, '2019-02-02', '2019-02-28', 2, 2);
+(5, 2, 24, '2019-02-02', '2019-02-28', 2, 2);
 
 -- --------------------------------------------------------
 
