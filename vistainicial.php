@@ -82,13 +82,6 @@
 
 <?php
 	/*
-		Hemos creado una función llamada destroySession para que una vez sea llamada destruya la SESSION actual y nos redirija a login.php
-	*/
-	function destroySession(){
-		session_destroy();
-		header("Location: login.php");
-	}
-	/*
 		Esta condición nos permite saber si el usuario ha hecho click en la imagen donde hemos añadido una especie de
 		variable que estará siempre en True, activada para que cuando se haya hecho clic llame a la función destroySession.
 	*/
