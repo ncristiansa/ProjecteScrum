@@ -125,6 +125,16 @@
 ?>
 
 <?php
+	// Función que hace el Isset para eliminar errores con el post
+	function checkIsset(&$variable, &$argumentPost) {
+		if (isset($argumentPost)) {
+			$variable = $argumentPost;
+		}
+		else {
+			$variable = null;
+		}
+	}
+	
 	$consultaselect = ("SELECT username FROM Users WHERE type=1;");
 	$resultadoselect = mysqli_query($connect,$consultaselect);
 
@@ -158,11 +168,11 @@
 	}
 
 
-	$nproyecto=$_POST["nproyecto"];
-	$descripcion=$_POST["descripcion"];
-	$scrumaster=$_POST["scrum"];
-	$nomproduc=$_POST["produ"];
-	$grupos=$_POST["developers"];
+	checkIsset($nproyecto, $_POST["nproyecto"]);
+	checkIsset($descripcion, $_POST["descripcion"]);
+	checkIsset($scrumaster, $_POST["scrum"]);
+	checkIsset($nomproduc, $_POST["produ"]);
+	checkIsset($grupos, $_POST["developers"]);
 
 	$_SESSION["nameprojecto"] = $nproyecto;
 	$projectoNombre = $_SESSION["nameprojecto"];
