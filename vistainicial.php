@@ -91,6 +91,16 @@
 	}
 ?>
 <?php
+	function checkIsset(&$variable, &$argumentPost) {
+		if (isset($argumentPost)) {
+			$variable = $argumentPost;
+		}
+
+		else {
+			$variable = null;
+		}
+	}
+
 	$idUser = "";
 	$IDProject = "";
 	$IDScrumM = "";
@@ -173,11 +183,18 @@
 		array_push($arraygroups, $group);
 		
 	}
-	$nproyecto=$_POST["nproyecto"];
-	$descripcion=$_POST["descripcion"];
-	$scrumaster=$_POST["scrum"];
-	$nomproduc=$_POST["produ"];
-	$grupos=$_POST["developers"];
+
+	$nproyecto = $descripcion = $scrumaster = $nomproduc = $grupos = '';
+
+
+
+
+	checkIsset($nproyecto, $_POST["nproyecto"]);
+	checkIsset($descripcion, $_POST["descripcion"]);
+	checkIsset($scrumaster, $_POST["scrum"]);
+	checkIsset($nomproduc, $_POST["produ"]);
+	checkIsset($grupos, $_POST["developers"]);
+
 	$_SESSION["nameprojecto"] = $nproyecto;
 	$projectoNombre = $_SESSION["nameprojecto"];
 	$_SESSION["namescrum"] = $scrumaster;
