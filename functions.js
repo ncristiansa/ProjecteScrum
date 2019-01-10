@@ -210,12 +210,13 @@ function showSprintInfo(){
 
 function addTask(){
 
-	var myListP = document.getElementsByClassName("OneHomework")[2];
+	var DivID = document.getElementById("divBackLog").getElementsByTagName("p")[0];
+	
 	var contentTask = document.getElementsByTagName("input")[1].value;
 	var newContentP = document.createElement("p");
 	newContentP.setAttribute("class", "OneHomework");
 	var newContentTask = document.createTextNode(contentTask);
 	newContentP.appendChild(newContentTask);
-	insertAfter(myListP, newContentP);
+	insertAfter(DivID, newContentP);
 
 }	
