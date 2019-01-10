@@ -168,7 +168,7 @@ a:link {
   word-wrap: break-word;
 }
 
-.info-project, .list-projects, #formulario, #infoSprints, #infoHomework {
+.info-project, .list-projects, #formulario, #infoSprints, #infoHomework, #divBackLog {
   margin: 0 auto;
   margin-top: 2%;
   width: 50%;

@@ -2,6 +2,7 @@
 	showinfoProject();
 	showSprintInfo();
 //Para hacer click en los Sprints
+var options;
 var elem = document.querySelector('.collapsible');
   var instance = new M.Collapsible(elem, {
     // inDuration: 1000,
@@ -123,22 +124,6 @@ function showSprintInfoOneByOne(Position){
 		}
 		
 	}
-	if(tipo==2){
-		var AddButton = document.createElement("input");
-		AddButton.setAttribute("id", "buttonAdd");
-		var Task = document.createElement("input");
-		AddButton.addEventListener("click", addTask);
-		AddButton.setAttribute("type", "image");
-		AddButton.setAttribute("src", "images/add.jpeg");
-		AddButton.setAttribute("width", "25");
-		AddButton.setAttribute("height", "25");
-		AddButton.setAttribute("align", "right");
-
-		Task.setAttribute("type", "text");
-		Task.setAttribute("class", "input-text");
-		divPSprint.appendChild(AddButton);
-		divPSprint.appendChild(Task);
-	}
 
 			
 	elementlist.appendChild(divSprint);			
@@ -150,20 +135,74 @@ function showSprintInfoOneByOne(Position){
 
 
 		
-function showSprintInfo(){
-	if (typeof arraySprint !== 'undefined' && arraySprint.length > 0 && typeof  arrayHW !== 'undefined' &&  arrayHW.length > 0){
+function showSprintInfo(){	
 		var lastdiv = document.getElementsByTagName("div")[0];
+
+		var SprintandBLContrainer = document.createElement("div");
+		SprintandBLContrainer.setAttribute("class", "container");
+		SprintandBLContrainer.setAttribute("name", "SprintandBLContrainer");
+
+		var SprintandBLRow = document.createElement("div");
+		SprintandBLRow.setAttribute("class", "row");
+		SprintandBLRow.setAttribute("id", "SprintandBLRow");
+
+		SprintandBLContrainer.appendChild(SprintandBLRow);
+		insertAfter(lastdiv,SprintandBLContrainer);
+		
+	if (typeof arraySprint !== 'undefined' && arraySprint.length > 0 && typeof arraySprint !== 'undefined' && arraySprint.length > 0){
+		
 		var divSprints = document.createElement("div");
 		divSprints.setAttribute("id", "infoSprints");		
+		divSprints.setAttribute("class", "col s6");
 		var listForClicks = document.createElement("ul");
 		listForClicks.setAttribute("id","listForClicks")
 		listForClicks.setAttribute("class","collapsible");
 		divSprints.appendChild(listForClicks);
-		insertAfter(lastdiv,divSprints);
+
+		SprintandBLRow.appendChild(divSprints);
+
 		for (var i = 0; i< arraySprint.length; i++) {
 			showSprintInfoOneByOne(i);
 
 		} 
+		var divBackLog = document.createElement("div");
+		divBackLog.setAttribute("id", "divBackLog");		
+		divBackLog.setAttribute("class", "col s6");
+		var listbacklog = document.createElement("ul");
+		listbacklog.setAttribute("id", "sortable1");
+//Backlog
+		if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
+			for (var i = 0; i< arrayHWnull.length; i++) {				
+				var listBL = document.createElement("li");
+				var elementBL = document.createElement("p");
+				elementBL.innerText=(arrayHWnull[i][1]);
+				elementBL.setAttribute("idTask", arrayHWnull[i][0]);
+				listBL.appendChild(elementBL);
+				listbacklog.appendChild(listBL);
+		}
+	}	
+		
+		divBackLog.appendChild(listbacklog);
+
+		if(tipo==2){
+			var AddButton = document.createElement("input");
+			AddButton.setAttribute("id", "buttonAdd");
+			var Task = document.createElement("input");
+			AddButton.addEventListener("click", addTask);
+			AddButton.setAttribute("type", "image");
+			AddButton.setAttribute("src", "images/add.jpeg");
+			AddButton.setAttribute("width", "25");
+			AddButton.setAttribute("height", "25");
+			AddButton.setAttribute("align", "right");
+
+			Task.setAttribute("type", "text");
+			Task.setAttribute("class", "input-text");
+			divBackLog.appendChild(AddButton);
+			divBackLog.appendChild(Task);
+		}
+
+
+		SprintandBLRow.appendChild(divBackLog);
 	}
 }
 

@@ -167,6 +167,20 @@
 			$restartHWInfoArray=[];
 		}
 
+		//Buscar especificaciones en el backlog
+		$HWnull=("SELECT * FROM Homework WHERE projectID='$idProject' AND sprintID=0;");
+		$HWnullResult=mysqli_query($connect,$HWnull);
+		$finalHWnullArray=[];
+		$restartHWnullArray=[];
+
+		while ($info = mysqli_fetch_assoc($HWnullResult)){
+			$homeworkID=$info["homeworkID"];
+			$description=$info["description"];
+			array_push($restartHWnullArray, $homeworkID);
+			array_push($restartHWnullArray, $description);
+			array_push($finalHWnullArray, $restartHWnullArray);		
+			$restartHWInfoArray=[];
+		}	
 ?>
 
 
@@ -197,7 +211,8 @@
 	var scrumMasternameJS = <?php echo json_encode($scrumMasterInfoProject);?>;
 	var productOwnernameJS = <?php echo json_encode($productOwnerInfoProject);?>;
 	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
-	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;
+	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;	
+	var arrayHWnull = <?php echo json_encode($finalHWnullArray);?>;
 </script>
 
 	
