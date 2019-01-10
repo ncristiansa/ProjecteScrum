@@ -1,6 +1,12 @@
 
 	showinfoProject();
 	showSprintInfo();
+//Para hacer click en los Sprints
+var elem = document.querySelector('.collapsible');
+  var instance = new M.Collapsible(elem, {
+    // inDuration: 1000,
+    // outDuration: 1000
+  });
 
 function insertAfter(e,i){
 	if(e.nextSibling){
@@ -59,12 +65,19 @@ function showinfoProject(){
 	
 }
 
+ document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, options);
+  });
 
 function showSprintInfoOneByOne(Position){
-	var elementdiv = document.getElementById("infoSprints");	
+	var list = document.getElementById("listForClicks");	
+	var elementlist = document.createElement("li");
+
 	var divSprint = document.createElement("div");
-	divSprint.setAttribute("class", "SprintClick");
-	var clickClass=Position+"SprintDIV";
+	divSprint.setAttribute("class", "collapsible-header");
+
+	divSprint.setAttribute("idSprint", Position+1);
 	var textSprint = document.createElement("p");
 	var text = document.createTextNode("Sprint "+arraySprint[Position][0]);
 	textSprint.setAttribute("class", "SprintLetters");
@@ -75,23 +88,15 @@ function showSprintInfoOneByOne(Position){
 		divSprint.style.backgroundColor = "green";
 	}else if(arraySprint[Position][4]==2){
 		divSprint.style.backgroundColor = "black";
-		divSprint.style.color= "white";
+		divSprint.style.color="white";
 		divSprint.style.borderColor="black";
-
 		}
-	textSprint.addEventListener("click", function(){
-		var x = document.getElementById(clickClass);
-		  if (x.style.display === "none") {
-		    x.style.display = "block";
-		  } else {
-		    x.style.display = "none";
-		  }
-	}); 
-	divSprint.appendChild(textSprint);
+
+	divSprint.appendChild(textSprint);	
 
 	var divPSprint = document.createElement("div");
 	divPSprint.setAttribute("class", "infoSprint");
-	divPSprint.setAttribute("id",clickClass)
+	divPSprint.setAttribute("class", "collapsible-body");
 
 	var hours = document.createElement("p");
 	var texth= document.createTextNode("Horas: "+arraySprint[Position][1]);
@@ -136,8 +141,9 @@ function showSprintInfoOneByOne(Position){
 	}
 
 			
-	elementdiv.appendChild(divSprint);			
-	elementdiv.appendChild(divPSprint);
+	elementlist.appendChild(divSprint);			
+	elementlist.appendChild(divPSprint);
+	list.appendChild(elementlist);
 
 }
 
@@ -145,11 +151,15 @@ function showSprintInfoOneByOne(Position){
 
 		
 function showSprintInfo(){
-	if (arraySprint!==null || arrayHW!==null){
-		var elementdiv = document.getElementsByTagName("div")[0];
+	if (typeof arraySprint !== 'undefined' && arraySprint.length > 0 && typeof  arrayHW !== 'undefined' &&  arrayHW.length > 0){
+		var lastdiv = document.getElementsByTagName("div")[0];
 		var divSprints = document.createElement("div");
-		divSprints.setAttribute("id", "infoSprints");
-		insertAfter(elementdiv,divSprints);
+		divSprints.setAttribute("id", "infoSprints");		
+		var listForClicks = document.createElement("ul");
+		listForClicks.setAttribute("id","listForClicks")
+		listForClicks.setAttribute("class","collapsible");
+		divSprints.appendChild(listForClicks);
+		insertAfter(lastdiv,divSprints);
 		for (var i = 0; i< arraySprint.length; i++) {
 			showSprintInfoOneByOne(i);
 
