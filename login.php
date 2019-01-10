@@ -2,6 +2,7 @@
 <?php
 	//Inicio de session para los usuarios que accedan
 	session_start();
+	include 'functions.php';
 ?>
 <html>
 <head>
@@ -26,8 +27,9 @@
 		echo "<input type='submit' value='Enviar' name='submit' id='btn' class='waves-effect waves-light btn-small'><br>";
 	echo "</form>";
 	echo "</div>";
-	$nombre=$_POST["nom"];
-	$pass=$_POST["password"];
+
+	checkIsset($nombre, $_POST["nom"]);
+	checkIsset($pass, $_POST["password"]);
 ?>
 <?php
 	//Variables de session
