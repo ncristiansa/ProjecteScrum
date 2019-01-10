@@ -1,17 +1,7 @@
 <?php
-	session_start();
-	include 'functions.php';
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
-	<script type="text/javascript" defer src="funciones.js"></script>
-	<title>Inicio</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-<body>
-<?php
+	$tituloPagina = "Proyectos";
+	include 'templates/header.php';
+
 	/*
 		Inicio esta variable para usarla más adelante almacenar el resultado de una consulta.
 	*/
@@ -19,7 +9,7 @@
 	/*
 		La variable $nameusr servirá para almacenar la SESSION["Name"]
 		donde tenemos almacenado el nickname del usuario que hemos obtenido
-		con la SESSION iniciada en login.php
+		con la SESSION iniciada en index.php
 	*/
 	$nameusr = $_SESSION["Name"];
 	/*
@@ -56,26 +46,7 @@
 	}
 		
 ?>
-<?php
-	echo"<nav>";
-		echo"<ul>";
-			echo"<li class='lihorizontal'>";
-				echo"<img class='imgusuario' src='images\usericon.png'>";
-				
-			echo"</li>";
-			echo"<li class='liimglogout'>";
-?>
-				<a href='vistainicial.php?exituser=true'>
-<?php
-				echo"<img class='imglogout' src='images\logout.png'>";
-?>
-				</a>
-<?php
-				print_r($NameUser);
-			echo"</li>";
-		echo"</ul>";
-	echo"</nav>";
-?>
+<?php include 'templates/nav.php'; ?>
 
 <?php
 	/*
@@ -113,7 +84,7 @@
 				echo "<p align='right' class='p-Title'>Proyectos</p>";
 			echo "<ul>";
 				while ($QueryList = mysqli_fetch_array($resultList)) {
-					echo"<li class='text-li'><a id='$QueryList[0]'>".$QueryList[0]."</li></a>";
+					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
 				}
 			echo "</ul>";
 		echo "</div>";

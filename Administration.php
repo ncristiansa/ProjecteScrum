@@ -1,16 +1,7 @@
 <?php
-	session_start();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
-	<script type="text/javascript" defer src="functions.js"></script>
-	<title>Administración de Projecto</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-<body>
-<?php
+	$tituloPagina = "Administración de Proyectos";
+	include 'templates/header.php';
+
 	/*
 		Inicio esta variable para usarla más adelante almacenar el resultado de una consulta.
 	*/
@@ -46,31 +37,10 @@
 	/*
 		Obtendré la URL por el = para otbtener la posición 1 que es el nombre
 	*/
-		
-?>
+?>		
 <?php
-	echo"<nav>";
-		echo"<ul>";
-			echo"<li class='lihorizontal'>";
-				echo"<img class='imgusuario' src='images\usericon.png'>";
-				
-			echo"</li>";
-			echo"<li class='liimglogout'>";
-?>
-				<a href='vistainicial.php?exituser=true'>
-<?php
-				echo"<img class='imglogout' src='images\logout.png'>";
-?>
-				</a>
-<?php
-				print_r($NameUser);
-			echo"</li>";
-		echo"</ul>";
-	echo"</nav>";
-?>
+	include 'templates/nav.php';
 
-
-<?php
 		$host=$_SERVER["HTTP_HOST"];
 		$url= $_SERVER["REQUEST_URI"];
 		/*
@@ -123,6 +93,13 @@
 			$hours=$info["hours"];
 			$startDate=$info["startDate"];
 			$endDate=$info["endDate"];
+			$status=$info["status"];
+			$sprintID=$info["sprintID"];
+			array_push($restartSprintInfoArray, $order);
+			array_push($restartSprintInfoArray, $hours);
+			array_push($restartSprintInfoArray, $startDate);
+			array_push($restartSprintInfoArray, $endDate);
+			array_push($restartSprintInfoArray, $status);
 			array_push($restartSprintInfoArray, $sprintID);
 			array_push($finalSprintInfoArray, $restartSprintInfoArray);			
 			$restartSprintInfoArray=[];
@@ -153,13 +130,6 @@
 
 
 <?php
-	/*
-		Hemos creado una función llamada destroySession para que una vez sea llamada destruya la SESSION actual y nos redirija a login.php
-	*/
-	function destroySession(){
-		session_destroy();
-		header("Location: login.php");
-	}
 	/*
 		Esta condición nos permite saber si el usuario ha hecho click en la imagen donde hemos añadido una especie de
 		variable que estará siempre en True, activada para que cuando se haya hecho clic llame a la función destroySession.

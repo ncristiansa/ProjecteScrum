@@ -1,7 +1,3 @@
-
-	showinfoProject();
-	showSprintInfo();
-
 function insertAfter(e,i){
 	if(e.nextSibling){
 		e.parentNode.insertBefore(i,e.nextSibling);
@@ -15,31 +11,31 @@ function showinfoProject(){
 	var divInfo = document.createElement("div");
 	var titleH2 = document.createElement("h2");
 	
-		var textH2 = document.createTextNode(nameProjectJS[0]);
-		titleH2.appendChild(textH2);
+	var textH2 = document.createTextNode(nameProjectJS[0]);
+	titleH2.appendChild(textH2);
 
 	var nameP = document.createElement("p");
 
-		var textP = document.createTextNode("Nombre: "+nameProjectJS[0]);
-		nameP.appendChild(textP);
+	var textP = document.createTextNode("Nombre: "+nameProjectJS[0]);
+	nameP.appendChild(textP);
 
 	
 	var descripP = document.createElement("p");
 		
-		var textP = document.createTextNode("Descripción: "+descriptionProjectJS[0]);
-		descripP.appendChild(textP);
+	var textP = document.createTextNode("Descripción: "+descriptionProjectJS[0]);
+	descripP.appendChild(textP);
 
 	
 	var scrumnameP = document.createElement("p");
 
-		var textP = document.createTextNode("Scrum Master: "+scrumMasternameJS[0]);
-		scrumnameP.appendChild(textP);
+	var textP = document.createTextNode("Scrum Master: "+scrumMasternameJS[0]);
+	scrumnameP.appendChild(textP);
 
 
 	var productownerP = document.createElement("p");
 
-		var textP = document.createTextNode("Product Owner: "+productOwnernameJS[0]);
-		productownerP.appendChild(textP);
+	var textP = document.createTextNode("Product Owner: "+productOwnernameJS[0]);
+	productownerP.appendChild(textP);
 
 	/*
 		Añadimos clases a los elementos creandos anteriormente.

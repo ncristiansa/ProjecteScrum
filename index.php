@@ -1,25 +1,24 @@
-<!DOCTYPE html>
 <?php
-	//Inicio de session para los usuarios que accedan
 	session_start();
 	include 'functions.php';
 ?>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<title>Inicia Sesión</title>
-	<script type="text/javascript" src="scripts.js"></script>
+	<script type="text/javascript" src="javascript/scripts.js"></script>
 	<!-- Materialize -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body style="padding: 2%">
+
+<body>
 
 <?php
 	echo "<div class='Login-Style'>";
 	echo "<h2>Gestor de Proyectos SCRUM<h2>"; 
 	echo "<h2 class='h2-Style'>Login</h2>";
-	echo "<form class='formulario' action='login.php' method='POST' align='center'>";
+	echo "<form class='formulario' action='index.php' method='POST' align='center'>";
 		echo"<label class='Label-Style'>Usuario: </label>";
 			echo "<input type='text' name='nom'><br>";
 		echo "<label class='Label-Style'>Contraseña: </label>";
@@ -30,8 +29,7 @@
 
 	checkIsset($nombre, $_POST["nom"]);
 	checkIsset($pass, $_POST["password"]);
-?>
-<?php
+
 	//Variables de session
 	$_SESSION["Name"] = $nombre;
 	$_SESSION["Pass"] = $pass;

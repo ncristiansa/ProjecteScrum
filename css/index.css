@@ -1,6 +1,6 @@
 body{
   margin:0;
-  padding: 0;
+  padding: 2%;
   background-color: #dce7ef  ;
   font-family: Arial;
 }
@@ -9,9 +9,6 @@ body{
   width: 40%;
 }
 
-.formulario{  
-  width: 100%;
-}
 
 .ptitulos{
   margin-left: 7%;

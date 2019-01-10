@@ -4,32 +4,21 @@ if (tipo==1) {
 
 
 function scrumMaster(){
-	var elementodiv = document.getElementsByTagName("div")[0];
-	var boton = document.createElement("button");
-	var contenido = document.createTextNode("Crear Proyecto");
-	boton.setAttribute("id","buttonProject");
-	boton.appendChild(contenido);
+	var boton = createButton("a", "Crear Proyecto", ["id=buttonProject", "class=btn card-title"])
+	var elementodiv = document.getElementsByClassName("list-projects")[0];
 	boton.addEventListener("click",formulario);
 	boton.addEventListener("click",borrarinputs);
 	elementodiv.appendChild(boton);
-
 }
 
-function insertAfter(e,i){
-	if(e.nextSibling){
-		e.parentNode.insertBefore(i,e.nextSibling);
-
-	} else {
-		e.parentNode.appendChild(i);
-	}
-}
 
 function addMessageError(errorText, status){
 	var CheckError = document.getElementById("MessageError");
 	var Button = document.getElementsByTagName("input")[0];
 
 	if(CheckError==undefined){
-		var Fail = document.createElement("div");
+		var Fail = document.
+		Element("div");
 		Fail.setAttribute("id", "MessageError");
 		Fail.setAttribute("align", "left");
 
@@ -61,7 +50,7 @@ function addMessageError(errorText, status){
 }
 
 
-
+/*
 function formulario(){
 	var elementoBoton = document.getElementsByTagName("button")[0];
 	var form = document.createElement("form");
@@ -75,8 +64,6 @@ function formulario(){
 	form.setAttribute("method","post");
 	form.setAttribute("id", "formulario");
 	form.setAttribute("action","vistainicial.php");
-
-
 
 
 	nproj.setAttribute("change",validar);
@@ -105,46 +92,11 @@ function formulario(){
 	var pdeve = document.createElement("p");
 
 
-	var opscrum1 = document.createElement("option");
-	var tscrum1 = document.createTextNode("Elige una opcion");
-	opscrum1.appendChild(tscrum1);
-	scrumm.appendChild(opscrum1);
+	
+	createComboBox(opscrum1, scrumjs, scrumm);
+	createComboBox(opproduc1, producjs, produ);
+	createComboBox(opi1, groupjs, gdeve);
 
-
-	for (var u = 0; u < scrumjs.length; u++) {
-		var opscrum = document.createElement("option");
-		var tscrum = document.createTextNode(scrumjs[u]);
-		opscrum.appendChild(tscrum);
-		scrumm.appendChild(opscrum);
-	}
-
-
-	var opproduc1 = document.createElement("option");
-	var tproduc1 = document.createTextNode("Elige una opcion");
-	opproduc1.appendChild(tproduc1);
-	produ.appendChild(opproduc1);
-
-	for (var o = 0; o < producjs.length; o++) {
-		var opproduc = document.createElement("option");
-		var tproduc = document.createTextNode(producjs[o]);
-		opproduc.appendChild(tproduc);
-		produ.appendChild(opproduc);
-	}
-
-
-	var opi1 = document.createElement("option");
-	var texi1 = document.createTextNode("Elige una opcion");
-	opi1.appendChild(texi1);
-	gdeve.appendChild(opi1);
-
-
-
-	for (var i = 0; i < groupjs.length; i++) {
-		var opi = document.createElement("option");
-		var texi = document.createTextNode(groupjs[i]);
-		opi.appendChild(texi);
-		gdeve.appendChild(opi);
-	}
 
 
 	var cnom = document.createTextNode("Nombre del proyecto");
@@ -189,6 +141,7 @@ function formulario(){
 	elementoBoton.disabled = true;
 
 }
+*/
 
 function borrarinputs(){
 	var inputnombrepro = document.getElementsByTagName("input")[0];

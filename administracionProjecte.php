@@ -1,14 +1,7 @@
 <?php
-	session_start();
+	$tituloPagina = "Inicio";
+	include 'templates/header.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
-	<script type="text/javascript" defer src="funciones.js"></script>
-	<title>Inicio</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
 <body>
 <?php
 	/*
@@ -18,7 +11,7 @@
 	/*
 		La variable $nameusr servirá para almacenar la SESSION["Name"]
 		donde tenemos almacenado el nickname del usuario que hemos obtenido
-		con la SESSION iniciada en login.php
+		con la SESSION iniciada en index.php
 	*/
 	$nameusr = $_SESSION["Name"];
 	/*
@@ -58,34 +51,13 @@
 		
 ?>
 <?php
-	echo"<nav>";
-		echo"<ul>";
-			echo"<li class='lihorizontal'>";
-				echo"<img class='imgusuario' src='images\usericon.png'>";
-				
-			echo"</li>";
-			echo"<li class='liimglogout'>";
-?>
-				<a href='vistainicial.php?exituser=true'>
-<?php
-				echo"<img class='imglogout' src='images\logout.png'>";
-
-?>
-				</a>
-<?php
-				print_r($NameUser);
-			echo"</li>";
-		echo"</ul>";
-	echo"</nav>";
-?>
-
-<?php
+	include 'templates/nav.php';
 	/*
-		Hemos creado una función llamada destroySession para que una vez sea llamada destruya la SESSION actual y nos redirija a login.php
+		Hemos creado una función llamada destroySession para que una vez sea llamada destruya la SESSION actual y nos redirija a index.php
 	*/
 	function destroySession(){
 		session_destroy();
-		header("Location: login.php");
+		header("Location: index.php");
 	}
 	/*
 		Esta condición nos permite saber si el usuario ha hecho click en la imagen donde hemos añadido una especie de
