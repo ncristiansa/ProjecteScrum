@@ -83,6 +83,8 @@ function showSprintInfoOneByOne(Position){
 	var text = document.createTextNode("Sprint "+arraySprint[Position][0]);
 	textSprint.setAttribute("class", "SprintLetters");
 	textSprint.appendChild(text);
+
+	//Colors Sprints
 	if (arraySprint[Position][4]==0) {
 		divSprint.style.backgroundColor = "grey";
 	}else if(arraySprint[Position][4]==1){
@@ -183,7 +185,7 @@ function showSprintInfo(){
 	}	
 		
 		divBackLog.appendChild(listbacklog);
-
+//Boton añadir especificacion
 		if(tipo==2){
 			var AddButton = document.createElement("input");
 			AddButton.setAttribute("id", "buttonAdd");
@@ -200,7 +202,7 @@ function showSprintInfo(){
 			divBackLog.appendChild(AddButton);
 			divBackLog.appendChild(Task);
 		}
-
+//Boton añadir especificacion
 
 		SprintandBLRow.appendChild(divBackLog);
 	}
