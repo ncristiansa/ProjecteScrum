@@ -48,11 +48,9 @@
 		En caso de que haya un resultado, en este caso sí,
 		éste lo guardaremos en nuestra variable $NameUser donde almacenará
 		$variable = $registro["columna"], es decir $NameUser = $registro["username"]. El nombre username es el que tenemos en nuestra tabla Users donde se guarda el nombre del usuario.
- 	*/
-
-
-
-
+	*/
+	
+	
 	if($registro = mysqli_fetch_assoc($resultado)){
 		$NameUser = $registro["username"];
 	}
@@ -70,7 +68,6 @@
 				<a href='vistainicial.php?exituser=true'>
 <?php
 				echo"<img class='imglogout' src='images\logout.png'>";
-
 ?>
 				</a>
 <?php
@@ -192,7 +189,6 @@
 	print_r($productNombre);
 	print_r($groupNombre);
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
-
 			if(isset($_POST['descripcion'])){
 				$descripcion = $_POST['descripcion'];
 			}else{
@@ -209,7 +205,6 @@
 					$IDProject = $queryIDProject["projectID"];
 				}
 				print_r("ID P:".$IDProject);
-
 				$searchIDScrumM = ("SELECT userID FROM Users WHERE username='$masterNombre';");
 				$resultSearchScrumM = mysqli_query($connect, $searchIDScrumM);
 				if($queryIDScrumM = mysqli_fetch_assoc($resultSearchScrumM)){

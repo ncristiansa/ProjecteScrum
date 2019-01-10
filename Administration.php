@@ -46,7 +46,6 @@
 	/*
 		Obtendré la URL por el = para otbtener la posición 1 que es el nombre
 	*/
-
 		
 ?>
 <?php
@@ -61,7 +60,6 @@
 				<a href='vistainicial.php?exituser=true'>
 <?php
 				echo"<img class='imglogout' src='images\logout.png'>";
-
 ?>
 				</a>
 <?php
@@ -75,7 +73,6 @@
 <?php
 		$host=$_SERVER["HTTP_HOST"];
 		$url= $_SERVER["REQUEST_URI"];
-
 		/*
 			Separo la url mediante el = 
 		*/
@@ -96,7 +93,6 @@
 		$descriptionInfoProject = [];
 		$scrumMasterInfoProject = [];
 		$productOwnerInfoProject = [];
-
 		while ($info = mysqli_fetch_assoc($resultInfoProject)) {
 			$NameP = $info["nameProject"];
 			$idProject=$info["projectID"];
@@ -127,13 +123,6 @@
 			$hours=$info["hours"];
 			$startDate=$info["startDate"];
 			$endDate=$info["endDate"];
-			$status=$info["status"];
-			$sprintID=$info["sprintID"];
-			array_push($restartSprintInfoArray, $order);
-			array_push($restartSprintInfoArray, $hours);
-			array_push($restartSprintInfoArray, $startDate);
-			array_push($restartSprintInfoArray, $endDate);
-			array_push($restartSprintInfoArray, $status);
 			array_push($restartSprintInfoArray, $sprintID);
 			array_push($finalSprintInfoArray, $restartSprintInfoArray);			
 			$restartSprintInfoArray=[];
@@ -160,7 +149,6 @@
 			array_push($finalHWInfoArray, $restartHWInfoArray);		
 			$restartHWInfoArray=[];
 		}
-
 ?>
 
 

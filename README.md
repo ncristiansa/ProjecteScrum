@@ -38,7 +38,10 @@ Estos son *Developer* (3), *Product Owner* (2) y *Scrum Master* (1).
 | Usuario | Contraseña |
 |---|---|
 | juanam | juana123 |
+<<<<<<< HEAD
 |  | 1234 |
+=======
+>>>>>>> origin/joseDevelopement
 | master | master |
 
 ### Product Owner <a name="po"></a>
