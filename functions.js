@@ -1,7 +1,6 @@
-if(tipo==2 || tipo==3){
+
 	showinfoProject();
 	showSprintInfo();
-}
 
 function insertAfter(e,i){
 	if(e.nextSibling){
@@ -42,10 +41,6 @@ function showinfoProject(){
 		var textP = document.createTextNode("Product Owner: "+productOwnernameJS[0]);
 		productownerP.appendChild(textP);
 
-	var groupnameP = document.createElement("p");
-		var textP = document.createTextNode("Grupo: "+nameGroupJS[0]);
-		groupnameP.appendChild(textP);
-
 	/*
 		Añadimos clases a los elementos creandos anteriormente.
 	*/
@@ -60,7 +55,6 @@ function showinfoProject(){
 	divInfo.appendChild(descripP);
 	divInfo.appendChild(scrumnameP);
 	divInfo.appendChild(productownerP);
-	divInfo.appendChild(groupnameP);
 	insertAfter(elementNav, divInfo);
 	
 }
@@ -70,18 +64,23 @@ function showSprintInfoOneByOne(Position){
 	var elementdiv = document.getElementById("infoSprints");	
 	var divSprint = document.createElement("div");
 	divSprint.setAttribute("class", "SprintClick");
-	var clickClass=Position+"SprintDIV";
+	var clickId=Position+"SprintDIV";
 	var textSprint = document.createElement("p");
 	var text = document.createTextNode("Sprint "+arraySprint[Position][0]);
 	textSprint.setAttribute("class", "SprintLetters");
 	textSprint.appendChild(text);
-	if (arraySprint[Position][4]==1) {
-		divSprint.style.backgroundColor = "green";
-	}else{
+	if (arraySprint[Position][4]==0) {
 		divSprint.style.backgroundColor = "grey";
+	}else if(arraySprint[Position][4]==1){
+		divSprint.style.backgroundColor = "green";
+	}else if(arraySprint[Position][4]==2){
+		divSprint.style.backgroundColor = "black";
+		divSprint.style.color= "white";
+		divSprint.style.borderColor="black";
+
 		}
 	textSprint.addEventListener("click", function(){
-		var x = document.getElementById(clickClass);
+		var x = document.getElementById(clickId);
 		  if (x.style.display === "none") {
 		    x.style.display = "block";
 		  } else {
@@ -92,7 +91,7 @@ function showSprintInfoOneByOne(Position){
 
 	var divPSprint = document.createElement("div");
 	divPSprint.setAttribute("class", "infoSprint");
-	divPSprint.setAttribute("id",clickClass)
+	divPSprint.setAttribute("id",clickId)
 
 	var hours = document.createElement("p");
 	var texth= document.createTextNode("Horas: "+arraySprint[Position][1]);
@@ -140,6 +139,18 @@ function showSprintInfoOneByOne(Position){
 	elementdiv.appendChild(divSprint);			
 	elementdiv.appendChild(divPSprint);
 
+}
+
+function showSprint(element) {
+	// Buscamos class = activo
+	// if (class[activo]) = hideSprint(element)
+	// Añadir element > class = activo
+	// Abrimos el div
+}
+
+function hideSprint(element) {
+	// Buscamos class = activo
+	// Cerramos class activo
 }
 
 

@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include 'functions.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDB3.3";
+ 	$bbdd = "ScrumDB4";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
@@ -47,7 +48,9 @@
 		En caso de que haya un resultado, en este caso sí,
 		éste lo guardaremos en nuestra variable $NameUser donde almacenará
 		$variable = $registro["columna"], es decir $NameUser = $registro["username"]. El nombre username es el que tenemos en nuestra tabla Users donde se guarda el nombre del usuario.
- 	*/
+	*/
+	
+	
 	if($registro = mysqli_fetch_assoc($resultado)){
 		$NameUser = $registro["username"];
 	}
@@ -76,13 +79,6 @@
 
 <?php
 	/*
-		Hemos creado una función llamada destroySession para que una vez sea llamada destruya la SESSION actual y nos redirija a login.php
-	*/
-	function destroySession(){
-		session_destroy();
-		header("Location: login.php");
-	}
-	/*
 		Esta condición nos permite saber si el usuario ha hecho click en la imagen donde hemos añadido una especie de
 		variable que estará siempre en True, activada para que cuando se haya hecho clic llame a la función destroySession.
 	*/
@@ -91,16 +87,6 @@
 	}
 ?>
 <?php
-	function checkIsset(&$variable, &$argumentPost) {
-		if (isset($argumentPost)) {
-			$variable = $argumentPost;
-		}
-
-		else {
-			$variable = null;
-		}
-	}
-
 	$idUser = "";
 	$IDProject = "";
 	$IDScrumM = "";
@@ -131,7 +117,7 @@
 				}
 			echo "</ul>";
 		echo "</div>";
-	}elseif ($userType==2) {
+	}else {
 		
 		echo "<div align='center' class='div-father'>";
 			echo "<div class='list-projects' align='center'>";
@@ -144,30 +130,23 @@
 		echo "</div>";
         
     }
-    elseif ($userType==3) {
-        echo "<div align='center' class='div-father'>";
-			echo "<div class='list-projects' align='center'>";
-				echo "<p align='right' class='p-Title'>Proyectos</p>";
-			echo "<ul>";
-				while ($QueryList = mysqli_fetch_array($resultList)) {
-					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
-				}
-			echo "</ul>";
-		echo "</div>";
-    }
 	
 ?>
 
-<?php
+<?php	
 	$consultaselect = ("SELECT username FROM Users WHERE type=1;");
 	$resultadoselect = mysqli_query($connect,$consultaselect);
+
 	$arrayscrum=[];
 	while($regiscrum = mysqli_fetch_assoc($resultadoselect)){
 		$scrum = $regiscrum["username"];
 		array_push($arrayscrum, $scrum);
+
 	}
+
 	$consuproduc = ("SELECT username FROM Users WHERE type=2;");
 	$resultproduc = mysqli_query($connect,$consuproduc);
+
 	$arrayproduc=[];
 	while ($regiproduc = mysqli_fetch_assoc($resultproduc)) {
 		$produc = $regiproduc["username"];
@@ -175,18 +154,17 @@
 	}
 	
 	
+
 	$consugroup = ("SELECT DISTINCT (nameGroup) FROM Groups;");
 	$resultgroup = mysqli_query($connect,$consugroup);
+
 	$arraygroups=[];
 	while( $regigroup = mysqli_fetch_assoc($resultgroup) ){
 		$group = $regigroup["nameGroup"];
+
 		array_push($arraygroups, $group);
 		
 	}
-
-	$nproyecto = $descripcion = $scrumaster = $nomproduc = $grupos = '';
-
-
 
 
 	checkIsset($nproyecto, $_POST["nproyecto"]);
@@ -197,10 +175,13 @@
 
 	$_SESSION["nameprojecto"] = $nproyecto;
 	$projectoNombre = $_SESSION["nameprojecto"];
+
 	$_SESSION["namescrum"] = $scrumaster;
 	$masterNombre = $_SESSION["namescrum"];
+
 	$_SESSION["nameproduct"] = $nomproduc;
 	$productNombre = $_SESSION["nameproduct"];
+
 	$_SESSION["namegrup"] = $grupos;
 	$groupNombre = $_SESSION["namegrup"];
 	print_r($projectoNombre);
@@ -214,7 +195,7 @@
 				$descripcion = null;
 			}
 			$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, scrumMasterName, productOwnerName) VALUES ('$nproyecto', '$descripcion', '$scrumaster', '$nomproduc');");
-			$mysqli = new mysqli("localhost", "Administrador", "P@ssw0rd", "ScrumDB3.3");
+			$mysqli = new mysqli("localhost", "Administrador", "P@ssw0rd", "ScrumDB3.0");
 			
 			
 			if(mysqli_query($connect,$insertarConDescripcion)){
@@ -256,6 +237,8 @@
 			
 			
 	}	
+
+
 ?>
 
 <script type="text/javascript">

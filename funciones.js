@@ -7,6 +7,7 @@ function scrumMaster(){
 	var elementodiv = document.getElementsByTagName("div")[0];
 	var boton = document.createElement("button");
 	var contenido = document.createTextNode("Crear Proyecto");
+	boton.setAttribute("id","buttonProject");
 	boton.appendChild(contenido);
 	boton.addEventListener("click",formulario);
 	boton.addEventListener("click",borrarinputs);
@@ -23,7 +24,41 @@ function insertAfter(e,i){
 	}
 }
 
+function addMessageError(errorText, status){
+	var CheckError = document.getElementById("MessageError");
+	var Button = document.getElementsByTagName("input")[0];
 
+	if(CheckError==undefined){
+		var Fail = document.createElement("div");
+		Fail.setAttribute("id", "MessageError");
+		Fail.setAttribute("align", "left");
+
+		var failText = document.createElement("p");
+		failText.setAttribute("id", "pError");
+		failText.innerText=(errorText);
+
+		var Img = document.createElement("img");
+		Img.setAttribute("id", "imgError");
+		//Img.setAttribute("align", "left");
+		Img.setAttribute("height","30px");
+		Img.setAttribute("width", "30px");
+		Img.src="images/alert.png";
+
+		Button.appendChild(Fail);
+		Fail.appendChild(Img);
+		Fail.appendChild(failText);
+		document.body.appendChild(Fail);
+
+		if(true==status){
+			setTimeout(function(){document.getElementById("MessageError").remove();},8000);
+		}
+
+	}else if(CheckError!=undefined){
+		document.getElementById("MessageError").remove();
+		addMessageError(errorText, status);
+	}
+	
+}
 
 
 
@@ -55,19 +90,12 @@ function formulario(){
 	produ.setAttribute("name","produ");
 	gdeve.setAttribute("name","developers");
 
-
-
-
-
 	var butonenviar = document.createElement("input");
+	butonenviar.setAttribute("id", "buttonenviar");
 	butonenviar.setAttribute("type", "button");
 	butonenviar.setAttribute("onclick","validar()");
 	butonenviar.setAttribute("value", "Enviar");
 	butonenviar.setAttribute("name", "btn");
-
-
-
-
 
 
 	var pnom = document.createElement("p");
@@ -75,8 +103,6 @@ function formulario(){
 	var pscrumm = document.createElement("p");
 	var pproduc = document.createElement("p");
 	var pdeve = document.createElement("p");
-
-
 
 
 	var opscrum1 = document.createElement("option");
@@ -91,8 +117,6 @@ function formulario(){
 		opscrum.appendChild(tscrum);
 		scrumm.appendChild(opscrum);
 	}
-
-
 
 
 	var opproduc1 = document.createElement("option");
@@ -115,8 +139,6 @@ function formulario(){
 
 
 
-
-
 	for (var i = 0; i < groupjs.length; i++) {
 		var opi = document.createElement("option");
 		var texi = document.createTextNode(groupjs[i]);
@@ -125,28 +147,21 @@ function formulario(){
 	}
 
 
-
-
-
-
 	var cnom = document.createTextNode("Nombre del proyecto");
 	pnom.appendChild(cnom);
 
-	var cdescr = document.createTextNode("Descripcion");
+	var cdescr = document.createTextNode("Descripción");
 	pdescr.appendChild(cdescr);
 
 	var cscrumm = document.createTextNode("ScrumMaster");
 	pscrumm.appendChild(cscrumm);
 
 
-	var cproduc = document.createTextNode("product Owner");
+	var cproduc = document.createTextNode("Product Owner");
 	pproduc.appendChild(cproduc);
 
 	var cdeve= document.createTextNode("Grup Developers");
 	pdeve.appendChild(cdeve);
-
-
-
 
 
 
@@ -155,8 +170,6 @@ function formulario(){
 
 	form.appendChild(pdescr);
 	form.appendChild(descr);
-
-
 
 	form.appendChild(pscrumm);
 	form.appendChild(scrumm);
@@ -171,15 +184,11 @@ function formulario(){
 
 	form.appendChild(butonenviar);
 
-	insertAfter(elementoBoton,form);
+	insertAfter(elementoBoton,form);	
 
-
+	elementoBoton.disabled = true;
 
 }
-
-
-
-
 
 function borrarinputs(){
 	var inputnombrepro = document.getElementsByTagName("input")[0];

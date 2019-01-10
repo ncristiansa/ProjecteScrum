@@ -21,7 +21,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDB3.3";
+ 	$bbdd = "ScrumDB4";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
@@ -81,6 +81,8 @@
 		$newutl = explode("=", $url);
 		$ProjectName = $newutl[1];
 		$NameProject = str_replace("%20", " ", $ProjectName);
+
+
 		
 		/*
 			Al obtener el nombre del projecto mediante el método GET puedo realizar una consulta que me devuelva los datos de ese proyecto y enviarselo mediante un array al JS para mostrar con DOM toda la información de X projecto.
@@ -102,47 +104,37 @@
 			array_push($scrumMasterInfoProject, $scrumMasternameP);
 			array_push($productOwnerInfoProject, $productOwnernameP);
 		}
-
-		$infoGroup = ("SELECT DISTINCT(nameGroup) FROM Groups WHERE userID IN (SELECT userID FROM UserBelongsToP WHERE projectID='$idProject');");
-		$resultInfoGroup = mysqli_query($connect, $infoGroup);
-		$GroupInfoProject = [];
-		while ($queryGroup = mysqli_fetch_assoc($resultInfoGroup)) {
-			$GroupName = $queryGroup["nameGroup"];
-			array_push($GroupInfoProject, $GroupName);
-		}
-
 		$typeUser = ("SELECT type FROM Users WHERE username='$NameUser';");
 		$resultTypeUser = mysqli_query($connect, $typeUser);
 		if($Query = mysqli_fetch_assoc($resultTypeUser)){
 			$userType = $Query["type"];
 		}
 		
+
 		//Con el id del projecto buscamos los sprints de este, creando una array de arrays, para luego enviarla a javascript
 		$SprintsInfo = ("SELECT * FROM Sprints WHERE projectID=$idProject order by orderNumber;");
 		$resultSprints = mysqli_query($connect,$SprintsInfo);
+
 		$finalSprintInfoArray = [];
 		$restartSprintInfoArray = [];
+
 		while ($info = mysqli_fetch_assoc($resultSprints)) {
 			$order=$info["orderNumber"];
 			$hours=$info["hours"];
 			$startDate=$info["startDate"];
 			$endDate=$info["endDate"];
-			$status=$info["status"];
-			$sprintID=$info["sprintID"];
-			array_push($restartSprintInfoArray, $order);
-			array_push($restartSprintInfoArray, $hours);
-			array_push($restartSprintInfoArray, $startDate);
-			array_push($restartSprintInfoArray, $endDate);
-			array_push($restartSprintInfoArray, $status);
 			array_push($restartSprintInfoArray, $sprintID);
 			array_push($finalSprintInfoArray, $restartSprintInfoArray);			
 			$restartSprintInfoArray=[];
 		}
+
 		//Con los ids de los sprints del projecto buscamos las especificaciones de este, creando una array de arrays, para luego enviarla a javascript
 		$HomeworkInfo = ("SELECT * FROM Homework WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID='$idProject' order by orderNumber) ORDER BY orderHW;");
 		$HomeworkResult = mysqli_query($connect,$HomeworkInfo);
+
 		$finalHWInfoArray=[];
 		$restartHWInfoArray=[];
+
 		while ($info = mysqli_fetch_assoc($HomeworkResult)){
 			$homeworkID=$info["homeworkID"];
 			$description=$info["description"];
@@ -175,7 +167,9 @@
 	if(isset($_GET['exituser'])){
 		destroySession();
 	}
+	
 ?>
+
 <script type="text/javascript">
 	var tipo = '<?php echo $userType;?>';
 </script>
@@ -186,7 +180,6 @@
 	var productOwnernameJS = <?php echo json_encode($productOwnerInfoProject);?>;
 	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
 	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;
-	var nameGroupJS = <?php echo json_encode($GroupInfoProject);?>;
 </script>
 
 	

@@ -107,7 +107,6 @@ table{
 
 .imglogout{
   width: 4%;
-  height: 4%;
   padding: 0%;
 }
 .liimglogout{
@@ -124,8 +123,7 @@ nav{
   background-color:  #f13b33  ;
   margin:-1%;
 }
-.imgusuario:hover
-{
+.imgusuario:hover{
   color:#494c46;  
 }
 
@@ -147,17 +145,13 @@ nav{
   margin-top: 3%;
   word-wrap: break-word;
 }
-.list-projects {
-  margin:0;
-  width: 50%;
-  border:solid;
 
-}
 .title-list {
-  font-size: 120%;
+  font-size: 120%; 
 }
 .text-li {
-  font-size:100%;
+  font-size:100%;  
+  text-align: left;
 }
 a:link {
   text-decoration: none;
