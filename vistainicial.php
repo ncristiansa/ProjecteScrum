@@ -101,17 +101,33 @@
 	$IDScrumM = "";
 	$IDProduct = "";
 	$IDDeveloper = "";
-
 	$consultidUser = ("SELECT userID FROM Users WHERE username='$NameUser';");
 	$resultUserID = mysqli_query($connect, $consultidUser);
 	if($queryUserid = mysqli_fetch_assoc($resultUserID)){
 		$idUser = $queryUserid["userID"];
 	}
-
+	$typeUser = ("SELECT type FROM Users WHERE username='$NameUser';");
+	$resultTypeUser = mysqli_query($connect, $typeUser);
+	if($Query = mysqli_fetch_assoc($resultTypeUser)){
+		$userType = $Query["type"];
+	}
+	
 	$ProjectUserList = ("SELECT p.nameProject FROM Projects p, UserBelongsToP up WHERE up.userID='$idUser' AND up.projectID=p.projectID;");
 	$resultList = mysqli_query($connect, $ProjectUserList);
 	
-		//Imprimir los projectos en los que esta el usuario
+	if($userType==1){
+		
+		echo "<div align='center' class='div-father'>";
+			echo "<div class='list-projects' align='center'>";
+				echo "<p align='right' class='p-Title'>Proyectos</p>";
+			echo "<ul>";
+				while ($QueryList = mysqli_fetch_array($resultList)) {
+					echo"<li class='text-li'><a id='$QueryList[0]'>".$QueryList[0]."</li></a>";
+				}
+			echo "</ul>";
+		echo "</div>";
+	}else {
+		
 		echo "<div align='center' class='div-father'>";
 			echo "<div class='list-projects' align='center'>";
 				echo "<p align='right' class='p-Title'>Proyectos</p>";
@@ -121,6 +137,8 @@
 				}
 			echo "</ul>";
 		echo "</div>";
+        
+    }
 	
 ?>
 
