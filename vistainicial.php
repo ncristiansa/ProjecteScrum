@@ -123,7 +123,7 @@
 				echo "<p align='right' class='p-Title'>Proyectos</p>";
 			echo "<ul>";
 				while ($QueryList = mysqli_fetch_array($resultList)) {
-					echo"<li class='text-li'><a id='$QueryList[0]'>".$QueryList[0]."</li></a>";
+					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
 				}
 			echo "</ul>";
 		echo "</div>";

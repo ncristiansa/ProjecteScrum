@@ -190,7 +190,42 @@ function formulario(){
 
 }
 
-
+function borrarinputs(){
+	var inputnombrepro = document.getElementsByTagName("input")[0];
+	var inputdesc = document.getElementsByTagName("input")[1];
+	var selectScrum = document.getElementsByTagName("select")[0];
+	var selectProduct = document.getElementsByTagName("select")[1];
+	var selectGrupo = document.getElementsByTagName("select")[2];
+	if (inputnombrepro.value != "") {
+		inputnombrepro ="";
+	}else if (inputdesc.value != "") {
+		inputdesc="";
+	}else if (selectScrum.value!=0){
+		selectScrum.value="Elige una opcion";
+	}else if (selectProduct.value!=0){
+		selectProduct.value="Elige una opcion";
+	}else if (selectGrupo.value!=0){
+		selectGrupo.value="Elige una opcion";
+	}
+}
+function borrarinputs(){
+	var inputnombrepro = document.getElementsByTagName("input")[0];
+	var inputdesc = document.getElementsByTagName("input")[1];
+	var selectScrum = document.getElementsByTagName("select")[0];
+	var selectProduct = document.getElementsByTagName("select")[1];
+	var selectGrupo = document.getElementsByTagName("select")[2];
+	if (inputnombrepro.value != "") {
+		inputnombrepro ="";
+	}else if (inputdesc.value != "") {
+		inputdesc="";
+	}else if (selectScrum.value!=0){
+		selectScrum.value="Elige una opcion";
+	}else if (selectProduct.value!=0){
+		selectProduct.value="Elige una opcion";
+	}else if (selectGrupo.value!=0){
+		selectGrupo.value="Elige una opcion";
+	}
+}
 
 //esta funcion valida que los campos no esten vacios. Si no, no envia el submit
 function validar(){
