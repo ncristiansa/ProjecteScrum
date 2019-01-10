@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include 'functions.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -142,17 +143,7 @@
 	
 ?>
 
-<?php
-	// Función que hace el Isset para eliminar errores con el post
-	function checkIsset(&$variable, &$argumentPost) {
-		if (isset($argumentPost)) {
-			$variable = $argumentPost;
-		}
-		else {
-			$variable = null;
-		}
-	}
-	
+<?php	
 	$consultaselect = ("SELECT username FROM Users WHERE type=1;");
 	$resultadoselect = mysqli_query($connect,$consultaselect);
 
