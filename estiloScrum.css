@@ -186,7 +186,10 @@ a:link {
 }
 
 
-
+.SprintLetters{
+  background-color: white;
+  color: black;
+}
 
 #listHW{
   list-style-type:none;

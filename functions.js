@@ -135,23 +135,32 @@ function showSprintInfoOneByOne(Position){
 }
 
 
+function buttonNewSprint(divSprints){
+	var btnNewSprint = document.createElement("button");	
+	btnNewSprint.setAttribute("id","newSprintBtn");
+	btnNewSprint.setAttribute("class","btn waves-effect");
+	var textbotton=document.createTextNode("Crear Sprint");
+	btnNewSprint.appendChild(textbotton);
+	divSprints.appendChild(btnNewSprint);
+}
+
 
 		
 function showSprintInfo(){	
-		var lastdiv = document.getElementsByTagName("div")[0];
+		var infoProjectDiv = document.getElementsByClassName("info-project")[0];
 
 		var SprintandBLContrainer = document.createElement("div");
 		SprintandBLContrainer.setAttribute("class", "container");
-		SprintandBLContrainer.setAttribute("name", "SprintandBLContrainer");
+		SprintandBLContrainer.setAttribute("id", "SprintandBLContrainer");
 
 		var SprintandBLRow = document.createElement("div");
 		SprintandBLRow.setAttribute("class", "row");
 		SprintandBLRow.setAttribute("id", "SprintandBLRow");
 
 		SprintandBLContrainer.appendChild(SprintandBLRow);
-		insertAfter(lastdiv,SprintandBLContrainer);
-		
-	if (typeof arraySprint !== 'undefined' && arraySprint.length > 0 && typeof arraySprint !== 'undefined' && arraySprint.length > 0){
+		insertAfter(infoProjectDiv,SprintandBLContrainer);
+
+	if (typeof arraySprint !== 'undefined' && arraySprint.length > 0){
 		
 		var divSprints = document.createElement("div");
 		divSprints.setAttribute("id", "infoSprints");		
@@ -160,31 +169,43 @@ function showSprintInfo(){
 		listForClicks.setAttribute("id","listForClicks")
 		listForClicks.setAttribute("class","collapsible");
 		divSprints.appendChild(listForClicks);
-
-		SprintandBLRow.appendChild(divSprints);
-
+		
+		SprintandBLRow.appendChild(divSprints);		
 		for (var i = 0; i< arraySprint.length; i++) {
-			showSprintInfoOneByOne(i);
+			showSprintInfoOneByOne(i);			
+		}
+		if (tipo==1){	
+			buttonNewSprint(divSprints);
+		}
 
-		} 
+	}else if (tipo==1){
+		var divSprints = document.createElement("div");
+		divSprints.setAttribute("id", "infoSprints");		
+		divSprints.setAttribute("class", "col s6");
+		SprintandBLRow.appendChild(divSprints);
+		buttonNewSprint(divSprints);
+	}
+
+
+
 		var divBackLog = document.createElement("div");
 		divBackLog.setAttribute("id", "divBackLog");		
 		divBackLog.setAttribute("class", "col s6");
 		var listbacklog = document.createElement("ul");
 		listbacklog.setAttribute("id", "sortable1");
 //Backlog
-		if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
-			for (var i = 0; i< arrayHWnull.length; i++) {				
-				var listBL = document.createElement("li");
-				var elementBL = document.createElement("p");
-				elementBL.innerText=(arrayHWnull[i][1]);
-				elementBL.setAttribute("idTask", arrayHWnull[i][0]);
-				listBL.appendChild(elementBL);
-				listbacklog.appendChild(listBL);
-		}
-	}	
+	if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
+		for (var i = 0; i< arrayHWnull.length; i++) {				
+			var listBL = document.createElement("li");
+			var elementBL = document.createElement("p");
+			elementBL.innerText=(arrayHWnull[i][1]);
+			elementBL.setAttribute("idTask", arrayHWnull[i][0]);
+			listBL.appendChild(elementBL);
+			listbacklog.appendChild(listBL);
+	}
 		
-		divBackLog.appendChild(listbacklog);
+		
+	divBackLog.appendChild(listbacklog);
 //Boton añadir especificacion
 		if(tipo==2){
 			var AddButton = document.createElement("input");
@@ -203,7 +224,6 @@ function showSprintInfo(){
 			divBackLog.appendChild(Task);
 		}
 //Boton añadir especificacion
-
 		SprintandBLRow.appendChild(divBackLog);
 	}
 }
