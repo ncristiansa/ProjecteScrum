@@ -179,25 +179,15 @@ a:link {
 }
 .titleh2-project,  .p-Title{
   background-color:  #4fa4e7;
-  padding: 1%;
 }
 
 #buttonProject, #buttonenviar{
   margin-top: 20px;
 }
 
-.SprintClick{
-  border: 1px solid;
-  text-align: center;
-}
 
-.infoSprint{
-  padding-left: 1%;
-  color: black;
-  background-color: white;
-  text-align: left;
-  border: 1px solid;
-}
+
+
 #listHW{
   list-style-type:none;
 }

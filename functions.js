@@ -20,32 +20,32 @@ function insertAfter(e,i){
 function showinfoProject(){
 	var elementNav = document.getElementsByTagName("nav")[0];
 	var divInfo = document.createElement("div");
-	var titleH2 = document.createElement("h2");
+	var titleH2 = document.createElement("h3");
 	
-		var textH2 = document.createTextNode(nameProjectJS[0]);
+		var textH2 = document.createTextNode(infoProject[0]);
 		titleH2.appendChild(textH2);
 
 	var nameP = document.createElement("p");
 
-		var textP = document.createTextNode("Nombre: "+nameProjectJS[0]);
+		var textP = document.createTextNode("Nombre: "+infoProject[0]);
 		nameP.appendChild(textP);
 
 	
 	var descripP = document.createElement("p");
 		
-		var textP = document.createTextNode("Descripción: "+descriptionProjectJS[0]);
+		var textP = document.createTextNode("Descripción: "+infoProject[1]);
 		descripP.appendChild(textP);
 
 	
 	var scrumnameP = document.createElement("p");
 
-		var textP = document.createTextNode("Scrum Master: "+scrumMasternameJS[0]);
+		var textP = document.createTextNode("Scrum Master: "+infoProject[2]);
 		scrumnameP.appendChild(textP);
 
 
 	var productownerP = document.createElement("p");
 
-		var textP = document.createTextNode("Product Owner: "+productOwnernameJS[0]);
+		var textP = document.createTextNode("Product Owner: "+infoProject[3]);
 		productownerP.appendChild(textP);
 
 	/*

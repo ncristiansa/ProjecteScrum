@@ -98,10 +98,7 @@
 		*/
 		$InfoProject = ("SELECT * FROM Projects WHERE nameProject='$NameProject';");
 		$resultInfoProject = mysqli_query($connect, $InfoProject);
-		$nameInfoProject = [];
-		$descriptionInfoProject = [];
-		$scrumMasterInfoProject = [];
-		$productOwnerInfoProject = [];
+		$infoProject=[];
 
 		while ($info = mysqli_fetch_assoc($resultInfoProject)) {
 			$NameP = $info["nameProject"];
@@ -109,10 +106,10 @@
 			$DescripcionP = $info["description"];
 			$scrumMasternameP = $info["scrumMasterName"];
 			$productOwnernameP = $info["productOwnerName"];
-			array_push($nameInfoProject, $NameP);
-			array_push($descriptionInfoProject, $DescripcionP);
-			array_push($scrumMasterInfoProject, $scrumMasternameP);
-			array_push($productOwnerInfoProject, $productOwnernameP);
+			array_push($infoProject, $NameP);
+			array_push($infoProject, $DescripcionP);
+			array_push($infoProject, $scrumMasternameP);
+			array_push($infoProject, $productOwnernameP);
 		}
 		$typeUser = ("SELECT type FROM Users WHERE username='$NameUser';");
 		$resultTypeUser = mysqli_query($connect, $typeUser);
@@ -206,10 +203,7 @@
 	var tipo = '<?php echo $userType;?>';
 </script>
 <script type="text/javascript">
-	var nameProjectJS = <?php echo json_encode($nameInfoProject);?>;
-	var descriptionProjectJS = <?php echo json_encode($descriptionInfoProject);?>;
-	var scrumMasternameJS = <?php echo json_encode($scrumMasterInfoProject);?>;
-	var productOwnernameJS = <?php echo json_encode($productOwnerInfoProject);?>;
+	var infoProject = <?php echo json_encode($infoProject);?>;
 	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
 	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;	
 	var arrayHWnull = <?php echo json_encode($finalHWnullArray);?>;
