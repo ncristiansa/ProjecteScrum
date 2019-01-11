@@ -91,6 +91,7 @@ function showSprintInfoOneByOne(Position){
 		divSprint.style.backgroundColor = "green";
 	}else if(arraySprint[Position][4]==2){
 		divSprint.style.backgroundColor = "black";
+		divSprint.setAttribute("editable","true");
 		divSprint.style.color="white";
 		divSprint.style.borderColor="black";
 		}
@@ -138,7 +139,7 @@ function showSprintInfoOneByOne(Position){
 function buttonNewSprint(divSprints){
 	var btnNewSprint = document.createElement("button");	
 	btnNewSprint.setAttribute("id","newSprintBtn");
-	btnNewSprint.setAttribute("class","btn waves-effect");
+	btnNewSprint.setAttribute("class","btn waves-effect center-align");
 	var textbotton=document.createTextNode("Crear Sprint");
 	btnNewSprint.appendChild(textbotton);
 	divSprints.appendChild(btnNewSprint);

@@ -206,3 +206,10 @@ a:link {
   border-color: black;
   width: 70%;
 }
+/*Nuevo*/
+.col.s6 > #newSprintBtn {
+   width: 100%;
+}
+#SprintandBLContrainer{
+  width: 100%;
+}
