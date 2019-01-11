@@ -55,7 +55,10 @@
 
 		
 		/*
-			Al obtener el nombre del projecto mediante el método GET puedo realizar una consulta que me devuelva los datos de ese proyecto y enviarselo mediante un array al JS para mostrar con DOM toda la información de X projecto.
+			Al obtener el nombre del projecto mediante el método GET
+			puedo realizar una consulta que me devuelva los datos de ese proyecto
+			y enviarselo mediante un array al JS para mostrar con DOM
+			toda la información de X projecto.
 		*/
 		$InfoProject = ("SELECT * FROM Projects WHERE nameProject='$NameProject';");
 		$resultInfoProject = mysqli_query($connect, $InfoProject);
@@ -81,7 +84,10 @@
 		}
 		
 
-		//Con el id del projecto buscamos los sprints de este, creando una array de arrays, para luego enviarla a javascript
+		/**
+		 * Con el id del projecto buscamos los sprints de este,
+		 * creando una array de arrays, para luego enviarla a javascript
+		 */
 		$SprintsInfo = ("SELECT * FROM Sprints WHERE projectID=$idProject order by orderNumber;");
 		$resultSprints = mysqli_query($connect,$SprintsInfo);
 
@@ -105,7 +111,11 @@
 			$restartSprintInfoArray=[];
 		}
 
-		//Con los ids de los sprints del projecto buscamos las especificaciones de este, creando una array de arrays, para luego enviarla a javascript
+		/**
+		 * Con los ids de los sprints del projecto
+		 * buscamos las especificaciones de este,
+		 * creando una array de arrays, para luego enviarla a javascript
+		 */
 		$HomeworkInfo = ("SELECT * FROM Homework WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID='$idProject' order by orderNumber) ORDER BY orderHW;");
 		$HomeworkResult = mysqli_query($connect,$HomeworkInfo);
 
@@ -131,8 +141,10 @@
 
 <?php
 	/*
-		Esta condición nos permite saber si el usuario ha hecho click en la imagen donde hemos añadido una especie de
-		variable que estará siempre en True, activada para que cuando se haya hecho clic llame a la función destroySession.
+		Esta condición nos permite saber si el usuario ha hecho click
+		en la imagen donde hemos añadido una especie de	variable
+		que estará siempre en True, activada para que
+		cuando se haya hecho clic llame a la función destroySession.
 	*/
 	if(isset($_GET['exituser'])){
 		destroySession();

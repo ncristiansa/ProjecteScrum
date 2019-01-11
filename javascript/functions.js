@@ -6,53 +6,22 @@ function insertAfter(e,i){
 		e.parentNode.appendChild(i);
 	}
 }
-function showinfoProject(){
+/**
+ * Nos mostrará la información de los proyectos
+ */
+function showInfoProject() {
 	var elementNav = document.getElementsByTagName("nav")[0];
-	var divInfo = document.createElement("div");
-	var titleH2 = document.createElement("h2");
-	
-	var textH2 = document.createTextNode(nameProjectJS[0]);
-	titleH2.appendChild(textH2);
+	addElement(elementNav, "div", undefined, ["class=row info-project", "name=divInfo"]);
+	var divInfo = document.getElementsByName("divInfo")[0];
+	addElement(divInfo, "h2", nameProjectJS[0], ["class=titleh2-project"]);
 
-	var nameP = document.createElement("p");
-
-	var textP = document.createTextNode("Nombre: "+nameProjectJS[0]);
-	nameP.appendChild(textP);
-
-	
-	var descripP = document.createElement("p");
-		
-	var textP = document.createTextNode("Descripción: "+descriptionProjectJS[0]);
-	descripP.appendChild(textP);
-
-	
-	var scrumnameP = document.createElement("p");
-
-	var textP = document.createTextNode("Scrum Master: "+scrumMasternameJS[0]);
-	scrumnameP.appendChild(textP);
-
-
-	var productownerP = document.createElement("p");
-
-	var textP = document.createTextNode("Product Owner: "+productOwnernameJS[0]);
-	productownerP.appendChild(textP);
-
-	/*
-		Añadimos clases a los elementos creandos anteriormente.
-	*/
-	divInfo.setAttribute("class", "info-project");
-	titleH2.setAttribute("class", "titleh2-project");
-
-	/*
-		Añadimos h2, p, br dentro de nuestro elemento DIV
-	*/
-	divInfo.appendChild(titleH2);
-	divInfo.appendChild(nameP);
-	divInfo.appendChild(descripP);
-	divInfo.appendChild(scrumnameP);
-	divInfo.appendChild(productownerP);
-	insertAfter(elementNav, divInfo);
-	
+	var descriptionText = "Descripción: " + descriptionProjectJS[0];
+	var scrumMName = "Scrum Master: " + scrumMasternameJS[0];
+	var productOName = "Product Owner: " + productOwnernameJS[0];
+	addElement(divInfo, "p", nameProjectJS[0], undefined);
+	addElement(divInfo, "p", descriptionText, undefined);
+	addElement(divInfo, "p", scrumMName, undefined);
+	addElement(divInfo, "p", productOName, undefined);
 }
 
 
