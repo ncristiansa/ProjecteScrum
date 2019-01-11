@@ -139,7 +139,7 @@ a:link {
   border-collapse: collapse;
   word-wrap: break-word;
 }
-.info-project, .list-projects, #formulario, #infoSprints, #infoHomework {
+.info-project, .list-projects, #formulario, #infoSprints, #infoHomework, #divBackLog {
   margin: 0 auto;
   margin-top: 2%;
   width: 50%;
@@ -150,7 +150,6 @@ a:link {
 }
 .titleh2-project,  .p-Title{
   background-color:  #4fa4e7;
-  padding: 1%;
 }
 
 #buttonProject, #buttonenviar{
@@ -184,4 +183,14 @@ a:link {
   margin-bottom: 2%;
   border-color: black;
   width: 70%;
+  -webkit-text-fill-color: black;
+}
+
+p {
+  color: black;
+}
+
+.inputImage {
+  width: 25px;
+  height: 25px;
 }
