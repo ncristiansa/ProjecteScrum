@@ -4,10 +4,9 @@ if (tipo==1) {
 
 
 function scrumMaster(){
-	var boton = createButton("a", "Crear Proyecto", ["id=buttonProject", "class=btn card-title"])
+	var boton = createButton("a", "Crear Proyecto", ["id=buttonProject", "class=btn card-title", "onclick=formulario()"])
 	var elementodiv = document.getElementsByClassName("list-projects")[0];
-	boton.addEventListener("click",formulario);
-	boton.addEventListener("click",borrarinputs);
+	//boton.addEventListener("click",borrarinputs);
 	elementodiv.appendChild(boton);
 }
 
@@ -48,100 +47,6 @@ function addMessageError(errorText, status){
 	}
 	
 }
-
-
-/*
-function formulario(){
-	var elementoBoton = document.getElementsByTagName("button")[0];
-	var form = document.createElement("form");
-	var nproj = document.createElement("input");
-	var descr = document.createElement("input");
-	var scrumm = document.createElement("select");
-	var produ = document.createElement("select");
-	var gdeve = document.createElement("select");
-	var elebr = document.createElement("br");
-
-	form.setAttribute("method","post");
-	form.setAttribute("id", "formulario");
-	form.setAttribute("action","vistainicial.php");
-
-
-	nproj.setAttribute("change",validar);
-	scrumm.setAttribute("change",validar);
-	produ.setAttribute("change",validar);
-	gdeve.setAttribute("change",validar);
-
-	nproj.setAttribute("name","nproyecto");
-	descr.setAttribute("name","descripcion");
-	scrumm.setAttribute("name","scrum");
-	produ.setAttribute("name","produ");
-	gdeve.setAttribute("name","developers");
-
-	var butonenviar = document.createElement("input");
-	butonenviar.setAttribute("id", "buttonenviar");
-	butonenviar.setAttribute("type", "button");
-	butonenviar.setAttribute("onclick","validar()");
-	butonenviar.setAttribute("value", "Enviar");
-	butonenviar.setAttribute("name", "btn");
-
-
-	var pnom = document.createElement("p");
-	var pdescr = document.createElement("p");
-	var pscrumm = document.createElement("p");
-	var pproduc = document.createElement("p");
-	var pdeve = document.createElement("p");
-
-
-	
-	createComboBox(opscrum1, scrumjs, scrumm);
-	createComboBox(opproduc1, producjs, produ);
-	createComboBox(opi1, groupjs, gdeve);
-
-
-
-	var cnom = document.createTextNode("Nombre del proyecto");
-	pnom.appendChild(cnom);
-
-	var cdescr = document.createTextNode("Descripción");
-	pdescr.appendChild(cdescr);
-
-	var cscrumm = document.createTextNode("ScrumMaster");
-	pscrumm.appendChild(cscrumm);
-
-
-	var cproduc = document.createTextNode("Product Owner");
-	pproduc.appendChild(cproduc);
-
-	var cdeve= document.createTextNode("Grup Developers");
-	pdeve.appendChild(cdeve);
-
-
-
-	form.appendChild(pnom);
-	form.appendChild(nproj);
-
-	form.appendChild(pdescr);
-	form.appendChild(descr);
-
-	form.appendChild(pscrumm);
-	form.appendChild(scrumm);
-
-	form.appendChild(pproduc);
-	form.appendChild(produ);
-
-	form.appendChild(pdeve);
-	form.appendChild(gdeve);
-
-	form.appendChild(elebr);
-
-	form.appendChild(butonenviar);
-
-	insertAfter(elementoBoton,form);	
-
-	elementoBoton.disabled = true;
-
-}
-*/
 
 function borrarinputs(){
 	var inputnombrepro = document.getElementsByTagName("input")[0];

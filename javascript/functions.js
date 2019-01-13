@@ -97,16 +97,8 @@ function showSprintInfoOneByOne(Position) {
 function showSprintInfo() {
 	var lastdiv = document.getElementsByClassName("info-project")[0];
 
-	var SprintandBLContrainer = document.createElement("div");
-	SprintandBLContrainer.setAttribute("class", "container");
-	SprintandBLContrainer.setAttribute("name", "SprintandBLContrainer");
-
-	var SprintandBLRow = document.createElement("div");
-	SprintandBLRow.setAttribute("class", "row");
-	SprintandBLRow.setAttribute("id", "SprintandBLRow");
-
-	SprintandBLContrainer.appendChild(SprintandBLRow);
-	insertAfter(lastdiv, SprintandBLContrainer);
+	var sprintCont = addElement(lastdiv, "div", undefined, ["class=container", "name=SprintandBLContrainer"])
+	addElement(sprintCont, "div", undefined, ["class=row", "id=SprintandBLRow"])
 
 	if (typeof arraySprint !== 'undefined' && arraySprint.length > 0 && typeof arraySprint !== 'undefined' && arraySprint.length > 0) {
 		var divSprints = addElement(SprintandBLRow, "div", undefined, ["id=infoSprints", "class= col s6"]);

@@ -74,7 +74,7 @@
 			array_push($infoProject, $DescripcionP);
 			array_push($infoProject, $scrumMasternameP);
 			array_push($infoProject, $productOwnernameP);
-		}
+		
 		$typeUser = ("SELECT type FROM Users WHERE username='$NameUser';");
 		$resultTypeUser = mysqli_query($connect, $typeUser);
 		if($Query = mysqli_fetch_assoc($resultTypeUser)){
@@ -161,20 +161,19 @@
 	if(isset($_GET['exituser'])){
 		destroySession();
 	}
-	
 ?>
-
-<script type="text/javascript">
-	var tipo = '<?php echo $userType;?>';
-</script>
-<script type="text/javascript">
-	var infoProject = <?php echo json_encode($infoProject);?>;
-	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
-	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;	
-	var arrayHWnull = <?php echo json_encode($finalHWnullArray);?>;
-</script>
-
-	
+<?php
+	echo "
+	<script type='text/javascript'>
+		var tipo = ".$userType.";
+	</script>
+	<script type='text/javascript'>
+		var infoProject = ".json_encode($infoProject).";
+		var arraySprint = ".json_encode($finalSprintInfoArray).";
+		var arrayHW = ".json_encode($finalHWInfoArray).";	
+		var arrayHWnull = ".json_encode($finalHWnullArray).";
+	</script>"
+?>
 
 </body>
 </html>

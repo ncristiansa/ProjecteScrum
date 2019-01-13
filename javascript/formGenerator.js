@@ -2,131 +2,40 @@
  * Función que genera el formulario para crear proyectos
  */
 function formulario() {
-    var elementoBoton = document.getElementsByTagName("button")[0];
-    var form = document.createElement("form");
-    var nproj = document.createElement("input");
-    var descr = document.createElement("input");
-    var scrumm = document.createElement("select");
-    var produ = document.createElement("select");
-    var gdeve = document.createElement("select");
-    var elebr = document.createElement("br");
+    var elementoBoton = document.getElementById("buttonProject");
+    disableButton(elementoBoton);
 
-    form.setAttribute("method", "post");
-    form.setAttribute("id", "formulario");
-    form.setAttribute("action", "vistainicial.php");
+    var elementodiv = document.getElementsByClassName("list-projects")[0];
+    addElement(elementodiv, "div", undefined, ["class=row", "id=formularioProyecto"]);
+    var divFormProject = document.getElementById("formularioProyecto");
+    var formProject = addElement(divFormProject, "form", undefined, ["action=vistainicial.php","method=post","id=createProject"]);
 
+    createInputField(formProject, "nombre-proyecto", "Nombre del Proyecto", true);
+    createInputField(formProject, "descripcion", "Descripción", false);
+    crearComboBox(formProject, "Scrum Master", scrumjs);
+    crearComboBox(formProject, "Product Owner", producjs);
+    crearComboBox(formProject, "Grupo Developers", groupjs);
 
-
-
-    nproj.setAttribute("change", validar);
-    scrumm.setAttribute("change", validar);
-    produ.setAttribute("change", validar);
-    gdeve.setAttribute("change", validar);
-
-    nproj.setAttribute("name", "nproyecto");
-    descr.setAttribute("name", "descripcion");
-    scrumm.setAttribute("name", "scrum");
-    produ.setAttribute("name", "produ");
-    gdeve.setAttribute("name", "developers");
-
-    var butonenviar = document.createElement("input");
-    butonenviar.setAttribute("id", "buttonenviar");
-    butonenviar.setAttribute("type", "button");
-    butonenviar.setAttribute("onclick", "validar()");
-    butonenviar.setAttribute("value", "Enviar");
-    butonenviar.setAttribute("name", "btn");
+    addElement(formProject, "a", "Guardar Proyecto", ["id=saveProject", "class=btn card-title", "onclick=createProject()"]);
+}
 
 
-    var pnom = document.createElement("p");
-    var pdescr = document.createElement("p");
-    var pscrumm = document.createElement("p");
-    var pproduc = document.createElement("p");
-    var pdeve = document.createElement("p");
-
-
-    var opscrum1 = document.createElement("option");
-    var tscrum1 = document.createTextNode("Elige una opcion");
-    opscrum1.appendChild(tscrum1);
-    scrumm.appendChild(opscrum1);
-
-
-    for (var u = 0; u < scrumjs.length; u++) {
-        var opscrum = document.createElement("option");
-        var tscrum = document.createTextNode(scrumjs[u]);
-        opscrum.appendChild(tscrum);
-        scrumm.appendChild(opscrum);
+/**
+ * Se le pasa un padre y crea un input text con el texto que se le pase. Permite elegir si requiere validar o no
+ * @param {HTMLCollection} parent Padre al que se añadirá el elemento
+ * @param {HTMLCollection} placeholder Texto del placeholder, también utilizado para el id y el for
+ * @param {Text} text Texto que tendrá el input
+ * @param {boolean} ifValidate Se le pasa un boleano o undefined. Si es false, no validará nada
+ */
+function createInputField(parent, placeholder, text, ifValidate) {
+    var newParent = addElement(parent, "div", undefined, ["class=row"]);
+    var inputField = addElement(newParent, "div", undefined, ["class=input-field"]);
+    if (ifValidate === false) {
+        var theInput = addElement(inputField, "input", undefined, ["placeholder="+text, "id="+placeholder, "type=text"]);    
+    } else {
+        var theInput = addElement(inputField, "input", undefined, ["placeholder="+text, "id="+placeholder, "type=text", "class=validate"]);
     }
-
-
-    var opproduc1 = document.createElement("option");
-    var tproduc1 = document.createTextNode("Elige una opcion");
-    opproduc1.appendChild(tproduc1);
-    produ.appendChild(opproduc1);
-
-    for (var o = 0; o < producjs.length; o++) {
-        var opproduc = document.createElement("option");
-        var tproduc = document.createTextNode(producjs[o]);
-        opproduc.appendChild(tproduc);
-        produ.appendChild(opproduc);
-    }
-
-
-    var opi1 = document.createElement("option");
-    var texi1 = document.createTextNode("Elige una opcion");
-    opi1.appendChild(texi1);
-    gdeve.appendChild(opi1);
-
-
-
-    for (var i = 0; i < groupjs.length; i++) {
-        var opi = document.createElement("option");
-        var texi = document.createTextNode(groupjs[i]);
-        opi.appendChild(texi);
-        gdeve.appendChild(opi);
-    }
-
-
-    var cnom = document.createTextNode("Nombre del proyecto");
-    pnom.appendChild(cnom);
-
-    var cdescr = document.createTextNode("Descripción");
-    pdescr.appendChild(cdescr);
-
-    var cscrumm = document.createTextNode("ScrumMaster");
-    pscrumm.appendChild(cscrumm);
-
-
-    var cproduc = document.createTextNode("Product Owner");
-    pproduc.appendChild(cproduc);
-
-    var cdeve = document.createTextNode("Grup Developers");
-    pdeve.appendChild(cdeve);
-
-
-
-    form.appendChild(pnom);
-    form.appendChild(nproj);
-
-    form.appendChild(pdescr);
-    form.appendChild(descr);
-
-    form.appendChild(pscrumm);
-    form.appendChild(scrumm);
-
-    form.appendChild(pproduc);
-    form.appendChild(produ);
-
-    form.appendChild(pdeve);
-    form.appendChild(gdeve);
-
-    form.appendChild(elebr);
-
-    form.appendChild(butonenviar);
-
-    insertAfter(elementoBoton, form);
-
-    elementoBoton.disabled = true;
-
+    addElement(theInput, "label", text, ["for="+placeholder]);
 }
 
 
@@ -147,29 +56,46 @@ function createComboBox(option, array, select) {
     }    
 }
 
+/**
+ * Añade a un formulario un combobox generado dinamicamente, pasandole de qué es el formulario y las opciones que contendrá
+ * @param {object} form Formulario al que vas a agregar el combobox
+ * @param {text} eleccion Indicador en una string que indicará qué seleccionará
+ * @param {array} nombres Array con los nombres para insertar en el comboBox 
+ */
+function crearComboBox(form, eleccion, nombres) {
+	var div = addElement(form,"div", undefined, ["class=col s9"]);
+	addElement(div,"label", eleccion, undefined);
+	var select = addElement(div,"select",undefined,undefined);
+	addElement(select,"option",undefined,["selected=selected","disabled=true","value="]).text = "Selecciona una opción";
+	dropDownGenerator(select, nombres);
+	$(select).formSelect();
+}
+
 
 /**
- * Esta funcion valida que los campos no esten vacios. Si no, no envia el submit
+ * Crea las opciones dentro del select que se le pase. Si la array no tiene id, le asigna uno automaticamente
+ * @param {object} select Select al que se le añadirán las opciones 	
+ * @param {array} arrayCombo Array con objetos que pasan un nombre e id
  */
-function validar() {
-    return false
-    /*
-    var inputnombrepro = document.getElementsByTagName("input")[0];
-    var selectScrum = document.getElementsByTagName("select")[0];
-    var selectProduct = document.getElementsByTagName("select")[1];
-    var selectGrupo = document.getElementsByTagName("select")[2];
-    if (inputnombrepro.value == "" && selectScrum.value == "Elige una opcion" && selectProduct.value == "Elige una opcion" && selectGrupo.value == "Elige una opcion") {
-        addMessageError("Nombre del proyecto vacio \n Ningun Scrum Master seleccionado \n Ningun Produc Owner seleccionado \n Ningun Grupo de Developers seleccionado", true);
-    } else if (inputnombrepro.value == "") {
-        addMessageError("Nombre del proyecto vacio", true);
-    } else if (selectScrum.value == "Elige una opcion") {
-        addMessageError("Ningun Scrum Master seleccionado", true);
-    } else if (selectProduct.value == "Elige una opcion") {
-        addMessageError("Ningun Produc Owner seleccionado", true);
-    } else if (selectGrupo.value == "Elige una opcion") {
-        addMessageError("Ningun Grupo de Developers seleccionado", true);
-    } else {
-        document.getElementById('formulario').submit();
+function dropDownGenerator(select, arrayCombo) {
+	var opt = null;
+	if (arrayCombo[0] == undefined) {
+		return false;
+	}
+
+    for (var i = 0; i < arrayCombo.length; i++) {
+        var opt = document.createElement("option");
+        if (arrayCombo[i] !== undefined) {
+            opt.value = i+1;
+            opt.innerHTML = arrayCombo[i];
+        select.appendChild(opt);
+        }
     }
-    */
+}
+
+/**
+ * Funcion que creará el proyecto pasando los parametros indicados al php
+ */
+function createProject() {
+	document.getElementById("createProject").submit();
 }

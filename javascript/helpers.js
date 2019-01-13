@@ -3,8 +3,7 @@
  * @param {class} name Le pasamos la clase del boton para localizarlo y lo desactiva
  */
 function disableButton(name) {
-    var element = document.getElementsByClassName(name)[0];
-    element.classList.add("disabled");
+    name.classList.add("disabled");
 }
 
 /**
@@ -12,8 +11,7 @@ function disableButton(name) {
  * @param {class} name Le pasamos la clase del boton para localizarlo y lo activa
  */
 function enableButton(name) {
-    var element = document.getElementsByClassName(name)[0];
-    element.classList.remove("disabled");
+    name.classList.remove("disabled");
 }
 
 /**
