@@ -37,10 +37,10 @@
 	/*
 		Obtendré la URL por el = para otbtener la posición 1 que es el nombre
 	*/
-?>		
-<?php
-	include 'templates/nav.php';
+?>
 
+<?php
+		include 'templates/nav.php';
 		$host=$_SERVER["HTTP_HOST"];
 		$url= $_SERVER["REQUEST_URI"];
 		/*
@@ -51,19 +51,13 @@
 		$newutl = explode("=", $url);
 		$ProjectName = $newutl[1];
 		$NameProject = str_replace("%20", " ", $ProjectName);
-
-
 		
 		/*
-			Al obtener el nombre del projecto mediante el método GET
-			puedo realizar una consulta que me devuelva los datos de ese proyecto
-			y enviarselo mediante un array al JS para mostrar con DOM
-			toda la información de X projecto.
+			Al obtener el nombre del projecto mediante el método GET puedo realizar una consulta que me devuelva los datos de ese proyecto y enviarselo mediante un array al JS para mostrar con DOM toda la información de X projecto.
 		*/
 		$InfoProject = ("SELECT * FROM Projects WHERE nameProject='$NameProject';");
 		$resultInfoProject = mysqli_query($connect, $InfoProject);
 		$infoProject=[];
-
 		while ($info = mysqli_fetch_assoc($resultInfoProject)) {
 			$NameP = $info["nameProject"];
 			$idProject=$info["projectID"];
@@ -74,24 +68,18 @@
 			array_push($infoProject, $DescripcionP);
 			array_push($infoProject, $scrumMasternameP);
 			array_push($infoProject, $productOwnernameP);
-		
+		}
 		$typeUser = ("SELECT type FROM Users WHERE username='$NameUser';");
 		$resultTypeUser = mysqli_query($connect, $typeUser);
 		if($Query = mysqli_fetch_assoc($resultTypeUser)){
 			$userType = $Query["type"];
 		}
 		
-
-		/**
-		 * Con el id del projecto buscamos los sprints de este,
-		 * creando una array de arrays, para luego enviarla a javascript
-		 */
+		//Con el id del projecto buscamos los sprints de este, creando una array de arrays, para luego enviarla a javascript
 		$SprintsInfo = ("SELECT * FROM Sprints WHERE projectID=$idProject order by orderNumber;");
 		$resultSprints = mysqli_query($connect,$SprintsInfo);
-
 		$finalSprintInfoArray = [];
 		$restartSprintInfoArray = [];
-
 		while ($info = mysqli_fetch_assoc($resultSprints)) {
 			$order=$info["orderNumber"];
 			$hours=$info["hours"];
@@ -108,18 +96,11 @@
 			array_push($finalSprintInfoArray, $restartSprintInfoArray);			
 			$restartSprintInfoArray=[];
 		}
-
-		/**
-		 * Con los ids de los sprints del projecto
-		 * buscamos las especificaciones de este,
-		 * creando una array de arrays, para luego enviarla a javascript
-		 */
+		//Con los ids de los sprints del projecto buscamos las especificaciones de este, creando una array de arrays, para luego enviarla a javascript
 		$HomeworkInfo = ("SELECT * FROM Homework WHERE sprintID IN (SELECT  sprintID FROM Sprints WHERE projectID='$idProject' order by orderNumber) ORDER BY orderHW;");
 		$HomeworkResult = mysqli_query($connect,$HomeworkInfo);
-
 		$finalHWInfoArray=[];
 		$restartHWInfoArray=[];
-
 		while ($info = mysqli_fetch_assoc($HomeworkResult)){
 			$homeworkID=$info["homeworkID"];
 			$description=$info["description"];
@@ -134,7 +115,6 @@
 			array_push($finalHWInfoArray, $restartHWInfoArray);		
 			$restartHWInfoArray=[];
 		}
-
 		//Buscar especificaciones en el backlog
 		$HWnull=("SELECT * FROM Homework WHERE projectID='$idProject' AND sprintID=0;");
 		$HWnullResult=mysqli_query($connect,$HWnull);
@@ -153,27 +133,33 @@
 
 <?php
 	/*
-		Esta condición nos permite saber si el usuario ha hecho click
-		en la imagen donde hemos añadido una especie de	variable
-		que estará siempre en True, activada para que
-		cuando se haya hecho clic llame a la función destroySession.
+		Hemos creado una función llamada destroySession para que una vez sea llamada destruya la SESSION actual y nos redirija a login.php
+	*/
+	function destroySession(){
+		session_destroy();
+		header("Location: index.php");
+	}
+	/*
+		Esta condición nos permite saber si el usuario ha hecho click en la imagen donde hemos añadido una especie de
+		variable que estará siempre en True, activada para que cuando se haya hecho clic llame a la función destroySession.
 	*/
 	if(isset($_GET['exituser'])){
 		destroySession();
 	}
+	
 ?>
-<?php
-	echo "
-	<script type='text/javascript'>
-		var tipo = ".$userType.";
-	</script>
-	<script type='text/javascript'>
-		var infoProject = ".json_encode($infoProject).";
-		var arraySprint = ".json_encode($finalSprintInfoArray).";
-		var arrayHW = ".json_encode($finalHWInfoArray).";	
-		var arrayHWnull = ".json_encode($finalHWnullArray).";
-	</script>"
-?>
+
+<script type="text/javascript">
+	var tipo = '<?php echo $userType;?>';
+</script>
+<script type="text/javascript">
+	var infoProject = <?php echo json_encode($infoProject);?>;
+	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
+	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;	
+	var arrayHWnull = <?php echo json_encode($finalHWnullArray);?>;
+</script>
+
+	
 
 </body>
 </html>

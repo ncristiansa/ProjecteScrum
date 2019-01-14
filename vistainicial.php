@@ -50,6 +50,13 @@
 
 <?php
 	/*
+		Hemos creado una función llamada destroySession para que una vez sea llamada destruya la SESSION actual y nos redirija a login.php
+	*/
+	function destroySession(){
+		session_destroy();
+		header("Location: index.php");
+	}
+	/*
 		Esta condición nos permite saber si el usuario ha hecho click en la imagen donde hemos añadido una especie de
 		variable que estará siempre en True, activada para que cuando se haya hecho clic llame a la función destroySession.
 	*/
@@ -107,17 +114,13 @@
 <?php	
 	$consultaselect = ("SELECT username FROM Users WHERE type=1;");
 	$resultadoselect = mysqli_query($connect,$consultaselect);
-
 	$arrayscrum=[];
 	while($regiscrum = mysqli_fetch_assoc($resultadoselect)){
 		$scrum = $regiscrum["username"];
 		array_push($arrayscrum, $scrum);
-
 	}
-
 	$consuproduc = ("SELECT username FROM Users WHERE type=2;");
 	$resultproduc = mysqli_query($connect,$consuproduc);
-
 	$arrayproduc=[];
 	while ($regiproduc = mysqli_fetch_assoc($resultproduc)) {
 		$produc = $regiproduc["username"];
@@ -125,34 +128,25 @@
 	}
 	
 	
-
 	$consugroup = ("SELECT DISTINCT (nameGroup) FROM Groups;");
 	$resultgroup = mysqli_query($connect,$consugroup);
-
 	$arraygroups=[];
 	while( $regigroup = mysqli_fetch_assoc($resultgroup) ){
 		$group = $regigroup["nameGroup"];
-
 		array_push($arraygroups, $group);
 		
 	}
-
-
 	checkIsset($nproyecto, $_POST["nproyecto"]);
 	checkIsset($descripcion, $_POST["descripcion"]);
 	checkIsset($scrumaster, $_POST["scrum"]);
 	checkIsset($nomproduc, $_POST["produ"]);
 	checkIsset($grupos, $_POST["developers"]);
-
 	$_SESSION["nameprojecto"] = $nproyecto;
 	$projectoNombre = $_SESSION["nameprojecto"];
-
 	$_SESSION["namescrum"] = $scrumaster;
 	$masterNombre = $_SESSION["namescrum"];
-
 	$_SESSION["nameproduct"] = $nomproduc;
 	$productNombre = $_SESSION["nameproduct"];
-
 	$_SESSION["namegrup"] = $grupos;
 	$groupNombre = $_SESSION["namegrup"];
 	print_r($projectoNombre);
@@ -208,8 +202,6 @@
 			
 			
 	}	
-
-
 ?>
 
 <script type="text/javascript">
