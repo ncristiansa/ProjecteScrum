@@ -95,10 +95,10 @@ function showSprintInfoOneByOne(Position){
 	}
 
 	//Candado se puede abrir o no
-	if(rraySprint[Position][4]==0 || rraySprint[Position][4]==1){
+	if(arraySprint[Position][4]==0 || arraySprint[Position][4]==1){
 
-	}else if(rraySprint[Position][4]==2){
-		//add click funtion
+	}else if(arraySprint[Position][4]==2){
+		//add click function
 	}
 
 	divSprint.appendChild(textSprint);	
@@ -109,6 +109,7 @@ function showSprintInfoOneByOne(Position){
 
 	var hours = document.createElement("p");
 	var texth= document.createTextNode("Horas: "+arraySprint[Position][1]);
+
 	hours.appendChild(texth);
 	divPSprint.appendChild(hours);
 
@@ -224,6 +225,11 @@ function showSprintInfo(){
 		
 //Espeficicaciones del Backlog
 	if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
+		var divBackLog = document.createElement("div");
+		divBackLog.setAttribute("id", "divBackLog");		
+		divBackLog.setAttribute("class", "col s6");
+		var listbacklog = document.createElement("ul");
+		listbacklog.setAttribute("id", "sortable1");
 		for (var i = 0; i< arrayHWnull.length; i++) {				
 			var listBL = document.createElement("li");
 			var elementBL = document.createElement("p");
