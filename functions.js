@@ -92,9 +92,14 @@ function showSprintInfoOneByOne(Position){
 	}else if(arraySprint[Position][4]==2){
 		divSprint.style.backgroundColor = "black";
 		divSprint.setAttribute("editable","true");
-		divSprint.style.color="white";
-		divSprint.style.borderColor="black";
-		}
+	}
+
+	//Candado se puede abrir o no
+	if(rraySprint[Position][4]==0 || rraySprint[Position][4]==1){
+
+	}else if(rraySprint[Position][4]==2){
+		//add click funtion
+	}
 
 	divSprint.appendChild(textSprint);	
 
