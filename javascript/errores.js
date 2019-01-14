@@ -1,10 +1,14 @@
+/*Función que mostrara los errores
+errorText es el texto del error i tiempo en el caso que queramos que este solo por unos segundos
+function showError(errorTextI,tiempo){
+
+*/
 function addMessageError(errorText, status) {
     var CheckError = document.getElementById("MessageError");
     var Button = document.getElementsByTagName("input")[0];
 
     if (CheckError == undefined) {
-        var Fail = document.
-            Element("div");
+        var Fail = document.createElement("div");
         Fail.setAttribute("id", "MessageError");
         Fail.setAttribute("align", "left");
 
@@ -14,9 +18,6 @@ function addMessageError(errorText, status) {
 
         var Img = document.createElement("img");
         Img.setAttribute("id", "imgError");
-        //Img.setAttribute("align", "left");
-        Img.setAttribute("height", "30px");
-        Img.setAttribute("width", "30px");
         Img.src = "images/alert.png";
 
         Button.appendChild(Fail);
@@ -34,3 +35,4 @@ function addMessageError(errorText, status) {
     }
 
 }
+

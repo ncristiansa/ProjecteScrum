@@ -64,3 +64,17 @@ function createButton(tag, text, attributes) {
     }
     return tagElement;
 }
+
+/**
+ * Le pasamos un padre y un hijo y colocamos al hijo inmediatamente después del padre
+ * @param {parent} padre Elemento padre que usamos de guía
+ * @param {child} elemento Elemento que engancharemos al padre para que aparezca consecutivamente 
+ */
+function insertAfter(padre, elemento) {
+    if (padre.nextSibling) {
+        padre.parentNode.insertBefore(elemento, padreº.nextSibling);
+
+    } else {
+        padre.parentNode.appendChild(elemento);
+    }
+}

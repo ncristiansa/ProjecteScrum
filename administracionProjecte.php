@@ -135,6 +135,4 @@ function InsertQuerySQL($table,$parameters,$allValues){
 	var groupjs = <?php echo json_encode($arraygroups);?> ;
 	var tipo = '<?php echo $userType;?>';
 </script>
-
-</body>
-</html>
+<?php include 'templates/footer.php'?>

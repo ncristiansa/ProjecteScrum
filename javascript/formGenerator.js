@@ -10,11 +10,11 @@ function formulario() {
     var divFormProject = document.getElementById("formularioProyecto");
     var formProject = addElement(divFormProject, "form", undefined, ["action=vistainicial.php","method=post","id=createProject"]);
 
-    createInputField(formProject, "nombre-proyecto", "Nombre del Proyecto", true);
-    createInputField(formProject, "descripcion", "Descripción", false);
-    crearComboBox(formProject, "Scrum Master", scrumjs);
-    crearComboBox(formProject, "Product Owner", producjs);
-    crearComboBox(formProject, "Grupo Developers", groupjs);
+    createInputField(formProject, "nombre-proyecto", "Nombre del Proyecto", true, "nproyecto");
+    createInputField(formProject, "descripcion", "Descripción", false, "descripcion");
+    crearComboBox(formProject, "Scrum Master", scrumjs, "scrum");
+    crearComboBox(formProject, "Product Owner", producjs, "produ");
+    crearComboBox(formProject, "Grupo Developers", groupjs, "developers");
 
     addElement(formProject, "a", "Guardar Proyecto", ["id=saveProject", "class=btn card-title", "onclick=createProject()"]);
 }
@@ -27,33 +27,15 @@ function formulario() {
  * @param {Text} text Texto que tendrá el input
  * @param {boolean} ifValidate Se le pasa un boleano o undefined. Si es false, no validará nada
  */
-function createInputField(parent, placeholder, text, ifValidate) {
+function createInputField(parent, placeholder, text, ifValidate, className) {
     var newParent = addElement(parent, "div", undefined, ["class=row"]);
     var inputField = addElement(newParent, "div", undefined, ["class=input-field"]);
     if (ifValidate === false) {
-        var theInput = addElement(inputField, "input", undefined, ["placeholder="+text, "id="+placeholder, "type=text"]);    
+        var theInput = addElement(inputField, "input", undefined, ["placeholder="+text, "id="+placeholder, "type=text", "name="+className]);    
     } else {
-        var theInput = addElement(inputField, "input", undefined, ["placeholder="+text, "id="+placeholder, "type=text", "class=validate"]);
+        var theInput = addElement(inputField, "input", undefined, ["placeholder=" + text, "id=" + placeholder, "type=text", "class=validate", "name=" + className]);
     }
     addElement(theInput, "label", text, ["for="+placeholder]);
-}
-
-
-/**
- * Crea un ComboBox a partir de la array que se le pasa
- */
-function createComboBox(option, array, select) {
-    var defaultText = document.createTextNode("Elige una opcion");
-    option.appendChild(defaultText);
-    select.appendChild(option);
-
-
-    for (var u = 0; u < array.length; u++) {
-        var optionElement = document.createElement("option");
-        var nodeElement = document.createTextNode(array[u]);
-        opcional.appendChild(nodeElement);
-        select.appendChild(optionElement);
-    }    
 }
 
 /**
@@ -61,11 +43,12 @@ function createComboBox(option, array, select) {
  * @param {object} form Formulario al que vas a agregar el combobox
  * @param {text} eleccion Indicador en una string que indicará qué seleccionará
  * @param {array} nombres Array con los nombres para insertar en el comboBox 
+ * @param {name} className 
  */
-function crearComboBox(form, eleccion, nombres) {
+function crearComboBox(form, eleccion, nombres, className) {
 	var div = addElement(form,"div", undefined, ["class=col s9"]);
 	addElement(div,"label", eleccion, undefined);
-	var select = addElement(div,"select",undefined,undefined);
+	var select = addElement(div,"select",undefined, ["name="+className]);
 	addElement(select,"option",undefined,["selected=selected","disabled=true","value="]).text = "Selecciona una opción";
 	dropDownGenerator(select, nombres);
 	$(select).formSelect();
@@ -86,7 +69,7 @@ function dropDownGenerator(select, arrayCombo) {
     for (var i = 0; i < arrayCombo.length; i++) {
         var opt = document.createElement("option");
         if (arrayCombo[i] !== undefined) {
-            opt.value = i+1;
+            opt.value = arrayCombo[i];
             opt.innerHTML = arrayCombo[i];
         select.appendChild(opt);
         }
@@ -97,5 +80,13 @@ function dropDownGenerator(select, arrayCombo) {
  * Funcion que creará el proyecto pasando los parametros indicados al php
  */
 function createProject() {
-	document.getElementById("createProject").submit();
+    if (validation()) {
+        document.getElementById("createProject").submit();
+    }
+}
+
+function validation() {
+    // Esto ha de buscar el formulario y las class validate
+    //mirar si no están vacias, hacer un if por cada una y si está vacio pongo false y salta un error
+    return true
 }

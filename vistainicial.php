@@ -197,13 +197,8 @@
 				}
 				header("Location: vistainicial.php");
 				
-			}
-			
-			
-			
+			}	
 	}	
-
-	print_r($_POST);
 ?>
 
 <script type="text/javascript">

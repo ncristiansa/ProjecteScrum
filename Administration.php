@@ -159,7 +159,4 @@
 	var arrayHWnull = <?php echo json_encode($finalHWnullArray);?>;
 </script>
 
-	
-
-</body>
-</html>
+<?php include 'templates/footer.php'?>

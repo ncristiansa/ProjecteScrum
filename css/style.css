@@ -51,6 +51,8 @@ table{
   animation-iteration-count: infinite;
   padding:5px;
   margin: 5px;
+  height: 30px;
+  width: 30px;
 }
 
 #imageAlert{
@@ -193,4 +195,8 @@ p {
 .inputImage {
   width: 25px;
   height: 25px;
+}
+
+.terminateSprint {
+  margin-right: 90%;
 }

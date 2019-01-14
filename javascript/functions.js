@@ -1,30 +1,26 @@
+if (tipo == 1) {
+	scrumMaster();
+}
+
 function scrumMaster() {
 	var boton = createButton("a", "Crear Proyecto", ["id=buttonProject", "class=btn card-title", "onclick=formulario()"])
 	var elementodiv = document.getElementsByClassName("list-projects")[0];
 	elementodiv.appendChild(boton);
 }
 
-function insertAfter(e,i){
-	if(e.nextSibling){
-		e.parentNode.insertBefore(i,e.nextSibling);
-
-	} else {
-		e.parentNode.appendChild(i);
-	}
-}
 /**
  * Nos mostrará la información de los proyectos
  */
 function showInfoProject() {
-	//var infoDiv = document.getElementById("divInfo").getElementsByClassName("info-Project")[0];
 	var elementNav = document.getElementById("contenido-web");
 	addElement(elementNav, "div", undefined, ["class=row info-project", "name=divInfo"]);
 	var divInfo = document.getElementsByName("divInfo")[0];
-	addElement(divInfo, "h3", infoProject[0], ["class=titleh2-project"]);
+	addElement(divInfo, "h3", infoProject[0], ["class=titleh3-project"]);
 
 	var descriptionText = "Descripción: " + infoProject[1];
 	var scrumMName = "Scrum Master: " + infoProject[2];
 	var productOName = "Product Owner: " + infoProject[3];
+
 	addElement(divInfo, "p", infoProject[0], ["class=descriptionInfo"]);
 	addElement(divInfo, "p", descriptionText, ["class=descriptionInfo"]);
 	addElement(divInfo, "p", scrumMName, ["class=descriptionInfo"]);
@@ -43,25 +39,25 @@ function showSprintInfoOneByOne(Position) {
 	var list = document.getElementById("listForClicks");
 	var elementlist = document.createElement("li");
 
-	var divSprint = document.createElement("div");
-	divSprint.setAttribute("class", "collapsible-header");
+	var divSprint = addElement(elementlist, "div", undefined, ["class=collapsible-header sprintNumber", "idSprint="+ Position + 1]);
+	if (arraySprint[Position][4] == 2) {
 
-	divSprint.setAttribute("idSprint", Position + 1);
-	var textSprint = document.createElement("p");
-	var text = document.createTextNode("Sprint " + arraySprint[Position][0]);
-	textSprint.setAttribute("class", "SprintLetters");
-	textSprint.appendChild(text);
+		//problemas!!!
+		addElement(divSprint, "i", "lock_open", ["class=large material-icons  green-text tooltipped", "data-tooltip=Edítame!", "data-position=left"]);
+	} else {
+		addElement(divSprint, "i", "lock_outline", ["class=large material-icons "]);
+	}
+	addElement(divSprint, "p", "Sprint " + arraySprint[Position][0], ["class=SprintLetters white-text"]);
+	addElement(divSprint, "i", "cancel", ["class=material-icons red-text terminateSprint"]);
 
 	//Colors Sprints
 	if (arraySprint[Position][4] == 0) {
-		divSprint.style.backgroundColor = "grey";
+		divSprint.classList.add("grey");
 	} else if (arraySprint[Position][4] == 1) {
-		divSprint.style.backgroundColor = "green";
+		divSprint.classList.add("green");
 	} else if (arraySprint[Position][4] == 2) {
-		divSprint.style.backgroundColor = "black";
+		divSprint.classList.add("black");
 	}
-
-	divSprint.appendChild(textSprint);
 
 	var divPSprint = document.createElement("div");
 	divPSprint.setAttribute("class", "infoSprint");
@@ -101,8 +97,7 @@ function showSprintInfoOneByOne(Position) {
 }
 		
 function showSprintInfo() {
-	var lastdiv = document.getElementsByClassName("info-project")[0];
-
+	var lastdiv = document.getElementsByTagName("body")[0];
 	var sprintCont = addElement(lastdiv, "div", undefined, ["class=container", "name=SprintandBLContrainer"])
 	addElement(sprintCont, "div", undefined, ["class=row", "id=SprintandBLRow"])
 
@@ -160,18 +155,19 @@ function addTask() {
 	addElement(DivID, "p", contentTask, ["class=OneHomework"])
 }
 
-
-//Para hacer click en los Sprints
-var options;
-var elem = document.querySelector('.collapsible');
-var instance = new M.Collapsible(elem, {
-	// inDuration: 1000,
-	// outDuration: 1000
-});
-
+/**
+ * Funciones para mostrar efectos de Materialize
+ */
 document.addEventListener('DOMContentLoaded', function () {
 	var elems = document.querySelectorAll('.collapsible');
 	var instances = M.Collapsible.init(elems, options);
+
+	//Para hacer click en los Sprints
+	var options;
+	var elem = document.querySelector('.collapsible');
 });
 
-
+document.addEventListener('DOMContentLoaded', function () {
+	var elems = document.querySelectorAll('.tooltipped');
+	var instances = M.Tooltip.init(elems, options);
+});

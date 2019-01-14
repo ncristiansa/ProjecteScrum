@@ -12,7 +12,6 @@
 	<!-- Js archives -->
 	<script type="text/javascript" defer src="javascript/formGenerator.js"></script>
 	<script type="text/javascript" defer src="javascript/helpers.js"></script>
-	<script type="text/javascript" defer src="javascript/funciones.js"></script>
 	<script type="text/javascript" defer src="javascript/functions.js"></script>
 	<script type="text/javascript" defer src="javascript/_init.js"></script>
 
