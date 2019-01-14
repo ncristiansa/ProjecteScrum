@@ -202,6 +202,8 @@
 			
 			
 	}	
+
+	print_r($_POST);
 ?>
 
 <script type="text/javascript">

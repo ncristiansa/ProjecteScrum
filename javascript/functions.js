@@ -1,3 +1,9 @@
+function scrumMaster() {
+	var boton = createButton("a", "Crear Proyecto", ["id=buttonProject", "class=btn card-title", "onclick=formulario()"])
+	var elementodiv = document.getElementsByClassName("list-projects")[0];
+	elementodiv.appendChild(boton);
+}
+
 function insertAfter(e,i){
 	if(e.nextSibling){
 		e.parentNode.insertBefore(i,e.nextSibling);
@@ -11,7 +17,7 @@ function insertAfter(e,i){
  */
 function showInfoProject() {
 	//var infoDiv = document.getElementById("divInfo").getElementsByClassName("info-Project")[0];
-	var elementNav = document.getElementsByTagName("nav")[0];
+	var elementNav = document.getElementById("contenido-web");
 	addElement(elementNav, "div", undefined, ["class=row info-project", "name=divInfo"]);
 	var divInfo = document.getElementsByName("divInfo")[0];
 	addElement(divInfo, "h3", infoProject[0], ["class=titleh2-project"]);
@@ -167,3 +173,5 @@ document.addEventListener('DOMContentLoaded', function () {
 	var elems = document.querySelectorAll('.collapsible');
 	var instances = M.Collapsible.init(elems, options);
 });
+
+

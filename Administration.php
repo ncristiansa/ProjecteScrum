@@ -146,9 +146,9 @@
 	if(isset($_GET['exituser'])){
 		destroySession();
 	}
+	echo "<div id='contenido-web'></div>";
 	
 ?>
-
 <script type="text/javascript">
 	var tipo = '<?php echo $userType;?>';
 </script>
