@@ -209,11 +209,13 @@ function showSprintInfo(){
 	}
 
 	//Div de BackLog
+	if(typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 && tipo==2){
 		var divBackLog = document.createElement("div");
 		divBackLog.setAttribute("id", "divBackLog");		
 		divBackLog.setAttribute("class", "col s6");
 		var listbacklog = document.createElement("ul");
 		listbacklog.setAttribute("id", "sortable1");
+	}
 		
 //Espeficicaciones del Backlog
 	if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
@@ -224,13 +226,13 @@ function showSprintInfo(){
 			elementBL.setAttribute("idTask", arrayHWnull[i][0]);
 			listBL.appendChild(elementBL);
 			listbacklog.appendChild(listBL);
-		}	
-	divBackLog.appendChild(listbacklog);
-	}
-	if(tipo==2){
-		NewTaskInterface(divBackLog,SprintandBLRow);
-	}
-	SprintandBLRow.appendChild(divBackLog);
+			}	
+		divBackLog.appendChild(listbacklog);
+		}
+		if(tipo==2){
+			NewTaskInterface(divBackLog,SprintandBLRow);
+		}
+		SprintandBLRow.appendChild(divBackLog);
 	
 }
 
