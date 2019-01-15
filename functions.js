@@ -92,14 +92,9 @@ function showSprintInfoOneByOne(Position){
 	}else if(arraySprint[Position][4]==2){
 		divSprint.style.backgroundColor = "black";
 		divSprint.setAttribute("editable","true");
-	}
-
-	//Candado se puede abrir o no
-	if(arraySprint[Position][4]==0 || arraySprint[Position][4]==1){
-
-	}else if(arraySprint[Position][4]==2){
-		//add click function
-	}
+		divSprint.style.color="white";
+		divSprint.style.borderColor="black";
+		}
 
 	divSprint.appendChild(textSprint);	
 
@@ -109,7 +104,6 @@ function showSprintInfoOneByOne(Position){
 
 	var hours = document.createElement("p");
 	var texth= document.createTextNode("Horas: "+arraySprint[Position][1]);
-
 	hours.appendChild(texth);
 	divPSprint.appendChild(hours);
 
@@ -215,21 +209,15 @@ function showSprintInfo(){
 	}
 
 	//Div de BackLog
-	if(typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 && tipo==2){
 		var divBackLog = document.createElement("div");
-		divBackLog.setAttribute("id", "divBackLog");		
+		divBackLog.setAttribute("id", "divBackLog");
 		divBackLog.setAttribute("class", "col s6");
+		divBackLog.innerText="Espeficicaciones:";
 		var listbacklog = document.createElement("ul");
 		listbacklog.setAttribute("id", "sortable1");
-	}
 		
 //Espeficicaciones del Backlog
 	if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
-		var divBackLog = document.createElement("div");
-		divBackLog.setAttribute("id", "divBackLog");		
-		divBackLog.setAttribute("class", "col s6");
-		var listbacklog = document.createElement("ul");
-		listbacklog.setAttribute("id", "sortable1");
 		for (var i = 0; i< arrayHWnull.length; i++) {				
 			var listBL = document.createElement("li");
 			var elementBL = document.createElement("p");
@@ -237,13 +225,13 @@ function showSprintInfo(){
 			elementBL.setAttribute("idTask", arrayHWnull[i][0]);
 			listBL.appendChild(elementBL);
 			listbacklog.appendChild(listBL);
-			}	
-		divBackLog.appendChild(listbacklog);
-		}
-		if(tipo==2){
-			NewTaskInterface(divBackLog,SprintandBLRow);
-		}
-		SprintandBLRow.appendChild(divBackLog);
+		}	
+	divBackLog.appendChild(listbacklog);
+	}
+	if(tipo==2){
+		NewTaskInterface(divBackLog,SprintandBLRow);
+	}
+	SprintandBLRow.appendChild(divBackLog);
 	
 }
 
