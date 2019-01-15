@@ -71,12 +71,51 @@ function showinfoProject(){
     var instances = M.Collapsible.init(elems, options);
   });
 
+
+ function editSprint(sprintinputs){
+ 	var active=document.getElementsByClassName("activeEdit");
+ 	if(active >0){
+ 		for (var i = 0; i < length.active; i++) {
+ 			active[i].remove("activeEdit");
+ 		}
+		editSprint(sprintinputs);
+	}else{
+		var list = document.getElementsByClassName(sprintinputs);
+		for (var i = 0; i < length.list; i++) {
+ 			list[i].disabled = true;
+ 			list[i].setAttribute("class","activeEdit");
+ 		}
+	}
+}
+
 function showSprintInfoOneByOne(Position){
 	var list = document.getElementById("listForClicks");	
 	var elementlist = document.createElement("li");
 
 	var divSprint = document.createElement("div");
 	divSprint.setAttribute("class", "collapsible-header");
+
+
+	if(tipo==1){
+		//Candado se puede abrir o no
+		if(arraySprint[Position][4]==0 || arraySprint[Position][4]==1){
+			var icon =document.createElement("i");
+			icon.innerText=	"outline";
+			icon.setAttribute("class","large material-icons");
+			divSprint.appendChild(icon);
+		}else if(arraySprint[Position][4]==2){
+			var icon =document.createElement("i");
+			icon.innerText="outline";
+			icon.setAttribute("class","large material-icons  green-text tooltipped");
+
+			icon.setAttribute("data-tooltipped","Edítame!");
+
+			divSprint.appendChild(icon);
+			//icon.addEventListener("click", editSprint(Position+1+"edit"));
+		}	
+	}
+
+
 
 	divSprint.setAttribute("idSprint", Position+1);
 	var textSprint = document.createElement("p");
@@ -94,12 +133,7 @@ function showSprintInfoOneByOne(Position){
 		divSprint.setAttribute("editable","true");
 	}
 
-	//Candado se puede abrir o no
-	if(arraySprint[Position][4]==0 || arraySprint[Position][4]==1){
-
-	}else if(arraySprint[Position][4]==2){
-		//add click function
-	}
+	
 
 	divSprint.appendChild(textSprint);	
 
@@ -110,10 +144,13 @@ function showSprintInfoOneByOne(Position){
 	var hours = document.createElement("p");
 	var texth= document.createTextNode("Horas:");
 
+ 
+
 	//Mostrar segun el usuario
 	if(tipo==1){
 		var inputHours = document.createElement("INPUT");
   		inputHours.setAttribute("type", "number");
+  		inputHours.setAttribute("class", Position+1+"edit");
   		inputHours.setAttribute("value", arraySprint[Position][1]);
   		inputHours.disabled = true;
 	}else{
@@ -135,6 +172,7 @@ function showSprintInfoOneByOne(Position){
 	if(tipo==1){
 		var inputstartDate = document.createElement("INPUT");
   		inputstartDate.setAttribute("type", "date");
+  		inputstartDate.setAttribute("class", Position+1+"edit");
   		inputstartDate.setAttribute("value", arraySprint[Position][2]);
   		inputstartDate.disabled = true;
 	}else{
@@ -153,6 +191,7 @@ function showSprintInfoOneByOne(Position){
 	if(tipo==1){
 		var inputEndDate = document.createElement("INPUT");
   		inputEndDate.setAttribute("type", "date");
+  		inputEndDate.setAttribute("class", Position+1+"edit");
   		inputEndDate.setAttribute("value", arraySprint[Position][3]);
   		inputEndDate.disabled = true;
 	}else{
@@ -167,7 +206,7 @@ function showSprintInfoOneByOne(Position){
 	divPSprint.appendChild(listboxMove);
 	for (var hw = 0; hw < arrayHW.length; hw++) {
 		if (arrayHW[hw][3]==arraySprint[Position][5]) {
-			var elementList = document.createElement("p");
+			var elementList = document.createElement("li");
 			elementList.innerText=(arrayHW[hw][1]);
 			elementList.setAttribute("class", "OneHomework");
 			elementList.setAttribute("idTask", arrayHW[hw][4]);
@@ -176,18 +215,16 @@ function showSprintInfoOneByOne(Position){
 			if(tipo==1){
 				var inputHoursTask = document.createElement("INPUT");
   				inputHoursTask.setAttribute("type", "number");
+  				inputHoursTask.setAttribute("class", Position+1+"edit");
   				inputHoursTask.setAttribute("value", arraySprint[Position][1]);
   				inputHoursTask.disabled = true;
 			}else{
 				var inputHoursTask  = document.createElement("p");
 				inputHoursTask.innerText=(arraySprint[Position][1]+"h");
-		  	}
-
-			
+		  	}	
 
   			elementList.appendChild(inputHoursTask);
-
-			divPSprint.appendChild(elementList);
+			listboxMove.appendChild(elementList);
 		}
 		
 	}
@@ -277,7 +314,8 @@ function showSprintInfo(){
 		divBackLog.setAttribute("id", "divBackLog");
 		divBackLog.setAttribute("class", "col s6");
 		divBackLog.innerText="Espeficicaciones:";
-		var listbacklog = document.createElement("ul");
+		var listbacklog = document.createElement("div");
+		listbacklog.setAttribute("id", "Backloglist");
 		listbacklog.setAttribute("id", "sortable1");
 		
 //Espeficicaciones del Backlog

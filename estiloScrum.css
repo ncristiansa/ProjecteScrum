@@ -196,9 +196,8 @@ a:link {
 }
 
 .OneHomework{
-  background-color:  #4fa4e7;  
-  text-align: left;
-  margin-right: 2px; 
+  margin-bottom: 1px;
+    border: solid black 1px;
 }
 .input-text {
   padding: 1%;
