@@ -80,18 +80,26 @@ Tabla Sprints:
 
 CREATE TABLE Sprints (sprintID INT(2), projectID INT(2), hours INT(2), startDate VARCHAR(50), endDate VARCHAR(50), PRIMARY KEY (sprintID), FOREIGN KEY (projectID) REFERENCES Projects (projectID));
 
+===============================================================================================================================
 EVENTO CAMBIAR status:
 
-CREATE EVENT checkSprintActiveStatus
-    ON SCHEDULE EVERY 1 DAY STARTS '2013-02-02 00:00:00' 
+CREATE EVENT checkSprintgreyStatus
+   ON SCHEDULE EVERY 1 MINUTE STARTS  '2013-02-02 00:00:00' 
     DO 
-    UPDATE Sprints SET status = 1 WHERE CURRENT_DATE BETWEEN startDate AND endDate;
+    UPDATE Sprints SET status = 0 WHERE CURRENT_DATE > endDate;
 
-CREATE EVENT checkSprintEndedStatus
-    ON SCHEDULE EVERY 1 DAY STARTS '2013-02-02 00:00:00' 
+CREATE EVENT checkSprintgreenStatus
+   ON SCHEDULE EVERY 1 MINUTE STARTS '2013-02-02 00:00:00' 
     DO 
-    UPDATE Sprints SET status = 0 WHERE CURRENT_DATE BETWEEN startDate AND endDate;
+UPDATE Sprints SET status = 1 WHERE CURRENT_DATE BETWEEN startDate AND endDate;
 
+CREATE EVENT checkSprintblackStatus
+   ON SCHEDULE EVERY 1 MINUTE STARTS '2013-02-02 00:00:00' 
+    DO 
+UPDATE Sprints SET status = 2 WHERE CURRENT_DATE < startDate;
+
+SET GLOBAL event_scheduler := 1;
+================================================================================================================================
 Tabla Homework:
 
 CREATE TABLE Homework(homeworkID INT(2), projectID INT(2), description VARCHAR(100), sprintID INT(2), hours INT(2), PRIMARY KEY (homeworkID), FOREIGN KEY (projectID) REFERENCES Projects (projectID));
