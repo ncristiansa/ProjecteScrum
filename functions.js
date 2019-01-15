@@ -96,7 +96,7 @@ function showSprintInfoOneByOne(Position){
 	divSprint.setAttribute("class", "collapsible-header");
 
 
-	if(tipo==1){
+	/*if(tipo==1){
 		//Candado se puede abrir o no
 		if(arraySprint[Position][4]==0 || arraySprint[Position][4]==1){
 			var icon =document.createElement("i");
@@ -113,7 +113,7 @@ function showSprintInfoOneByOne(Position){
 			divSprint.appendChild(icon);
 			//icon.addEventListener("click", editSprint(Position+1));
 		}	
-	}
+	}*/
 
 
 
@@ -140,8 +140,9 @@ function showSprintInfoOneByOne(Position){
 	var divPSprint = document.createElement("div");
 	divPSprint.setAttribute("class", "infoSprint");
 	divPSprint.setAttribute("class", "collapsible-body");
-
 	var hours = document.createElement("p");
+	
+	hours.addEventListener("click", editSprint(Position+1));
 	var texth= document.createTextNode("Horas:");
 
  
