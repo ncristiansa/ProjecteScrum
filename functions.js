@@ -92,9 +92,14 @@ function showSprintInfoOneByOne(Position){
 	}else if(arraySprint[Position][4]==2){
 		divSprint.style.backgroundColor = "black";
 		divSprint.setAttribute("editable","true");
-		divSprint.style.color="white";
-		divSprint.style.borderColor="black";
-		}
+	}
+
+	//Candado se puede abrir o no
+	if(arraySprint[Position][4]==0 || arraySprint[Position][4]==1){
+
+	}else if(arraySprint[Position][4]==2){
+		//add click function
+	}
 
 	divSprint.appendChild(textSprint);	
 
@@ -103,26 +108,85 @@ function showSprintInfoOneByOne(Position){
 	divPSprint.setAttribute("class", "collapsible-body");
 
 	var hours = document.createElement("p");
-	var texth= document.createTextNode("Horas: "+arraySprint[Position][1]);
+	var texth= document.createTextNode("Horas:");
+
+	//Mostrar segun el usuario
+	if(tipo==1){
+		var inputHours = document.createElement("INPUT");
+  		inputHours.setAttribute("type", "number");
+  		inputHours.setAttribute("value", arraySprint[Position][1]);
+  		inputHours.disabled = true;
+	}else{
+		var inputHours  = document.createElement("p");
+		inputHours.innerText=(""+arraySprint[Position][1]);
+  	}
+	
+  	
 	hours.appendChild(texth);
+	hours.appendChild(inputHours);
+
 	divPSprint.appendChild(hours);
-
+	//Fecha de inicio
 	var startDate = document.createElement("p");
-	var textsd= document.createTextNode("Fecha de inicio: "+arraySprint[Position][2]);
+	var textsd= document.createTextNode("Fecha de inicio:");
 	startDate.appendChild(textsd);
+
+	//Mostrar segun el usuario
+	if(tipo==1){
+		var inputstartDate = document.createElement("INPUT");
+  		inputstartDate.setAttribute("type", "date");
+  		inputstartDate.setAttribute("value", arraySprint[Position][2]);
+  		inputstartDate.disabled = true;
+	}else{
+		var inputstartDate  = document.createElement("p");
+		inputstartDate.innerText=(""+arraySprint[Position][2]);
+  	}
+
+  	startDate.appendChild(inputstartDate);
 	divPSprint.appendChild(startDate);
-
+	//fecha final
 	var endDate = document.createElement("p");
-	var texteD= document.createTextNode("Fecha de fin: "+arraySprint[Position][3]);
+	var texteD= document.createTextNode("Fecha de fin:");
 	endDate.appendChild(texteD);
-	divPSprint.appendChild(endDate);
 
+	//Mostrar segun el usuario
+	if(tipo==1){
+		var inputEndDate = document.createElement("INPUT");
+  		inputEndDate.setAttribute("type", "date");
+  		inputEndDate.setAttribute("value", arraySprint[Position][3]);
+  		inputEndDate.disabled = true;
+	}else{
+		var inputEndDate  = document.createElement("p");
+		inputEndDate.innerText=(arraySprint[Position][3]);
+  	}
+
+	
+  	endDate.appendChild(inputEndDate);
+	divPSprint.appendChild(endDate);
+	var listboxMove = document.createElement("div");
+	divPSprint.appendChild(listboxMove);
 	for (var hw = 0; hw < arrayHW.length; hw++) {
 		if (arrayHW[hw][3]==arraySprint[Position][5]) {
 			var elementList = document.createElement("p");
-			elementList.innerText=(arrayHW[hw][4]+". "+arrayHW[hw][1]+" "+arrayHW[hw][2]+"h");
+			elementList.innerText=(arrayHW[hw][1]);
 			elementList.setAttribute("class", "OneHomework");
-			elementList.setAttribute("orderHW", arrayHW[hw][4]);
+			elementList.setAttribute("idTask", arrayHW[hw][4]);
+
+			//Mostrar segun el usuario
+			if(tipo==1){
+				var inputHoursTask = document.createElement("INPUT");
+  				inputHoursTask.setAttribute("type", "number");
+  				inputHoursTask.setAttribute("value", arraySprint[Position][1]);
+  				inputHoursTask.disabled = true;
+			}else{
+				var inputHoursTask  = document.createElement("p");
+				inputHoursTask.innerText=(arraySprint[Position][1]+"h");
+		  	}
+
+			
+
+  			elementList.appendChild(inputHoursTask);
+
 			divPSprint.appendChild(elementList);
 		}
 		
