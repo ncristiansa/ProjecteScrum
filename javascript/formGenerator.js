@@ -90,3 +90,83 @@ function validation() {
     //mirar si no están vacias, hacer un if por cada una y si está vacio pongo false y salta un error
     return true
 }
+
+function addSprintForm(){
+	var elementButton = document.getElementById("newSprintBtn");
+	disableButton(elementButton);
+
+	var ContainerForm = addElement(elementButton, "div", undefined, ["class=container", "id=newSprintForm"]);
+
+	//Genero la etiqueta form y sus respectivos atributos.
+	var elementForm = document.createElement("form");
+	elementForm.setAttribute("method", "post");
+	elementForm.setAttribute("id", "sprintForm");
+	var titleForm = document.createElement("h4");
+	var textTitle = document.createTextNode("Crea un nuevo Sprint");
+	titleForm.appendChild(textTitle);
+	elementForm.appendChild(titleForm);
+
+	
+	var labelP = document.createElement("label");
+	labelP.setAttribute("class", "input-field col s10");
+	var labelText = document.createTextNode("Numero de Sprint:");
+	labelP.appendChild(labelText);
+	elementForm.appendChild(labelP);
+	var elementP = document.createElement("p");
+	var numberOrder = arrayOrderNumber[0];
+	var textoInput = document.createTextNode(parseInt(numberOrder)+1);
+
+
+
+	elementP.appendChild(textoInput);
+	elementP.setAttribute("type", "text");
+	elementP.setAttribute("name", "numberOrder");
+	elementP.setAttribute("class", "input-field col s10");
+
+	elementForm.appendChild(elementP);
+	elementForm.appendChild(generateLabel("label", "Fecha de inicio:", "input", "date", "fechaInicio"));
+	elementForm.appendChild(generateLabel("label", "Fecha de finalización:", "input", "date", "fechaFin"));
+	elementForm.appendChild(generateLabel("label", "Horas totales:", "input", "number","hours"));
+	
+	
+	elementForm.appendChild(createButton("a", "Crear", ["class=btn", "name=sendSprint", "value=Crear", "onclick=validateSprintForm(arraySprint)"]));
+
+	ContainerForm.appendChild(elementForm);
+	insertAfter(elementButton, ContainerForm);
+}
+
+
+
+function validateSprintForm(){
+	var inputInitialDate = document.getElementsByTagName("input")[0];
+	var inputEndDate = document.getElementsByTagName("input")[1];
+	var inputHours = document.getElementsByTagName("input")[2];
+	
+	var DateSprint = new Date();
+	var day = DateSprint.getDate();
+	var month = " "+DateSprint.getMonth()+1;
+	var year = DateSprint.getFullYear();
+	var today = year+"-"+month+"-"+day;
+
+	if(inputInitialDate.value == "" && inputEndDate.value == "" && inputHours.value == ""){
+		addMessageError("No has las horas del Sprint. \n No has introducido una fecha inicial. \n No has introducido una fecha final. \n No has introducido el estado del Sprint.", true);
+	}else if(inputInitialDate.value == ""){
+		addMessageError("No has introducido ninguna fecha inicial.", true);
+	}else if(inputEndDate.value == ""){
+		addMessageError("No has introducido ninguna fecha final.", true);
+	}else if(inputHours. value == ""){
+		addMessageError("No has introducido las horas del Sprint.", true);
+	}else if(inputHours.value <0){
+		addMessageError("Las horas no pueden ser menores que 0.", true);
+	}else if(inputHours.value == 0){
+		addMessageError("Las horas no pueden ser igual a 0.", true);
+	}else if(inputInitialDate.value <= today){
+		addMessageError("La fecha inicial ha de ser posterior a la fecha actual.", true);
+	}else if(inputEndDate.value <= inputInitialDate.value){
+		addMessageError("La fecha de finalización ha de ser posterior a la fecha inicial.", true);
+	}else{
+		document.getElementById("sprintForm").submit();
+	}
+	
+
+}

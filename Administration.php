@@ -128,6 +128,18 @@
 			array_push($finalHWnullArray, $restartHWnullArray);		
 			$restartHWInfoArray=[];
 		}	
+
+		//Obtengo el orderNumber de la tabla Sprints de manera descendente para obtener el ultimo valor.
+		$consultOrderNumber = ("SELECT orderNumber FROM Sprints WHERE projectID='$idProject' Order By OrderNumber DESC;");
+		$resultConsult = mysqli_query($connect, $consultOrderNumber);
+		$finalOrderNumber = [];
+		$restartOrderNumber = [];
+		while($number = mysqli_fetch_assoc($resultConsult)){
+			$orderNumber = $number["orderNumber"];
+			array_push($restartOrderNumber, $orderNumber);
+			array_push($finalOrderNumber, $restartOrderNumber);
+			$restartOrderNumber=[];
+		}
 ?>
 
 
@@ -146,6 +158,14 @@
 	if(isset($_GET['exituser'])){
 		destroySession();
 	}
+
+	/*
+		La variable converIntArray convierte nuestro array que obtenemos en formato String, lo pasamos a entero.
+	*/
+	$convertIntArray = array_map(function($value){return (int)$value;}, $finalOrderNumber[0]);
+	$numberOrd = $convertIntArray[0]+1;
+
+	
 	echo "<div id='contenido-web'></div>";
 	
 ?>
@@ -157,6 +177,7 @@
 	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
 	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;	
 	var arrayHWnull = <?php echo json_encode($finalHWnullArray);?>;
+	var arrayOrderNumber = <?php echo json_encode($finalOrderNumber);?>;
 </script>
 
 <?php include 'templates/footer.php'?>

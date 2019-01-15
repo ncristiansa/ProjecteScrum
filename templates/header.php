@@ -10,6 +10,7 @@
 	<title><?php echo $tituloPagina; ?></title>
 
 	<!-- Js archives -->
+	<script type="text/javascript" defer src="javascript/errores.js"></script>
 	<script type="text/javascript" defer src="javascript/formGenerator.js"></script>
 	<script type="text/javascript" defer src="javascript/helpers.js"></script>
 	<script type="text/javascript" defer src="javascript/functions.js"></script>

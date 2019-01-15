@@ -72,7 +72,7 @@ function createButton(tag, text, attributes) {
  */
 function insertAfter(padre, elemento) {
     if (padre.nextSibling) {
-        padre.parentNode.insertBefore(elemento, padreº.nextSibling);
+        padre.parentNode.insertBefore(elemento, padre.nextSibling);
 
     } else {
         padre.parentNode.appendChild(elemento);
