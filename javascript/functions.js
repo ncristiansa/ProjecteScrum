@@ -1,13 +1,3 @@
-if (tipo == 1) {
-	scrumMaster();
-}
-
-function scrumMaster() {
-	var boton = createButton("a", "Crear Proyecto", ["id=buttonProject", "class=btn card-title", "onclick=formulario()"])
-	var elementodiv = document.getElementsByClassName("list-projects")[0];
-	elementodiv.appendChild(boton);
-}
-
 /**
  * Nos mostrará la información de los proyectos
  */
@@ -25,13 +15,6 @@ function showInfoProject() {
 	addElement(divInfo, "p", descriptionText, ["class=descriptionInfo"]);
 	addElement(divInfo, "p", scrumMName, ["class=descriptionInfo"]);
 	addElement(divInfo, "p", productOName, ["class=descriptionInfo"]);
-}
-
-function addTask() {
-	var DivID = document.getElementById("divBackLog").getElementsByTagName("p")[0];
-	var contentTask = document.getElementsByTagName("input")[1].value;
-	addElement(contentTask, "p", undefined, ["class=col s6 OneHomework"]);
-	addEventListener(DivID, contentTask, undefined, undefined);
 }
 
 
@@ -113,7 +96,7 @@ function showSprintInfo(){
 		//Crear div para sprints
 		var divSprints = document.createElement("div");
 		divSprints.setAttribute("id", "infoSprints");		
-		divSprints.setAttribute("class", "col s6");
+		divSprints.setAttribute("class", "col s8");
 		var listForClicks = document.createElement("ul");
 		listForClicks.setAttribute("id","listForClicks")
 		listForClicks.setAttribute("class","collapsible");
@@ -152,15 +135,16 @@ function showSprintInfo(){
 			var elementBL = document.createElement("p");
 			elementBL.innerText=(arrayHWnull[i][1]);
 			elementBL.setAttribute("idTask", arrayHWnull[i][0]);
+			elementBL.setAttribute("class", "col s9 OneHomework");
 			listBL.setAttribute("name","mylistli");
-			listBL.setAttribute("class", "textBL col s6");
+			listBL.setAttribute("class", "textBL row");
 			
 			listBL.appendChild(elementBL);
 			listBL.appendChild(objectMover(true));
 			listBL.appendChild(objectMover(false));
 			listBL.appendChild(objectDEL());
 			listbacklog.appendChild(listBL);
-		}	
+		}
 		divBackLog.appendChild(listbacklog);
 	}
 
@@ -194,13 +178,14 @@ function addTask() {
 	var element = document.getElementsByClassName("OneHomework");
 	var pos = element.length-1;
 	element = element[pos]
-	var DivID = document.getElementById("divBackLog").getElementsByTagName("p")[0];
+	// var DivID = document.getElementById("divBackLog").getElementsByTagName("p")[0];
+	var DivID = document.getElementById("sortable1");
 	var contentTask = document.getElementsByTagName("input")[1].value;
 	if (contentTask == "") {
 		return false;
 	}
-	var elementLi = addElement(DivID, "li", undefined, ["name=mylistli", "class=textBL"])
-	addElement(elementLi, "p", contentTask, ["class=col s6 OneHomework"]);
+	var elementLi = addElement(DivID, "li", undefined, ["name=mylistli", "class=textBL row"])
+	addElement(elementLi, "p", contentTask, ["class=col s9 OneHomework"]);
 	elementLi.appendChild(objectMover(true));
 	elementLi.appendChild(objectMover(false));
 	elementLi.appendChild(objectDEL());
@@ -215,7 +200,7 @@ function addTaskNew(){
 	
 	var elementLi = document.createElement("li");
 	elementLi.setAttribute("name","mylistli");
-	elementLi.setAttribute("class", "textBL");
+	elementLi.setAttribute("class", "textBL row");
 	
 	var contentTask = document.getElementsByTagName("input")[1].value;
 	var newContentTask = document.createTextNode(contentTask);

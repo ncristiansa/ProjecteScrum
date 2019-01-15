@@ -116,10 +116,7 @@ table{
   color:   #605f60;
 
 }
-nav{
-  background-color:  #f13b33  ;
-  margin:-1%;
-}
+
 .imgusuario:hover{
   color:#494c46;  
 }
@@ -164,15 +161,7 @@ a:link {
   border-collapse: collapse;
   word-wrap: break-word;
 }
-.info-project, .list-projects, #formulario, #infoSprints, #infoHomework {
-  margin: 0 auto;
-  margin-top: 2%;
-  width: 50%;
-  padding: 2%;
-  background-color: white;
-  box-shadow: 2px 2px 2px 2px #888888;
-  border: 1px solid;
-}
+
 .titleh2-project,  .p-Title{
   background-color:  #4fa4e7;
   padding: 1%;
