@@ -30,7 +30,7 @@ function showInfoProject() {
 function addTask() {
 	var DivID = document.getElementById("divBackLog").getElementsByTagName("p")[0];
 	var contentTask = document.getElementsByTagName("input")[1].value;
-	addElement(contentTask, "p", undefined, ["class=OneHomework"]);
+	addElement(contentTask, "p", undefined, ["class=col s6 OneHomework"]);
 	addEventListener(DivID, contentTask, undefined, undefined);
 }
 
@@ -38,6 +38,7 @@ function addTask() {
 function showSprintInfoOneByOne(Position) {
 	var list = document.getElementById("listForClicks");
 	var elementlist = document.createElement("li");
+	
 
 	var divSprint = addElement(elementlist, "div", undefined, ["class=collapsible-header sprintNumber", "idSprint="+ Position + 1]);
 	if (arraySprint[Position][4] == 2) {
@@ -143,6 +144,7 @@ function showSprintInfo(){
 	var listbacklog = document.createElement("ul");
 	listbacklog.setAttribute("id", "sortable1");
 	
+	
 	//Espeficicaciones del Backlog
 	if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
 		for (var i = 0; i< arrayHWnull.length; i++) {				
@@ -151,7 +153,7 @@ function showSprintInfo(){
 			elementBL.innerText=(arrayHWnull[i][1]);
 			elementBL.setAttribute("idTask", arrayHWnull[i][0]);
 			listBL.setAttribute("name","mylistli");
-			listBL.setAttribute("class", "textBL");
+			listBL.setAttribute("class", "textBL col s6");
 			
 			listBL.appendChild(elementBL);
 			listBL.appendChild(objectMover(true));
@@ -197,7 +199,38 @@ function addTask() {
 	if (contentTask == "") {
 		return false;
 	}
-	addElement(DivID, "p", contentTask, ["class=OneHomework"])
+	var elementLi = addElement(DivID, "li", undefined, ["name=mylistli", "class=textBL"])
+	addElement(elementLi, "p", contentTask, ["class=col s6 OneHomework"]);
+	elementLi.appendChild(objectMover(true));
+	elementLi.appendChild(objectMover(false));
+	elementLi.appendChild(objectDEL());
+}
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!
+function addTaskNew(){
+
+	var DivID = document.getElementById("divBackLog");
+	var lengthLi = document.getElementsByName("mylistli").length-1;
+	var MylistLi = document.getElementsByName("mylistli")[lengthLi];
+
+	
+	var elementLi = document.createElement("li");
+	elementLi.setAttribute("name","mylistli");
+	elementLi.setAttribute("class", "textBL");
+	
+	var contentTask = document.getElementsByTagName("input")[1].value;
+	var newContentTask = document.createTextNode(contentTask);
+	var newContentP = document.createElement("p");
+	
+	newContentP.appendChild(newContentTask);
+	elementLi.appendChild(newContentP);
+	elementLi.appendChild(objectUP());
+	elementLi.appendChild(objectDOWN());
+	elementLi.appendChild(objectDEL());
+
+	MylistLi.appendChild(elementLi);
+	insertAfter(MylistLi, elementLi);
+	DivID.appendChild(MylistLi);
+
 }
 
 
@@ -233,16 +266,16 @@ function generateLabel(Tag, Name, Input, Type, NameInput){
 
 function objectMover(position){
 	if (position) {
-		var element = createButton("i", "keyboard_arrow_up", ["class=small material-icons", "onclick=elementUP(this)"]);
+		var element = createButton("i", "keyboard_arrow_up", ["class=col s1 small material-icons", "onclick=elementUP(this)"]);
 		return element;
 	} else {
-		var element = createButton("i", "keyboard_arrow_down", ["class=small material-icons", "onclick=elementDOWN(this)"]);
+		var element = createButton("i", "keyboard_arrow_down", ["class=col s1 small material-icons", "onclick=elementDOWN(this)"]);
 		return element;
 	}
 }
 
 function objectDEL(){
-	var DELelement = createButton("i", "delete", ["class=small material-icons", "onclick=elementDEL(this)"]);
+	var DELelement = createButton("i", "delete", ["class=col s1 small material-icons", "onclick=elementDEL(this)"]);
 	return DELelement;
 }
 
