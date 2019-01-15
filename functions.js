@@ -80,7 +80,7 @@ function showinfoProject(){
  		}
 		editSprint(sprintinputs);
 	}else{
-		var list = document.getElementsByClassName(sprintinputs);
+		var list = document.getElementsByClassName(sprintinputs+"edit");
 		for (var i = 0; i < length.list; i++) {
  			list[i].disabled = true;
  			list[i].setAttribute("class","activeEdit");
@@ -111,7 +111,7 @@ function showSprintInfoOneByOne(Position){
 			icon.setAttribute("data-tooltipped","Edítame!");
 
 			divSprint.appendChild(icon);
-			//icon.addEventListener("click", editSprint(Position+1+"edit"));
+			//icon.addEventListener("click", editSprint(Position+1));
 		}	
 	}
 
@@ -202,7 +202,11 @@ function showSprintInfoOneByOne(Position){
 	
   	endDate.appendChild(inputEndDate);
 	divPSprint.appendChild(endDate);
-	var listboxMove = document.createElement("div");
+	elementlist.appendChild(divSprint);	
+	elementlist.appendChild(divPSprint);
+
+	var listboxMove = document.createElement("ul");
+	listboxMove.setAttribute("class", "TaskSprint"+Position+1);
 	divPSprint.appendChild(listboxMove);
 	for (var hw = 0; hw < arrayHW.length; hw++) {
 		if (arrayHW[hw][3]==arraySprint[Position][5]) {
@@ -230,8 +234,7 @@ function showSprintInfoOneByOne(Position){
 	}
 
 			
-	elementlist.appendChild(divSprint);			
-	elementlist.appendChild(divPSprint);
+	
 	list.appendChild(elementlist);
 
 }
@@ -314,9 +317,8 @@ function showSprintInfo(){
 		divBackLog.setAttribute("id", "divBackLog");
 		divBackLog.setAttribute("class", "col s6");
 		divBackLog.innerText="Espeficicaciones:";
-		var listbacklog = document.createElement("div");
+		var listbacklog = document.createElement("ul");
 		listbacklog.setAttribute("id", "Backloglist");
-		listbacklog.setAttribute("id", "sortable1");
 		
 //Espeficicaciones del Backlog
 	if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
