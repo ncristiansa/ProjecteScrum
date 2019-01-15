@@ -26,8 +26,33 @@ Para poder acceder a la base de datos hay que crear un usuario llamado "*Adminis
 
 ``` php
 $conn = new PDO($log,"Administrador","P@ssw0rd"); // cambiar a Administrador por el otro usuario y la P@ssw0rd por su contraseña correspondiente
-```
 
+```
+Crear evento para que los status de sprints se actualizen:
+
+```
+CREATE EVENT checkSprintgreyStatus
+   ON SCHEDULE EVERY 1 SECOND STARTS  '2013-02-02 00:00:00' 
+    DO 
+    UPDATE Sprints SET status = 0 WHERE CURRENT_DATE > endDate;
+
+CREATE EVENT checkSprintgreenStatus
+   ON SCHEDULE EVERY 1 SECOND STARTS '2013-02-02 00:00:00' 
+    DO 
+UPDATE Sprints SET status = 1 WHERE CURRENT_DATE BETWEEN startDate AND endDate;
+
+CREATE EVENT checkSprintblackStatus
+   ON SCHEDULE EVERY 1 SECOND STARTS '2013-02-02 00:00:00' 
+    DO 
+UPDATE Sprints SET status = 2 WHERE CURRENT_DATE < startDate;
+
+```
+Y activar eventos:
+
+```
+SET GLOBAL event_scheduler := 1;
+
+```
 
 ## Usuarios y contraseñas <a name="user-pass"></a>
 Los usuarios se dividen en tres perfiles para diferenciar las funciones que podrán hacer en la aplicación. 
