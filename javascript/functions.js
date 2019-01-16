@@ -33,10 +33,6 @@ function showSprintInfoOneByOne(Position) {
 	}
 	addElement(divSprint, "p", "Sprint " + arraySprint[Position][0], ["class=SprintLetters white-text"]);
 
-	if(tipo==1){
-		addElement(divSprint, "i", "cancel", ["class=material-icons red-text terminateSprint", "onclick=eliminarSprint()"]);
-	}
-
 	
 	var dateSprint = new Date();
 	var day = dateSprint.getDate();
@@ -44,7 +40,7 @@ function showSprintInfoOneByOne(Position) {
 	var year = dateSprint.getFullYear();
 	var today = year+"-"+month+"-"+day;
 
-	if(today<arraySprint[Position][2]){
+	if(tipo==1 && today<arraySprint[Position][2]){
 		
 		addElement(divSprint, "i", "cancel", ["class=material-icons red-text terminateSprint", "onclick=eliminarSprint()"]);
 	}
@@ -171,22 +167,17 @@ function showSprintInfoOneByOne(Position) {
 				inputHoursTask.innerText=(arrayHW[hw][0]+"h");
   				inputHoursTask.setAttribute("class", (Position+1)+"edit col 2");
 		  	}	
-
   			elementListDiv.appendChild(inputHoursTask);
 			listboxMove.appendChild(elementList);
 		}
-		
 	}
-
-			
-	
-list.appendChild(elementlist);
-
+	list.appendChild(elementlist);
 }
-		
+
+
 function showSprintInfo(){	
 	var infoProjectDiv = document.getElementsByClassName("info-project")[0];
-	//Div ontanier para materialize
+	//Div contanier para materialize
 	var SprintandBLContrainer = document.createElement("div");
 	SprintandBLContrainer.setAttribute("class", "container");
 	SprintandBLContrainer.setAttribute("id", "SprintandBLContrainer");
@@ -269,7 +260,9 @@ function showSprintInfo(){
 	SprintandBLRow.appendChild(divBackLog);
 }
 
-//Boton añadir especificacion
+/**
+ * Boton añadir especificacion 
+ */
 function NewTaskInterface(divBackLog,SprintandBLRow){
 
 	var AddButton = document.createElement("input");
@@ -288,11 +281,13 @@ function NewTaskInterface(divBackLog,SprintandBLRow){
 	divBackLog.appendChild(Task); 
 }
 
+/**
+ * Añade una tarea al backlog
+ */
 function addTask() {
 	var element = document.getElementsByClassName("OneHomework");
 	var pos = element.length-1;
 	element = element[pos]
-	// var DivID = document.getElementById("divBackLog").getElementsByTagName("p")[0];
 	var DivID = document.getElementById("sortable1");
 	var contentTask = document.getElementsByTagName("input")[1].value;
 	if (contentTask == "") {
@@ -305,51 +300,26 @@ function addTask() {
 	elementLi.appendChild(objectDEL());
 	
 }
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!
-function addTaskNew(){
 
-	var DivID = document.getElementById("divBackLog");
-	var lengthLi = document.getElementsByName("mylistli").length-1;
-	var MylistLi = document.getElementsByName("mylistli")[lengthLi];
-
-	
-	var elementLi = document.createElement("li");
-	elementLi.setAttribute("name","mylistli");
-	elementLi.setAttribute("class", "textBL row");
-	
-	var contentTask = document.getElementsByTagName("input")[1].value;
-	var newContentTask = document.createTextNode(contentTask);
-	var newContentP = document.createElement("p");
-	
-	newContentP.appendChild(newContentTask);
-	elementLi.appendChild(newContentP);
-	elementLi.appendChild(objectUP());
-	elementLi.appendChild(objectDOWN());
-	elementLi.appendChild(objectDEL());
-
-	MylistLi.appendChild(elementLi);
-	insertAfter(MylistLi, elementLi);
-	DivID.appendChild(MylistLi);
-
-}
-
-
+/**
+ * Función que permite editar los sprints que todavía no están activos/terminados
+ */
 function editarSprint() {
-	alert("hola");
+	//alert("hola");
 }
 
-//Funcion eliminada
-// function eliminarSprint() {
-	
-// }
-
+/**
+ * Funcón que añadirá un botón para poder crear formularios de sprints
+ * @param {HTMLCollection} divSprints div al cual queremos añadir el botón
+ */
 function buttonNewSprint(divSprints){
 	addElement(divSprints, "a", "Crear Sprint", ["name=btnAddSprint", "id=newSprintBtn", "onclick=addSprintForm()", "class=btn waves-effect center-align"])
-
 }
 
 
-//Funcion que genera el formulario para añadir un nuevo sprint.
+/**
+ * Funcion que genera el formulario para añadir un nuevo sprint.
+ */
 function generateLabel(Tag, Name, Input, Type, NameInput){
 	var elementLabel = document.createElement(Tag);
 	var nameLabel = document.createTextNode(Name);
@@ -386,7 +356,6 @@ function elementUP(element){
 	var elementoClonado = element.parentNode.cloneNode(true);
 	var elementoRaiz = element.parentNode.parentNode;
 
-	
 	var elementoPadre = element.parentNode;
 	elementoPadre.parentNode.removeChild(elementoPadre);
 	elementoRaiz.insertBefore(elementoClonado, elementoAnterior);
