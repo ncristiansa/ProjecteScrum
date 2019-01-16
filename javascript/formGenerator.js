@@ -139,7 +139,7 @@ function addSprintForm(){
 
 function validateSprintForm(){
 	var inputInitialDate = document.getElementsByTagName("input")[3];
-	var inputEndDate = document.getElementsByTagName("input")[6];
+	var inputEndDate = document.getElementsByTagName("input")[5];
 	var inputHours = document.getElementsByTagName("input")[7];
 	
 	var DateSprint = new Date();
@@ -162,7 +162,7 @@ function validateSprintForm(){
 		addMessageError("Las horas no pueden ser igual a 0.", true);
 	}else if(inputInitialDate.value <= today){
 		addMessageError("La fecha inicial ha de ser posterior a la fecha actual.", true);
-	}else if(inputEndDate.value <= inputInitialDate.value){
+	}else if(inputEndDate.value > inputInitialDate.value){
 		addMessageError("La fecha de finalización ha de ser posterior a la fecha inicial.", true);
 	}else{
 		document.getElementById("sprintForm").submit();
