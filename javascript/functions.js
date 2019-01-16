@@ -70,7 +70,7 @@ function showSprintInfoOneByOne(Position) {
   		inputHours.setAttribute("type", "number");
   		inputHours.setAttribute("class", (Position+1)+"edit");
   		inputHours.setAttribute("value", arraySprint[Position][1]);
-  		inputHours.disabled = true;
+  		inputHours.hidden=false;
 	}else{
 		var inputHours  = document.createElement("p");
 		inputHours.innerText=(""+arraySprint[Position][1]);

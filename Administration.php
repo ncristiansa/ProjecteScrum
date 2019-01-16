@@ -138,13 +138,17 @@
 	$consultOrderNumber = ("SELECT orderNumber FROM Sprints WHERE projectID='$idProject' Order By OrderNumber DESC;");
 	$resultConsult = mysqli_query($connect, $consultOrderNumber);
 	$finalOrderNumber = [];
-	$restartOrderNumber = [];
 	while($number = mysqli_fetch_assoc($resultConsult)){
 		$orderNumber = $number["orderNumber"];
-		array_push($restartOrderNumber, $orderNumber);
-		array_push($finalOrderNumber, $restartOrderNumber);
-		$restartOrderNumber=[];
+		array_push($finalOrderNumber, $orderNumber);
 	}
+
+	$numberOrd = 1;
+	if (isset($finalOrderNumber[0])) {
+		$numberOrd = $finalOrderNumber[0]+1;	
+	}
+	
+
 ?>
 
 
@@ -168,11 +172,6 @@
 		La variable converIntArray convierte nuestro array que obtenemos en formato String,
 		lo pasamos a entero.
 	*/
-	$numberOrd = 0;
-	if (isset($finalOrderNumber[0])) {
-		$convertIntArray = array_map(function($value){return (int)$value;}, $finalOrderNumber[0]);
-		$numberOrd = $convertIntArray[0]+1;	
-	}
 	
 
 	function eliminarSprint(){
@@ -205,7 +204,7 @@
 	var arraySprint = <?php echo json_encode($finalSprintInfoArray);?>;
 	var arrayHW = <?php echo json_encode($finalHWInfoArray);?>;	
 	var arrayHWnull = <?php echo json_encode($finalHWnullArray);?>;
-	var arrayOrderNumber = <?php echo json_encode($finalOrderNumber);?>;
+	var numberOrd = <?php echo json_encode($numberOrd);?>;
 </script>
 	
 <?php include 'templates/footer.php'?>
