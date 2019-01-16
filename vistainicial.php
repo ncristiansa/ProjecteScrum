@@ -149,10 +149,7 @@
 	$productNombre = $_SESSION["nameproduct"];
 	$_SESSION["namegrup"] = $grupos;
 	$groupNombre = $_SESSION["namegrup"];
-	print_r($projectoNombre);
-	print_r($masterNombre);
-	print_r($productNombre);
-	print_r($groupNombre);
+
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
 			if(isset($_POST['descripcion'])){
 				$descripcion = $_POST['descripcion'];
