@@ -114,7 +114,14 @@ function addSprintForm(){
 	elementForm.appendChild(labelP);
 	var elementP = document.createElement("p");
 	var numberOrder = arrayOrderNumber[0];
-	var textoInput = document.createTextNode(parseInt(numberOrder)+1);
+	var numCompr = parseInt(numberOrder);
+	if(numCompr==0){
+		numberOrder = 1;
+		var textoInput = document.createTextNode(numberOrder);
+	}else {
+		var textoInput = document.createTextNode(parseInt(numberOrder)+1);
+	}
+	
 
 
 

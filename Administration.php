@@ -172,16 +172,10 @@
 	if (isset($finalOrderNumber[0])) {
 		$convertIntArray = array_map(function($value){return (int)$value;}, $finalOrderNumber[0]);
 		$numberOrd = $convertIntArray[0]+1;	
+	}else{
+		$numberOrd=0;
 	}
-	
 
-	function eliminarSprint(){
-		$changeStatus = ("UPDATE Sprints SET status = 0 WHERE projectID='$idProject';");
-		if(mysqli_query($connect, $changeStatus)){
-			header("Location: Administration.php?id=".$NameProject);
-		}
-		
-	}
 
 	echo "<div id='contenido-web'></div>";
 	

@@ -422,3 +422,20 @@ document.addEventListener('DOMContentLoaded', function () {
 	var elem = document.querySelector('.collapsible');
 });
 
+function eliminarSprint(){
+	for(var i=0; i>arraySprint.length;i++){
+		var numberSprint = document.getElementsByClassName("SprintLetters white-text")[i].textContent;
+		var separateText = numberSprint.split(" ");
+		if(arraySprint[i][0]==separateText[1]){
+			var form = document.createElement("form");
+			form.setAttribute("action", "removeSprint.php");
+			form.setAttribute("method", "post");
+			var input = document.createElement("input");
+			input.setAttribute("type", "hidden");
+			input.setAttribute("name", "numSprint");
+			input.setAttribute("value", separateText[1]);
+			form.appendChild(input);
+			form.submit();
+		}
+	}
+}
