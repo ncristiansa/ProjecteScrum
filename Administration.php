@@ -177,6 +177,9 @@
 
 	function eliminarSprint(){
 		$changeStatus = ("UPDATE Sprints SET status = 0 WHERE projectID='$idProject';");
+		if(mysqli_query($connect, $changeStatus)){
+			header("Location: Administration.php?id=".$NameProject);
+		}
 		
 	}
 
