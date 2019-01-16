@@ -72,20 +72,12 @@ function showinfoProject(){
   });
 
 
- function editSprint(sprintinputs){
- 	var active=document.getElementsByClassName("activeEdit");
- 	if(active >0){
- 		for (var i = 0; i < length.active; i++) {
- 			active[i].remove("activeEdit");
- 		}
-		editSprint(sprintinputs);
-	}else{
-		var list = document.getElementsByClassName(sprintinputs+"edit");
-		for (var i = 0; i < length.list; i++) {
- 			list[i].disabled = true;
- 			list[i].setAttribute("class","activeEdit");
- 		}
-	}
+ function editSprint(theClass){
+ 	
+ 	for(i = 0; i < document.getElementsByClassName(theClass).length; i++){
+ 		var oneInputID=document.getElementsByClassName('myClassName')[i].id;
+    	document.getElementById(oneInputID).disabled = false;
+  }
 }
 
 function showSprintInfoOneByOne(Position){
@@ -151,7 +143,8 @@ function showSprintInfoOneByOne(Position){
 	if(tipo==1){
 		var inputHours = document.createElement("INPUT");
   		inputHours.setAttribute("type", "number");
-  		inputHours.setAttribute("class", Position+1+"edit");
+  		inputHours.setAttribute("class", Position+1+"edit");  		
+  		inputHours.setAttribute("id", Position+1+"editHours");
   		inputHours.setAttribute("value", arraySprint[Position][1]);
   		inputHours.disabled = true;
 	}else{
@@ -173,7 +166,8 @@ function showSprintInfoOneByOne(Position){
 	if(tipo==1){
 		var inputstartDate = document.createElement("INPUT");
   		inputstartDate.setAttribute("type", "date");
-  		inputstartDate.setAttribute("class", Position+1+"edit");
+  		inputstartDate.setAttribute("class", Position+1+"edit");  		
+  		inputstartDate.setAttribute("id", Position+1+"editstartD");
   		inputstartDate.setAttribute("value", arraySprint[Position][2]);
   		inputstartDate.disabled = true;
 	}else{
@@ -192,7 +186,8 @@ function showSprintInfoOneByOne(Position){
 	if(tipo==1){
 		var inputEndDate = document.createElement("INPUT");
   		inputEndDate.setAttribute("type", "date");
-  		inputEndDate.setAttribute("class", Position+1+"edit");
+  		inputEndDate.setAttribute("class", Position+1+"edit");  				
+  		inputEndDate.setAttribute("id", Position+1+"editendD");
   		inputEndDate.setAttribute("value", arraySprint[Position][3]);
   		inputEndDate.disabled = true;
 	}else{
@@ -221,6 +216,7 @@ function showSprintInfoOneByOne(Position){
 				var inputHoursTask = document.createElement("INPUT");
   				inputHoursTask.setAttribute("type", "number");
   				inputHoursTask.setAttribute("class", Position+1+"edit");
+  				inputHoursTask.setAttribute("id", Position+1+"editTask"+arrayHW[hw][4]);
   				inputHoursTask.setAttribute("value", arraySprint[Position][1]);
   				inputHoursTask.disabled = true;
 			}else{
@@ -277,10 +273,19 @@ function showSprintInfo(){
 		var SprintandBLContrainer = document.createElement("div");
 		SprintandBLContrainer.setAttribute("class", "container");
 		SprintandBLContrainer.setAttribute("id", "SprintandBLContrainer");
+
+		var editS = document.createElement("button");
+		editS.innerText=("editS");
+		editS.setAttribute("class","btn waves-effect center-align");
+
+		editS.addEventListener("click", editSprint(1+"edit"));
+		SprintandBLContrainer.appendChild(editS);
+		
 		//Div row para materialize
 		var SprintandBLRow = document.createElement("div");
 		SprintandBLRow.setAttribute("class", "row");
 		SprintandBLRow.setAttribute("id", "SprintandBLRow");
+
 
 		SprintandBLContrainer.appendChild(SprintandBLRow);
 		insertAfter(infoProjectDiv,SprintandBLContrainer);
