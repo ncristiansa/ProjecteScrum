@@ -32,9 +32,23 @@ function showSprintInfoOneByOne(Position) {
 		}
 	}
 	addElement(divSprint, "p", "Sprint " + arraySprint[Position][0], ["class=SprintLetters white-text"]);
+
 	if(tipo==1){
 		addElement(divSprint, "i", "cancel", ["class=material-icons red-text terminateSprint", "onclick=eliminarSprint()"]);
 	}
+
+	
+	var dateSprint = new Date();
+	var day = dateSprint.getDate();
+	var month = ""+dateSprint.getMonth()+1;
+	var year = dateSprint.getFullYear();
+	var today = year+"-"+month+"-"+day;
+
+	if(today<arraySprint[Position][2]){
+		
+		addElement(divSprint, "i", "cancel", ["class=material-icons red-text terminateSprint", "onclick=eliminarSprint()"]);
+	}
+
 	//Colors Sprints
 	if (arraySprint[Position][4] == 0) {
 		divSprint.classList.add("grey");
@@ -324,9 +338,10 @@ function editarSprint() {
 	alert("hola");
 }
 
-function eliminarSprint() {
-	alert("que te borro el sprint");
-}
+//Funcion eliminada
+// function eliminarSprint() {
+	
+// }
 
 function buttonNewSprint(divSprints){
 	addElement(divSprints, "a", "Crear Sprint", ["name=btnAddSprint", "id=newSprintBtn", "onclick=addSprintForm()", "class=btn waves-effect center-align"])
