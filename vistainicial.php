@@ -157,7 +157,7 @@
 				$descripcion = null;
 			}
 			$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, scrumMasterName, productOwnerName) VALUES ('$nproyecto', '$descripcion', '$scrumaster', '$nomproduc');");
-			$mysqli = new mysqli("localhost", "Administrador", "P@ssw0rd", "ScrumDB3.0");
+			$mysqli = new mysqli("localhost", "Administrador", "P@ssw0rd", "ScrumDB4");
 			
 			
 			if(mysqli_query($connect,$insertarConDescripcion)){
@@ -166,19 +166,18 @@
 				if($queryIDProject = mysqli_fetch_assoc($resultSearchIDProject)){
 					$IDProject = $queryIDProject["projectID"];
 				}
-				print_r("ID P:".$IDProject);
+
 				$searchIDScrumM = ("SELECT userID FROM Users WHERE username='$masterNombre';");
 				$resultSearchScrumM = mysqli_query($connect, $searchIDScrumM);
 				if($queryIDScrumM = mysqli_fetch_assoc($resultSearchScrumM)){
 					$IDScrumM = $queryIDScrumM["userID"];
 				}
-				print_r("ID Scr:".$IDScrumM);
+
 				$searchIDProduct = ("SELECT userID FROM Users WHERE username='$productNombre';");
 				$resultSearchProduct = mysqli_query($connect, $searchIDProduct);
 				if($queryIDProduct = mysqli_fetch_assoc($resultSearchProduct)){
 					$IDProduct = $queryIDProduct["userID"];
 				}
-				print_r("ID Pr:".$IDProduct);
 				
 				$searchIDDeveloper = ("SELECT u.userID FROM Users u, Groups g WHERE u.type=3 AND u.userID=g.userID AND g.nameGroup='$groupNombre';");
 				$resultSearchIDDeveloper = mysqli_query($connect,$searchIDDeveloper);
