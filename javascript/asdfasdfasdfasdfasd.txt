@@ -1,0 +1,46 @@
+function showSprintInfo() {
+	var lastdiv = document.getElementsByTagName("body")[0];
+	var sprintCont = addElement(lastdiv, "div", undefined, ["class=container", "name=SprintandBLContrainer"])
+	addElement(sprintCont, "div", undefined, ["class=row", "id=SprintandBLRow"])
+
+	if (typeof arraySprint !== 'undefined' && arraySprint.length > 0 && typeof arraySprint !== 'undefined' && arraySprint.length > 0) {
+		var divSprints = addElement(SprintandBLRow, "div", undefined, ["id=infoSprints", "class= col s6"]);
+		addElement(divSprints, "ul", undefined, ["id=listForClicks", "class=collapsible"]);
+
+		for (var i = 0; i < arraySprint.length; i++) {
+			showSprintInfoOneByOne(i);
+
+		}
+		var divBackLog = document.createElement("div");
+		divBackLog.setAttribute("id", "divBackLog");
+		divBackLog.setAttribute("class", "col s6");
+		var listbacklog = document.createElement("ul");
+		listbacklog.setAttribute("id", "sortable1");
+
+
+		//Backlog
+		if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0) {
+			for (var i = 0; i < arrayHWnull.length; i++) {
+				var listBL = document.createElement("li");
+				var elementBL = document.createElement("p");
+				elementBL.innerText = (arrayHWnull[i][1]);
+				elementBL.setAttribute("idTask", arrayHWnull[i][0]);
+				listBL.appendChild(elementBL);
+				listbacklog.appendChild(listBL);
+			}
+		}
+
+		divBackLog.appendChild(listbacklog);
+		//Boton añadir especificacion
+		if (tipo == 2) {
+
+			var AddButton = addElement(divBackLog, "input", undefined, ["id=buttonAdd", "type=image", "src=images/add.jpeg", "align=right", "class=inputImage"])
+			AddButton.addEventListener("click", addTask);
+			
+			addElement(divBackLog, "input", undefined, ["type=text", "class=input-text"])
+		}
+		//Boton añadir especificacion
+
+		SprintandBLRow.appendChild(divBackLog);
+	}
+}

@@ -1,2 +1,2 @@
-showInfoProject()
+showInfoProject();
 showSprintInfo();

@@ -201,12 +201,13 @@
 	}	
 ?>
 
-<script type="text/javascript">
-	var scrumjs = <?php echo json_encode($arrayscrum);?>;
-	var producjs = <?php echo json_encode($arrayproduc);?> ;
-	var groupjs = <?php echo json_encode($arraygroups);?> ;
-	var tipo = '<?php echo $userType;?>';
-</script>
+	<script type="text/javascript">
+		var scrumjs = <?php echo json_encode($arrayscrum);?>;
+		var producjs = <?php echo json_encode($arrayproduc);?> ;
+		var groupjs = <?php echo json_encode($arraygroups);?> ;
+		var tipo = '<?php echo $userType;?>';
+	</script>
 
+	<script type="text/javascript" defer src="javascript/pages/vistainicial.js"></script>
 </body>
 </html>

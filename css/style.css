@@ -178,7 +178,6 @@ a:link {
 .OneHomework{
   background-color:  #4fa4e7;  
   text-align: left;
-  margin-right: 2px; 
 }
 .input-text {
   padding: 1%;
@@ -197,6 +196,15 @@ p {
   height: 25px;
 }
 
-.terminateSprint {
-  margin-right: 90%;
+
+.btn-hoverable:hover {
+  transform: scale(2);
+}
+
+.col.s6 > #newSprintBtn {
+  width: 100%;
+}
+
+#SprintandBLContrainer {
+  width: 100%;
 }
