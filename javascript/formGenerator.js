@@ -138,9 +138,9 @@ function addSprintForm(){
 
 
 function validateSprintForm(){
-	var inputInitialDate = document.getElementsByTagName("input")[0];
-	var inputEndDate = document.getElementsByTagName("input")[1];
-	var inputHours = document.getElementsByTagName("input")[2];
+	var inputInitialDate = document.getElementsByTagName("input")[3];
+	var inputEndDate = document.getElementsByTagName("input")[6];
+	var inputHours = document.getElementsByTagName("input")[7];
 	
 	var DateSprint = new Date();
 	var day = DateSprint.getDate();
