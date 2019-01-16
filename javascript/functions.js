@@ -24,14 +24,17 @@ function showSprintInfoOneByOne(Position) {
 	
 
 	var divSprint = addElement(elementlist, "div", undefined, ["class=collapsible-header sprintNumber", "idSprint="+ Position + 1]);
-	if (arraySprint[Position][4] == 2) {
-		addElement(divSprint, "i", "lock_open", ["class=large material-icons green-text btn-hoverable", "onclick=editarSprint()"]);
-	} else {
-		addElement(divSprint, "i", "lock_outline", ["class=large material-icons "]);
+	if (tipo==1) {
+		if (arraySprint[Position][4] == 2) {
+			addElement(divSprint, "i", "lock_open", ["class=large material-icons green-text btn-hoverable", "onclick=editarSprint()"]);
+		} else {
+			addElement(divSprint, "i", "lock_outline", ["class=large material-icons "]);
+		}
 	}
 	addElement(divSprint, "p", "Sprint " + arraySprint[Position][0], ["class=SprintLetters white-text"]);
-	addElement(divSprint, "i", "cancel", ["class=material-icons red-text terminateSprint", "onclick=eliminarSprint()"]);
-
+	if(tipo==1){
+		addElement(divSprint, "i", "cancel", ["class=material-icons red-text terminateSprint", "onclick=eliminarSprint()"]);
+	}
 	//Colors Sprints
 	if (arraySprint[Position][4] == 0) {
 		divSprint.classList.add("grey");
@@ -42,39 +45,128 @@ function showSprintInfoOneByOne(Position) {
 	}
 
 	var divPSprint = document.createElement("div");
-	divPSprint.setAttribute("class", "infoSprint");
-	divPSprint.setAttribute("class", "collapsible-body");
+	divPSprint.setAttribute("class", "infoSprint collapsible-body");
 
-	var hours = document.createElement("p");
-	var texth = document.createTextNode("Horas: " + arraySprint[Position][1]);
-	hours.appendChild(texth);
-	divPSprint.appendChild(hours);
+	var divhours = document.createElement("div");
+	divhours.setAttribute("class", "divhours");
+	var texth = document.createElement("p");
+	texth.innerText="Horas:";
 
-	var startDate = document.createElement("p");
-	var textsd = document.createTextNode("Fecha de inicio: " + arraySprint[Position][2]);
+ 
+
+	//Mostrar segun el usuario
+	if(tipo==1){
+		var inputHours = document.createElement("INPUT");
+  		inputHours.setAttribute("type", "number");
+  		inputHours.setAttribute("class", (Position+1)+"edit");
+  		inputHours.setAttribute("value", arraySprint[Position][1]);
+  		inputHours.disabled = true;
+	}else{
+		var inputHours  = document.createElement("p");
+		inputHours.innerText=(""+arraySprint[Position][1]);
+  	}
+	
+  	
+	divhours.appendChild(texth);
+	divhours.appendChild(inputHours);
+
+	divPSprint.appendChild(divhours);
+	//Fecha de inicio
+	var startDate = document.createElement("div");
+
+	startDate.setAttribute("class", "startDate");	
+	var textsd = document.createElement("p");
+
+	textsd.innerText=("Fecha de inicio:");
 	startDate.appendChild(textsd);
-	divPSprint.appendChild(startDate);
 
-	var endDate = document.createElement("p");
-	var texteD = document.createTextNode("Fecha de fin: " + arraySprint[Position][3]);
+	//Mostrar segun el usuario
+	if(tipo==1){
+		var inputstartDate = document.createElement("INPUT");
+  		inputstartDate.setAttribute("type", "date");
+  		inputstartDate.setAttribute("class", (Position+1)+"edit");
+  		inputstartDate.setAttribute("value", arraySprint[Position][2]);
+  		inputstartDate.disabled = true;
+	}else{
+		var inputstartDate  = document.createElement("p");
+		inputstartDate.innerText=(""+arraySprint[Position][2]);
+  	}
+
+  	startDate.appendChild(inputstartDate);
+	divPSprint.appendChild(startDate);
+	//fecha final
+	var endDate = document.createElement("div");		
+	endDate.setAttribute("class", "endDate");
+	var texteD = document.createElement("p");
+	texteD.innerText=("Fecha de fin:");
 	endDate.appendChild(texteD);
+
+	//Mostrar segun el usuario
+	if(tipo==1){
+		var inputEndDate = document.createElement("INPUT");
+  		inputEndDate.setAttribute("type", "date");
+  		inputEndDate.setAttribute("class", (Position+1)+"edit");
+  		inputEndDate.setAttribute("value", arraySprint[Position][3]);
+  		inputEndDate.disabled = true;
+	}else{
+		var inputEndDate  = document.createElement("p");
+		inputEndDate.innerText=(arraySprint[Position][3]);
+  	}
+
+	
+  	endDate.appendChild(inputEndDate);
 	divPSprint.appendChild(endDate);
+	elementlist.appendChild(divSprint);	
+	elementlist.appendChild(divPSprint);
+
+
+	var listboxMoveDIV = document.createElement("div");
+	listboxMoveDIV.setAttribute("class", "listboxMoveDIV");
+
+	var listboxMove = document.createElement("ul");
+	listboxMove.setAttribute("class", "TaskSprint"+(Position+1));
+	listboxMoveDIV.appendChild(listboxMove);
+	divPSprint.appendChild(listboxMoveDIV);
 
 	for (var hw = 0; hw < arrayHW.length; hw++) {
-		if (arrayHW[hw][3] == arraySprint[Position][5]) {
-			var elementList = document.createElement("p");
-			elementList.innerText = (arrayHW[hw][4] + ". " + arrayHW[hw][1] + " " + arrayHW[hw][2] + "h");
-			elementList.setAttribute("class", "OneHomework");
-			elementList.setAttribute("orderHW", arrayHW[hw][4]);
-			divPSprint.appendChild(elementList);
-		}
+		if (arrayHW[hw][3]==arraySprint[Position][5]) {
+			var elementList = document.createElement("li");
 
+			var elementListDiv = document.createElement("div");
+			elementListDiv.setAttribute("class", "OneHomework row");
+			elementList.appendChild(elementListDiv);
+			var elementListP = document.createElement("p");
+
+			elementListP.setAttribute("class", "col 10");
+
+			elementListP.innerText=(arrayHW[hw][1]);
+
+			elementListP.setAttribute("idTask", arrayHW[hw][4]);
+			elementListDiv.appendChild(elementListP);
+;	
+
+			//Mostrar segun el usuario
+			if(tipo==1){
+				var inputHoursTask = document.createElement("INPUT");
+  				inputHoursTask.setAttribute("type", "number");
+  				inputHoursTask.setAttribute("class", (Position+1)+"edit col 2");
+  				inputHoursTask.setAttribute("value", arrayHW[hw][0]);
+  				inputHoursTask.disabled = true;
+			}else{
+				var inputHoursTask  = document.createElement("p");
+				inputHoursTask.innerText=(arrayHW[hw][0]+"h");
+  				inputHoursTask.setAttribute("class", (Position+1)+"edit col 2");
+		  	}	
+
+  			elementListDiv.appendChild(inputHoursTask);
+			listboxMove.appendChild(elementList);
+		}
+		
 	}
 
-
-	elementlist.appendChild(divSprint);
-	elementlist.appendChild(divPSprint);
-	list.appendChild(elementlist);
+			
+	
+list.appendChild(elementlist);
 
 }
 		
@@ -96,12 +188,12 @@ function showSprintInfo(){
 		//Crear div para sprints
 		var divSprints = document.createElement("div");
 		divSprints.setAttribute("id", "infoSprints");		
-		divSprints.setAttribute("class", "col s8");
+		divSprints.setAttribute("class", "col s6");
 		var listForClicks = document.createElement("ul");
 		listForClicks.setAttribute("id","listForClicks")
 		listForClicks.setAttribute("class","collapsible");
 		divSprints.appendChild(listForClicks);
-		
+
 		SprintandBLRow.appendChild(divSprints);	
 		//	Crear uno por uno cada sprint
 		for (var i = 0; i< arraySprint.length; i++) {
@@ -124,6 +216,11 @@ function showSprintInfo(){
 	var divBackLog = document.createElement("div");
 	divBackLog.setAttribute("id", "divBackLog");		
 	divBackLog.setAttribute("class", "col s6");
+
+	var divBackLogtext = document.createElement("p");
+	divBackLogtext.innerText="Espeficicaciones:";
+	divBackLog.appendChild(divBackLogtext);
+
 	var listbacklog = document.createElement("ul");
 	listbacklog.setAttribute("id", "sortable1");
 	
@@ -135,14 +232,17 @@ function showSprintInfo(){
 			var elementBL = document.createElement("p");
 			elementBL.innerText=(arrayHWnull[i][1]);
 			elementBL.setAttribute("idTask", arrayHWnull[i][0]);
-			elementBL.setAttribute("class", "col s9 OneHomework");
+			elementBL.setAttribute("class", "OneHomework");
 			listBL.setAttribute("name","mylistli");
 			listBL.setAttribute("class", "textBL row");
 			
 			listBL.appendChild(elementBL);
-			listBL.appendChild(objectMover(true));
-			listBL.appendChild(objectMover(false));
-			listBL.appendChild(objectDEL());
+			if(tipo==2){				
+				elementBL.setAttribute("class", "col s9 OneHomework");
+				listBL.appendChild(objectMover(true));
+				listBL.appendChild(objectMover(false));
+				listBL.appendChild(objectDEL());
+			}
 			listbacklog.appendChild(listBL);
 		}
 		divBackLog.appendChild(listbacklog);
@@ -189,6 +289,7 @@ function addTask() {
 	elementLi.appendChild(objectMover(true));
 	elementLi.appendChild(objectMover(false));
 	elementLi.appendChild(objectDEL());
+	
 }
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!
 function addTaskNew(){

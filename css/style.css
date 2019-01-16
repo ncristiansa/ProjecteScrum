@@ -164,13 +164,22 @@ a:link {
 }
 
 .infoSprint{
+  padding: 0;
   padding-left: 1%;
   color: black;
   background-color: white;
-  display: none;
   text-align: left;
   border: 1px solid;
 }
+
+.infoSprint p{
+  margin:0;
+}
+
+#newSprintBtn{
+  width: 100%;
+}
+
 #listHW{
   list-style-type:none;
 }
@@ -189,6 +198,8 @@ a:link {
 
 p {
   color: black;
+  padding: 0;
+
 }
 
 .inputImage {
@@ -207,4 +218,16 @@ p {
 
 #SprintandBLContrainer {
   width: 100%;
+}
+
+.listboxMoveDIV{
+  margin: 3%;
+}
+
+.divhours, .startDate, .endDate{ 
+  display:inline-block;
+  margin:0;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0;
 }
