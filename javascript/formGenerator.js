@@ -113,8 +113,10 @@ function addSprintForm(){
 	labelP.appendChild(labelText);
 	elementForm.appendChild(labelP);
 	var elementP = document.createElement("p");
+
 	var numberOrder = numberOrd;
 	var textoInput = document.createTextNode(numberOrder);
+
 
 
 
