@@ -174,7 +174,13 @@
 		$numberOrd = $convertIntArray[0]+1;	
 	}
 
-	
+	function eliminarSprint(){
+		$changeStatus = ("UPDATE Sprints SET status = 0 WHERE projectID='$idProject';");
+	}
+
+
+	print_r('Fecha inicio'.$finalSprintInfoArray[0][2]);
+	print_r('Fecha final'.$finalSprintInfoArray[0][3]);
 	echo "<div id='contenido-web'></div>";
 	
 
