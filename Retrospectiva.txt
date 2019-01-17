@@ -31,5 +31,6 @@ Retrospectiva Grupal:
 	Cosas a mejorar:
 		Comunicación entre los intregantes del grupo.
 		Organización a la hora de asignar tareas.
+		Centrarnos en lo que tenemos que hacer y no en el diseño.
 	Elementos postivos:
-		Solución de errores entre Almudena y Cristian.
+		Mejora del codigo
