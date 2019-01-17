@@ -237,7 +237,7 @@ function showSprintInfo(){
 	listbacklog.setAttribute("id", "sortableBL");
 	
 	
-	//Espeficicaciones del Backlog
+	//Espeficicaciones del Backlog---
 	if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
 		for (var i = 0; i< arrayHWnull.length; i++) {				
 			var listBL = document.createElement("li");
