@@ -26,7 +26,7 @@ function showSprintInfoOneByOne(Position) {
 	var divSprint = addElement(elementlist, "div", undefined, ["class=collapsible-header sprintNumber", "idSprint="+ Position + 1]);
 	if (tipo==1) {
 		if (arraySprint[Position][4] == 2) {
-			addElement(divSprint, "i", "lock_open", ["class=large material-icons green-text btn-hoverable", "onclick=editarSprint("+(Position+1)+")"]);
+			addElement(divSprint, "i", "lock_open", ["class=large material-icons green-text btn-hoverable", "onclick=editarSprint()"]);
 		} else {
 			addElement(divSprint, "i", "lock_outline", ["class=large material-icons "]);
 		}
@@ -64,22 +64,20 @@ function showSprintInfoOneByOne(Position) {
 
  
 
-	//Hidden input para editar
-
-		var inputHoursHidden = document.createElement("INPUT");
-  		inputHoursHidden.setAttribute("type", "number");
-  		inputHoursHidden.setAttribute("class", (Position+1)+"edit edit");
-  		inputHoursHidden.setAttribute("value", arraySprint[Position][1]);
-  		inputHoursHidden.hidden = true;
-
-		//Texto normal horas totales
+	//Mostrar segun el usuario
+	if(tipo==1){
+		var inputHours = document.createElement("INPUT");
+  		inputHours.setAttribute("type", "number");
+  		inputHours.setAttribute("class", (Position+1)+"edit");
+  		inputHours.setAttribute("value", arraySprint[Position][1]);
+  		inputHours.hidden=false;
+	}else{
 		var inputHours  = document.createElement("p");
 		inputHours.innerText=(""+arraySprint[Position][1]);
-		inputHours.setAttribute("class", (Position+1)+"active show");
-  
+  	}
+	
   	
 	divhours.appendChild(texth);
-	divhours.appendChild(inputHoursHidden);
 	divhours.appendChild(inputHours);
 
 	divPSprint.appendChild(divhours);
@@ -92,23 +90,20 @@ function showSprintInfoOneByOne(Position) {
 	textsd.innerText=("Fecha de inicio:");
 	startDate.appendChild(textsd);
 
-	//Hidden input para editar
-	
-		var inputstartDateHidden = document.createElement("INPUT");
-  		inputstartDateHidden.setAttribute("type", "date");
-  		inputstartDateHidden.setAttribute("class", (Position+1)+"edit edit");
-  		inputstartDateHidden.setAttribute("value", arraySprint[Position][2]);
-  		inputstartDateHidden.hidden = true;
-	
+	//Mostrar segun el usuario
+	if(tipo==1){
+		var inputstartDate = document.createElement("INPUT");
+  		inputstartDate.setAttribute("type", "date");
+  		inputstartDate.setAttribute("class", (Position+1)+"edit");
+  		inputstartDate.setAttribute("value", arraySprint[Position][2]);
+  		inputstartDate.disabled = true;
+	}else{
 		var inputstartDate  = document.createElement("p");
 		inputstartDate.innerText=(""+arraySprint[Position][2]);
-  		inputstartDate.setAttribute("class", (Position+1)+"active show");
+  	}
 
-
-  	startDate.appendChild(inputstartDateHidden);
   	startDate.appendChild(inputstartDate);
 	divPSprint.appendChild(startDate);
-
 	//fecha final
 	var endDate = document.createElement("div");		
 	endDate.setAttribute("class", "endDate");
@@ -116,21 +111,20 @@ function showSprintInfoOneByOne(Position) {
 	texteD.innerText=("Fecha de fin:");
 	endDate.appendChild(texteD);
 
-	//Hidden input para editar
-	
-		var inputEndDateHidden = document.createElement("INPUT");
-  		inputEndDateHidden.setAttribute("type", "date");
-  		inputEndDateHidden.setAttribute("class", (Position+1)+"edit edit");
-  		inputEndDateHidden.setAttribute("value", arraySprint[Position][3]);
-  		inputEndDateHidden.hidden = true;
-
+	//Mostrar segun el usuario
+	if(tipo==1){
+		var inputEndDate = document.createElement("INPUT");
+  		inputEndDate.setAttribute("type", "date");
+  		inputEndDate.setAttribute("class", (Position+1)+"edit");
+  		inputEndDate.setAttribute("value", arraySprint[Position][3]);
+  		inputEndDate.disabled = true;
+	}else{
 		var inputEndDate  = document.createElement("p");
 		inputEndDate.innerText=(arraySprint[Position][3]);
-  		inputEndDate.setAttribute("class", (Position+1)+"active show");
+  	}
 
-	endDate.appendChild(inputEndDateHidden);
+	
   	endDate.appendChild(inputEndDate);
-
 	divPSprint.appendChild(endDate);
 	elementlist.appendChild(divSprint);	
 	elementlist.appendChild(divPSprint);
@@ -140,7 +134,7 @@ function showSprintInfoOneByOne(Position) {
 	listboxMoveDIV.setAttribute("class", "listboxMoveDIV");
 
 	var listboxMove = document.createElement("ul");
-	listboxMove.setAttribute("class", "TaskSprint TaskSprint"+(Position+1));
+	listboxMove.setAttribute("class", "TaskSprint"+(Position+1));
 	listboxMoveDIV.appendChild(listboxMove);
 	divPSprint.appendChild(listboxMoveDIV);
 
@@ -161,19 +155,18 @@ function showSprintInfoOneByOne(Position) {
 			elementListDiv.appendChild(elementListP);
 ;	
 
-			//Hidden input
-			
-				var inputHoursTaskHidden = document.createElement("INPUT");
-  				inputHoursTaskHidden.setAttribute("type", "number");
-  				inputHoursTaskHidden.setAttribute("class", (Position+1)+"edit edit col 2");
-  				inputHoursTaskHidden.setAttribute("value", arrayHW[hw][0]);
-  				inputHoursTaskHidden.hidden = true;
-
+			//Mostrar segun el usuario
+			if(tipo==1){
+				var inputHoursTask = document.createElement("INPUT");
+  				inputHoursTask.setAttribute("type", "number");
+  				inputHoursTask.setAttribute("class", (Position+1)+"edit col 2");
+  				inputHoursTask.setAttribute("value", arrayHW[hw][0]);
+  				inputHoursTask.disabled = true;
+			}else{
 				var inputHoursTask  = document.createElement("p");
 				inputHoursTask.innerText=(arrayHW[hw][0]+"h");
-  				inputHoursTask.setAttribute("class", (Position+1)+"edit col 2 "+(Position+1)+"active show");
-		  		
-		  	elementListDiv.appendChild(inputHoursTaskHidden);
+  				inputHoursTask.setAttribute("class", (Position+1)+"edit col 2");
+		  	}	
   			elementListDiv.appendChild(inputHoursTask);
 			listboxMove.appendChild(elementList);
 		}
@@ -234,10 +227,10 @@ function showSprintInfo(){
 	divBackLog.appendChild(divBackLogtext);
 
 	var listbacklog = document.createElement("ul");
-	listbacklog.setAttribute("id", "sortableBL");
+	listbacklog.setAttribute("id", "sortable1");
 	
 	
-	//Espeficicaciones del Backlog---
+	//Espeficicaciones del Backlog
 	if (typeof arrayHWnull !== 'undefined' && arrayHWnull.length > 0 ) {
 		for (var i = 0; i< arrayHWnull.length; i++) {				
 			var listBL = document.createElement("li");
@@ -294,9 +287,9 @@ function NewTaskInterface(divBackLog,SprintandBLRow){
 function addTask() {
 	var element = document.getElementsByClassName("OneHomework");
 	var pos = element.length-1;
-	element = element[pos];
-	var DivID = document.getElementById("sortableBL");
-	var contentTask = document.getElementsByClassName("input-text")[0].value;
+	element = element[pos]
+	var DivID = document.getElementById("sortable1");
+	var contentTask = document.getElementsByTagName("input")[1].value;
 	if (contentTask == "") {
 		return false;
 	}
@@ -311,35 +304,8 @@ function addTask() {
 /**
  * Función que permite editar los sprints que todavía no están activos/terminados
  */
-function editarSprint(id) {
-	var listbacklog = document.getElementById("sortableBL");
-	listbacklog.setAttribute("class","sortable2 connectedSortable");
-	var listtaskSprints = document.getElementsByClassName("TaskSprint");
-	for (var i = 0; i < listtaskSprints.length; i++) {
-		listtaskSprints[i].classList.remove("sortable1");		
-		listtaskSprints[i].classList.remove("connectedSortable");
-	}
-	var listTaskSelected = document.getElementsByClassName(("TaskSprint"+id))[0];
-	listTaskSelected.setAttribute("class","sortable1 connectedSortable TaskSprint TaskSprint"+id);
-
-	var datosMostrar= document.getElementsByClassName("show");
-	for (var i = 0; i < datosMostrar.length; i++) {
-		datosMostrar[i].hidden = false;
-	}
-	var datosEsconder= document.getElementsByClassName((id+1)+"active");
-	for (var i = 0; i < datosEsconder.length; i++) {
-		datosEsconder[i].hidden = true;
-	}
-	
-	var inputsEsconder = document.getElementsByClassName("edit");
-	for (var i = 0; i < inputsEsconder.length; i++) {
-		inputsEsconder[i].hidden = true;
-	}
-	var inputsMostar= document.getElementsByClassName((id+1)+"edit");
-	for (var i = 0; i < inputsMostar.length; i++) {
-		inputsMostar[i].hidden = false;
-	}
-
+function editarSprint() {
+	//alert("hola");
 }
 
 /**
@@ -425,17 +391,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	var elem = document.querySelector('.collapsible');
 });
 
-
-
-
- $( function() {
-    $( ".sortable1, .sortable2" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
-  } );
-
- 
-
 function eliminarSprint(){
 	for(var i=0; i>arraySprint.length;i++){
 		var numberSprint = document.getElementsByClassName("SprintLetters white-text")[i].textContent;
@@ -453,4 +408,3 @@ function eliminarSprint(){
 		}
 	}
 }
-

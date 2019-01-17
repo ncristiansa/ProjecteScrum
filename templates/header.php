@@ -16,9 +16,6 @@
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
 	<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  	<link rel="stylesheet" href="/resources/demos/style.css">
-  
 
 	<!-- Own stuff -->
 	<!-- CSS archives -->
@@ -30,8 +27,7 @@
 	<script type="text/javascript" src="javascript/helpers.js"></script>
 	<script type="text/javascript" src="javascript/functions.js"></script>
 	<script type="text/javascript" defer src="javascript/_init.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 
 </head>
