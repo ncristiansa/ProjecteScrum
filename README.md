@@ -42,7 +42,7 @@ El equipo está formado por:
 
 ## Archivo SQL <a name="sql-data"></a>
 
-[Aqui](https://github.com/ncristiansa/ProjecteScrum/blob/master/ScrumDBfinal.sql) encontraras el archivo SQL para la base de datos.
+[Aqui](https://github.com/ncristiansa/ProjecteScrum/blob/master/ScrumDB4.sql) encontraras el archivo SQL para la base de datos.
 
 ### Acceso a la base de datos <a name="acceso-bd"></a>
 
