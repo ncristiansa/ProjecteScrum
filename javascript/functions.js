@@ -228,6 +228,7 @@ function showSprintInfo(){
 
 	var listbacklog = document.createElement("ul");
 	listbacklog.setAttribute("id", "sortable1");
+	divBackLog.appendChild(listbacklog);
 	
 	
 	//Espeficicaciones del Backlog
@@ -250,7 +251,6 @@ function showSprintInfo(){
 			}
 			listbacklog.appendChild(listBL);
 		}
-		divBackLog.appendChild(listbacklog);
 	}
 
 	if(tipo==2){
