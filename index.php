@@ -25,6 +25,7 @@
 			echo "<input type='password' name='password'><br>";
 		echo "<input type='submit' value='Enviar' name='submit' id='btn' class='waves-effect waves-light btn-small'><br>";
 	echo "</form>";
+	echo "<br><a href='recuperar.php'>He olvidado mi contraseña</a>";
 	echo "</div>";
 
 	checkIsset($nombre, $_POST["nom"]);
