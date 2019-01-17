@@ -172,18 +172,6 @@
 		La variable converIntArray convierte nuestro array que obtenemos en formato String,
 		lo pasamos a entero.
 	*/
-<<<<<<< HEAD
-	
-=======
-	$numberOrd = 0;
-	if (isset($finalOrderNumber[0])) {
-		$convertIntArray = array_map(function($value){return (int)$value;}, $finalOrderNumber[0]);
-		$numberOrd = $convertIntArray[0]+1;	
-	}else{
-		$numberOrd=0;
-	}
->>>>>>> ceac7b22d1b71ae792b774a9d9bdd990a38fd4fa
-
 
 	echo "<div id='contenido-web'></div>";
 	
