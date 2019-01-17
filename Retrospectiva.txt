@@ -3,8 +3,11 @@ Sprint 3:
 
 Almudena:
 	Cosas a mejorar:
-		
+		Centrarnos en hacer lo que toca y no ir buscando información de especificaciones que no tengoque hacer.
+		Perdida de tiempo al implementar materialize.
+		Orgnización, commentar y utilizar funciones.
 	Elementos positivos:
+		Organización de archivos... Y de creación de elementos...
 		
 Cristian:
 	Cosas a mejorar:
