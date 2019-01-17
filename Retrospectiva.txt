@@ -11,8 +11,9 @@ Almudena:
 		
 Cristian:
 	Cosas a mejorar:
-		
+		Comunicación entre el grupo.
 	Elementos postivos:
+		El uso de funciones para evitar escribir código.
 		
 
 Jose:
