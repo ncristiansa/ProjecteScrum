@@ -1,16 +1,7 @@
 <?php
-	session_start();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="estiloScrum.css">
-	<script type="text/javascript" defer src="funciones.js"></script>
-	<title>Inicio</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-</head>
-<body>
-<?php
+	$tituloPagina = "Proyectos";
+	include 'templates/header.php';
+
 	/*
 		Inicio esta variable para usarla más adelante almacenar el resultado de una consulta.
 	*/
@@ -18,7 +9,7 @@
 	/*
 		La variable $nameusr servirá para almacenar la SESSION["Name"]
 		donde tenemos almacenado el nickname del usuario que hemos obtenido
-		con la SESSION iniciada en login.php
+		con la SESSION iniciada en index.php
 	*/
 	$nameusr = $_SESSION["Name"];
 	/*
@@ -29,7 +20,7 @@
 	$server = "localhost";
  	$user = "Administrador";
  	$pass = "P@ssw0rd";
- 	$bbdd = "ScrumDB3.3";
+ 	$bbdd = "ScrumDB4";
  	$connect = mysqli_connect($server,$user, $pass, $bbdd);
  	/*
 		En la variable $consulta lanzaremos nuestra pequeña consulta SQL
@@ -47,32 +38,15 @@
 		En caso de que haya un resultado, en este caso sí,
 		éste lo guardaremos en nuestra variable $NameUser donde almacenará
 		$variable = $registro["columna"], es decir $NameUser = $registro["username"]. El nombre username es el que tenemos en nuestra tabla Users donde se guarda el nombre del usuario.
- 	*/
+	*/
+	
+	
 	if($registro = mysqli_fetch_assoc($resultado)){
 		$NameUser = $registro["username"];
 	}
 		
 ?>
-<?php
-	echo"<nav>";
-		echo"<ul>";
-			echo"<li class='lihorizontal'>";
-				echo"<img class='imgusuario' src='images\usericon.png'>";
-				
-			echo"</li>";
-			echo"<li class='liimglogout'>";
-?>
-				<a href='vistainicial.php?exituser=true'>
-<?php
-				echo"<img class='imglogout' src='images\logout.png'>";
-?>
-				</a>
-<?php
-				print_r($NameUser);
-			echo"</li>";
-		echo"</ul>";
-	echo"</nav>";
-?>
+<?php include 'templates/nav.php'; ?>
 
 <?php
 	/*
@@ -80,7 +54,7 @@
 	*/
 	function destroySession(){
 		session_destroy();
-		header("Location: login.php");
+		header("Location: index.php");
 	}
 	/*
 		Esta condición nos permite saber si el usuario ha hecho click en la imagen donde hemos añadido una especie de
@@ -91,16 +65,6 @@
 	}
 ?>
 <?php
-	function checkIsset(&$variable, &$argumentPost) {
-		if (isset($argumentPost)) {
-			$variable = $argumentPost;
-		}
-
-		else {
-			$variable = null;
-		}
-	}
-
 	$idUser = "";
 	$IDProject = "";
 	$IDScrumM = "";
@@ -127,11 +91,11 @@
 				echo "<p align='right' class='p-Title'>Proyectos</p>";
 			echo "<ul>";
 				while ($QueryList = mysqli_fetch_array($resultList)) {
-					echo"<li class='text-li'><a id='$QueryList[0]'>".$QueryList[0]."</li></a>";
+					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
 				}
 			echo "</ul>";
 		echo "</div>";
-	}elseif ($userType==2) {
+	}else {
 		
 		echo "<div align='center' class='div-father'>";
 			echo "<div class='list-projects' align='center'>";
@@ -144,21 +108,10 @@
 		echo "</div>";
         
     }
-    elseif ($userType==3) {
-        echo "<div align='center' class='div-father'>";
-			echo "<div class='list-projects' align='center'>";
-				echo "<p align='right' class='p-Title'>Proyectos</p>";
-			echo "<ul>";
-				while ($QueryList = mysqli_fetch_array($resultList)) {
-					echo"<li class='text-li'><a id='$QueryList[0]' href='Administration.php?id=$QueryList[0]'>".$QueryList[0]."</li></a>";
-				}
-			echo "</ul>";
-		echo "</div>";
-    }
 	
 ?>
 
-<?php
+<?php	
 	$consultaselect = ("SELECT username FROM Users WHERE type=1;");
 	$resultadoselect = mysqli_query($connect,$consultaselect);
 	$arrayscrum=[];
@@ -183,18 +136,11 @@
 		array_push($arraygroups, $group);
 		
 	}
-
-	$nproyecto = $descripcion = $scrumaster = $nomproduc = $grupos = '';
-
-
-
-
 	checkIsset($nproyecto, $_POST["nproyecto"]);
 	checkIsset($descripcion, $_POST["descripcion"]);
 	checkIsset($scrumaster, $_POST["scrum"]);
 	checkIsset($nomproduc, $_POST["produ"]);
 	checkIsset($grupos, $_POST["developers"]);
-
 	$_SESSION["nameprojecto"] = $nproyecto;
 	$projectoNombre = $_SESSION["nameprojecto"];
 	$_SESSION["namescrum"] = $scrumaster;
@@ -203,10 +149,7 @@
 	$productNombre = $_SESSION["nameproduct"];
 	$_SESSION["namegrup"] = $grupos;
 	$groupNombre = $_SESSION["namegrup"];
-	print_r($projectoNombre);
-	print_r($masterNombre);
-	print_r($productNombre);
-	print_r($groupNombre);
+
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
 			if(isset($_POST['descripcion'])){
 				$descripcion = $_POST['descripcion'];
@@ -214,7 +157,7 @@
 				$descripcion = null;
 			}
 			$insertarConDescripcion = ("INSERT INTO Projects (nameProject, description, scrumMasterName, productOwnerName) VALUES ('$nproyecto', '$descripcion', '$scrumaster', '$nomproduc');");
-			$mysqli = new mysqli("localhost", "Administrador", "P@ssw0rd", "ScrumDB3.3");
+			$mysqli = new mysqli("localhost", "Administrador", "P@ssw0rd", "ScrumDB4");
 			
 			
 			if(mysqli_query($connect,$insertarConDescripcion)){
@@ -223,19 +166,18 @@
 				if($queryIDProject = mysqli_fetch_assoc($resultSearchIDProject)){
 					$IDProject = $queryIDProject["projectID"];
 				}
-				print_r("ID P:".$IDProject);
+
 				$searchIDScrumM = ("SELECT userID FROM Users WHERE username='$masterNombre';");
 				$resultSearchScrumM = mysqli_query($connect, $searchIDScrumM);
 				if($queryIDScrumM = mysqli_fetch_assoc($resultSearchScrumM)){
 					$IDScrumM = $queryIDScrumM["userID"];
 				}
-				print_r("ID Scr:".$IDScrumM);
+
 				$searchIDProduct = ("SELECT userID FROM Users WHERE username='$productNombre';");
 				$resultSearchProduct = mysqli_query($connect, $searchIDProduct);
 				if($queryIDProduct = mysqli_fetch_assoc($resultSearchProduct)){
 					$IDProduct = $queryIDProduct["userID"];
 				}
-				print_r("ID Pr:".$IDProduct);
 				
 				$searchIDDeveloper = ("SELECT u.userID FROM Users u, Groups g WHERE u.type=3 AND u.userID=g.userID AND g.nameGroup='$groupNombre';");
 				$resultSearchIDDeveloper = mysqli_query($connect,$searchIDDeveloper);
@@ -251,19 +193,17 @@
 				}
 				header("Location: vistainicial.php");
 				
-			}
-			
-			
-			
+			}	
 	}	
 ?>
 
-<script type="text/javascript">
-	var scrumjs = <?php echo json_encode($arrayscrum);?>;
-	var producjs = <?php echo json_encode($arrayproduc);?> ;
-	var groupjs = <?php echo json_encode($arraygroups);?> ;
-	var tipo = '<?php echo $userType;?>';
-</script>
+	<script type="text/javascript">
+		var scrumjs = <?php echo json_encode($arrayscrum);?>;
+		var producjs = <?php echo json_encode($arrayproduc);?> ;
+		var groupjs = <?php echo json_encode($arraygroups);?> ;
+		var tipo = '<?php echo $userType;?>';
+	</script>
 
+	<script type="text/javascript" defer src="javascript/pages/vistainicial.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@ body{
   background-color: #dce7ef  ;
   font-family: Arial;
 }
+
 .titulo{
   margin: 0 auto;
   width: 40%;
@@ -50,13 +51,8 @@ table{
   animation-iteration-count: infinite;
   padding:5px;
   margin: 5px;
-}
-.Login-Style {
-  margin:0 auto;
-  padding:3%;
-  width: 40%;
-  background-color: white; 
-  box-shadow: 4px 4px 4px 4px #888888;
+  height: 30px;
+  width: 30px;
 }
 
 #imageAlert{
@@ -107,7 +103,6 @@ table{
 
 .imglogout{
   width: 4%;
-  height: 4%;
   padding: 0%;
 }
 .liimglogout{
@@ -120,44 +115,17 @@ table{
   color:   #605f60;
 
 }
-nav{
-  background-color:  #f13b33  ;
-  margin:-1%;
-}
-.imgusuario:hover
-{
-  color:#494c46;  
-}
 
-.imglogout:hover{
-  
-  color:#494c46;
-  -webkit-transform: scale(0.8);
-  -ms-transform: scale(0.8);
-  transform: scale(0.8);
-  
-}
 .imgusuario{
-  width: 4%;
-  height: 4%;
-  
+  width: 4%;  
 }
-.div-father {
-  margin:0;
-  margin-top: 3%;
-  word-wrap: break-word;
-}
-.list-projects {
-  margin:0;
-  width: 50%;
-  border:solid;
 
-}
 .title-list {
-  font-size: 120%;
+  font-size: 120%; 
 }
 .text-li {
-  font-size:100%;
+  font-size:100%;  
+  text-align: left;
 }
 a:link {
   text-decoration: none;
@@ -173,7 +141,7 @@ a:link {
   border-collapse: collapse;
   word-wrap: break-word;
 }
-.info-project, .list-projects, #formulario, #infoSprints, #infoHomework {
+.info-project, .list-projects, #formulario, #infoSprints, #infoHomework, #divBackLog {
   margin: 0 auto;
   margin-top: 2%;
   width: 50%;
@@ -184,7 +152,6 @@ a:link {
 }
 .titleh2-project,  .p-Title{
   background-color:  #4fa4e7;
-  padding: 1%;
 }
 
 #buttonProject, #buttonenviar{
@@ -197,13 +164,22 @@ a:link {
 }
 
 .infoSprint{
+  padding: 0;
   padding-left: 1%;
   color: black;
   background-color: white;
-  display: none;
   text-align: left;
   border: 1px solid;
 }
+
+.infoSprint p{
+  margin:0;
+}
+
+#newSprintBtn{
+  width: 100%;
+}
+
 #listHW{
   list-style-type:none;
 }
@@ -211,11 +187,47 @@ a:link {
 .OneHomework{
   background-color:  #4fa4e7;  
   text-align: left;
-  margin-right: 2px; 
 }
 .input-text {
   padding: 1%;
   margin-bottom: 2%;
   border-color: black;
   width: 70%;
+  -webkit-text-fill-color: black;
+}
+
+p {
+  color: black;
+  padding: 0;
+
+}
+
+.inputImage {
+  width: 25px;
+  height: 25px;
+}
+
+
+.btn-hoverable:hover {
+  transform: scale(2);
+}
+
+.col.s6 > #newSprintBtn {
+  width: 100%;
+}
+
+#SprintandBLContrainer {
+  width: 100%;
+}
+
+.listboxMoveDIV{
+  margin: 3%;
+}
+
+.divhours, .startDate, .endDate{ 
+  display:inline-block;
+  margin:0;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0;
 }

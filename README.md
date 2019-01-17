@@ -42,7 +42,7 @@ El equipo está formado por:
 
 ## Archivo SQL <a name="sql-data"></a>
 
-[Aqui](https://github.com/ncristiansa/ProjecteScrum/blob/master/ScrumDB3.3.sql) encontraras el archivo SQL para la base de datos.
+[Aqui](https://github.com/ncristiansa/ProjecteScrum/blob/master/ScrumDBfinal.sql) encontraras el archivo SQL para la base de datos.
 
 ### Acceso a la base de datos <a name="acceso-bd"></a>
 
@@ -91,6 +91,10 @@ Estos son *Developer* (3), *Product Owner* (2) y *Scrum Master* (1).
 | Usuario | Contraseña |
 |---|---|
 | juanam | juana123 |
+<<<<<<< HEAD
+|  | 1234 |
+=======
+>>>>>>> origin/joseDevelopement
 | master | master |
 
 ### Product Owner <a name="po"></a>

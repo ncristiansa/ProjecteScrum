@@ -1,16 +1,31 @@
-Sprint 2:
-	Participantes: Almudena, Cristian, Adrià
+Sprint 3:
+	Participantes: Almudena, Cristian, Jose Manuel
 
 Almudena:
 	Cosas a mejorar:
-		El pasado sprint me sentí que no hice mucho y he querido compensarlo. Han surgido problemas el día de antes de la entrega y he necesitado ayuda.
+		Centrarnos en hacer lo que toca y no ir buscando información de especificaciones que no tengoque hacer.
+		Perdida de tiempo al implementar materialize.
+		Orgnización, commentar y utilizar funciones.
 	Elementos positivos:
-		He mejorado la compresión de DOM y el trabajo en equipo entre Cristian y yo en caso de problemas.
+		Organización de archivos... Y de creación de elementos...
+		
 Cristian:
 	Cosas a mejorar:
-		Falta de comunicación y planteamiento de tareas.
+		Comunicación entre el grupo.
 	Elementos postivos:
-		Trabajo en equipo entre Almudena y yo en solucionar y terminar tareas pendientes.
+		El uso de funciones para evitar escribir código.
+		
+
+Jose:
+	Cosas a mejorar:
+		A veces se iba un poco cada uno a su bola además de (yo) tener que adaptarme mejor a proyectos ajenos.
+		¿Quizá también trabajar más? Me da la sensación que he trabajado bastante pero de todas formas
+		me he quedado corto y podría haber hecho más
+
+	Elementos positivos:
+		Cuando nos coordinabamos bien trabajabamos bien en equipo.
+		Si alguien no entendía algo se le explicaba para que lo entendiese bien.
+		Se ayudaba entre los demás para apoyarse en las cosas que unos sabían y otros no.
 
 Retrospectiva Grupal:
 	Cosas a mejorar:

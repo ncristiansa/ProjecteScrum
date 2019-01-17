@@ -6,7 +6,7 @@ function connectar(){
   //  si falla executa el catch
   try {
     $hostname = "localhost";
-    $dbname = "ScrumDB3.3";
+    $dbname = "ScrumDB4";
     $username = "Administrador";
     $pw = "P@ssw0rd";
     $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");

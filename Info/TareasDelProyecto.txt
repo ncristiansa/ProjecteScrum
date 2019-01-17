@@ -1,0 +1,45 @@
+    
+		TAREAS:
+
+    A. Disseny i anàlisi de la base de dades(6h)		[HECHO]
+    
+    1.L'aplicació tindrà els següents perfils d'usuari amb diferents permisos:
+    	Scrum master: crea projectes, sprints, temporitza especificacions i sprints, assigna especifiacions a sprints
+   		Product owner: pot insertar especificacions
+   		Developer: només visualitza els projectes que té assignats(4h)
+   	
+   	2.Cal una pàgina de login única per tots els usuaris.(1h)		[HECHO]
+    
+    3.L'usuari romandrà dins la sessió del seu perfil fins que faci logout.(1h)
+    
+    4.La contrasenya dels usuaris estarà xifrada de forma segura.(1)
+    
+    5.Tots el missatges d'error han de tenir una icona d'error, un marc i sempre han de sortir al mateix lloc(2h)
+    
+    6.El marc i l'icona ha de parpellejar(1h)
+    
+    7.En tot moment i en totes les pàgines (excepte la pàgina de login) a la part superior dreta ha de apareixer l'usuari logat amb el format (usuari: NOM) i una icona per poder fer logout(2h)
+    
+    8.Pantalla de login:
+    	Ha de surtir un missatge de error si l'usuari no es correcte
+  		Ha de surtir un missatge de error si la contrasenya no es correcta(1h)
+
+    9.Llista dels projectes existens, son links que ens portarà a la pàgina d'administració del projecte(1h)
+    
+    10.La llista de projectes ha de sortir amb un marc i a la part superior dreta del marc haurà un texte (Projectes)(1h)
+    
+    11.Si l'usuari es del tipus ScrumMaster també apareixerà un botó (Crear Nou Projecte)(1h)
+    
+    12.Si fem click en el botó crear projecte es crearà dinàmicament un formulari amb els camps necessaris per crear el projecte ( nom del projecte, descripció, ScrumMaster, Product Owner, Grup de desenvolupadors, crear)(4h)
+    
+    13.Tots els camps (excepte descripció) son obligatoris i per tant heu d'afegir el control per no permetre crear cap projecte si no està emplenat algun dels camps obligatoris(1h)
+    
+    14.Després de crear un nou projecte s'ha de recarregar la pàgina per veure la nova informació(1h)
+    
+    15. Developers i Product Owner no poden veure el botó de crear nou projecte i a més els developers i els product owners només poden veure els projectes que tenen assignats
+
+
+    	TAREAS REALIZADAS:
+
+    	A. Disseny i anàlisi de la base de dades(6h)
+    	2.Cal una pàgina de login única per tots els usuaris.(1h)
